@@ -15,7 +15,7 @@ import org.apache.commons.convert.NumberConverters.FloatToString;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.bradsdavis.edi.parser.EDIMessageParserFactory;
+import com.bradsdavis.edi.parser.EDIWriter;
 import com.bradsdavis.edi.testing.ExampleMessage;
 import com.bradsdavis.edi.testing.Item;
 import com.bradsdavis.edi.testing.Price;
@@ -74,7 +74,7 @@ public class TestParser {
 		example.setMultileGroups(multiGroups);
 		
 		
-		EDIMessageParserFactory.write(example, writer);
+		EDIWriter.write(example, writer);
 		System.out.println(writer.toString());
 	}
 	
