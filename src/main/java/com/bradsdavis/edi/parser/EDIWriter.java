@@ -16,6 +16,10 @@ import com.bradsdavis.edi.transformer.FieldAwareConverter;
 
 public class EDIWriter {
 
+	private EDIWriter() {
+		// seal
+	}
+	
     public static <T> void write(T obj, Writer writer) throws Exception {
     	Class<T> clazz = (Class<T>)obj.getClass(); 
     	
