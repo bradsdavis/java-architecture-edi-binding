@@ -1,4 +1,4 @@
-package javax.edi.model.x12.segment;
+package javax.edi.model.x12.edi810.segment;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -28,8 +28,8 @@ public class ShipToBillToName {
 	@EDIElement
 	//@Conditional
 	private String identificationCode; 
-//	If N101 is ÔBTÕ, Then USSCO Acct   Nbr goes here
-//	If N101 is ÔSFÕ, Then USSCO Facility code goes here
+//	If N101 is ?BT?, Then USSCO Acct   Nbr goes here
+//	If N101 is ?SF?, Then USSCO Facility code goes here
 
 	@Size(min = 2, max = 2)
 	private String entityRelationshipCode; 

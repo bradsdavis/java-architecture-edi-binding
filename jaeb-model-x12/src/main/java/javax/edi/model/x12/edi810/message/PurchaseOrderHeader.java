@@ -1,18 +1,17 @@
-package javax.edi.model.x12.message;
+package javax.edi.model.x12.edi810.message;
 
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 import javax.edi.bind.annotations.EDISegmentGroup;
-import javax.edi.model.x12.segment.AdministrativeCommunicationsContact;
-import javax.edi.model.x12.segment.BeginningSegment;
-import javax.edi.model.x12.segment.Currency;
-import javax.edi.model.x12.segment.ReferenceIdentification;
-import javax.edi.model.x12.segment.ReferenceNumber;
-import javax.edi.model.x12.segment.SpecifyingDeliveryCarrier;
-import javax.edi.model.x12.segment.TransactionSetHeader;
+import javax.edi.model.x12.edi810.segment.AdministrativeCommunicationsContact;
+import javax.edi.model.x12.edi810.segment.BeginningSegment;
+import javax.edi.model.x12.edi810.segment.Currency;
+import javax.edi.model.x12.edi810.segment.ReferenceIdentification;
+import javax.edi.model.x12.edi810.segment.ReferenceNumber;
+import javax.edi.model.x12.edi810.segment.SpecifyingDeliveryCarrier;
+import javax.edi.model.x12.edi810.segment.TransactionSetHeader;
 
 @EDISegmentGroup
 public class PurchaseOrderHeader {

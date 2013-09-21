@@ -1,4 +1,4 @@
-package javax.edi.model.x12.segment;
+package javax.edi.model.x12.edi810.segment;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -19,11 +19,11 @@ public class ReferenceIdentification {
 	@EDIElement
 	//@Conditional
 	private String referenceIdentification; 
-//	If N901 is ÔL1Õ, then N902 must be:
-//		ÔSPHÕ=Spec Handling Instructions
+//	If N901 is ?L1?, then N902 must be:
+//		?SPH?=Spec Handling Instructions
 //		    (max 2)
-//		ÔLABÕ=Label Instructions(max 6)
-//		ÔORIÕ=Dealer Information(max 6)
+//		?LAB?=Label Instructions(max 6)
+//		?ORI?=Dealer Information(max 6)
 
 	@Size(min = 1, max = 40)
 	@EDIElement

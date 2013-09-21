@@ -1,13 +1,12 @@
-package javax.edi.model.x12.message;
+package javax.edi.model.x12.edi810.message;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 import javax.edi.bind.annotations.EDIMessage;
-import javax.edi.model.x12.segment.Detail;
-import javax.edi.model.x12.segment.GroupEnvelope;
-import javax.edi.model.x12.segment.InterchangeEnvelope;
-import javax.edi.model.x12.segment.Summary;
+import javax.edi.model.x12.edi810.segment.Detail;
+import javax.edi.model.x12.edi810.segment.GroupEnvelope;
+import javax.edi.model.x12.edi810.segment.InterchangeEnvelope;
+import javax.edi.model.x12.edi810.segment.Summary;
 
 
 @EDIMessage(segmentDelimiter="~",componentDelimiter=">",elementDelimiter="*")
