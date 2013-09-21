@@ -1,4 +1,4 @@
-package com.bradsdavis.edi.util;
+package javax.edi.bind.util;
 
 public class TransformerException extends Exception {
 

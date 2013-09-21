@@ -1,4 +1,4 @@
-package com.bradsdavis.edi.util;
+package javax.edi.bind.util;
 
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
@@ -7,6 +7,10 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
+
+import javax.edi.bind.annotations.elements.EDIElementFormat;
+import javax.edi.bind.annotations.elements.EDILocale;
+import javax.edi.bind.annotations.elements.EDITimezone;
 
 import org.apache.commons.convert.ConversionException;
 import org.apache.commons.convert.Converter;
@@ -17,10 +21,6 @@ import org.apache.commons.convert.NumberConverters.AbstractNumberConverter;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.bradsdavis.edi.annotations.elements.EDIElementFormat;
-import com.bradsdavis.edi.annotations.elements.EDILocale;
-import com.bradsdavis.edi.annotations.elements.EDITimezone;
 
 public class FieldAwareConverter {
 	private static final Logger LOG = LoggerFactory.getLogger(FieldAwareConverter.class);

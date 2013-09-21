@@ -1,6 +1,6 @@
 package com.bradsdavis.edi.testing;
 
-import com.bradsdavis.edi.annotations.EDISegmentGroup;
+import javax.edi.bind.annotations.EDISegmentGroup;
 
 @EDISegmentGroup(header="PRICING", footer="ENDPRICING")
 public class ExampleSegmentGroup {

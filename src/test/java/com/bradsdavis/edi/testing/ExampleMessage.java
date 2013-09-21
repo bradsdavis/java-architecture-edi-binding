@@ -2,10 +2,10 @@ package com.bradsdavis.edi.testing;
 
 import java.util.Collection;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
+import javax.edi.bind.annotations.EDICollectionType;
+import javax.edi.bind.annotations.EDIMessage;
 
-import com.bradsdavis.edi.annotations.EDICollectionType;
-import com.bradsdavis.edi.annotations.EDIMessage;
+import org.apache.commons.lang.builder.EqualsBuilder;
 
 @EDIMessage()
 public class ExampleMessage {

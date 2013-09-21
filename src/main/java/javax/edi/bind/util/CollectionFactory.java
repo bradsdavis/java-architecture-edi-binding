@@ -1,4 +1,4 @@
-package com.bradsdavis.edi.util;
+package javax.edi.bind.util;
 
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;

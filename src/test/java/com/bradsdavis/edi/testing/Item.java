@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
 
-import com.bradsdavis.edi.annotations.EDICollectionType;
-import com.bradsdavis.edi.annotations.EDIComponent;
-import com.bradsdavis.edi.annotations.EDISegment;
-import com.bradsdavis.edi.annotations.elements.EDIElementFormat;
+import javax.edi.bind.annotations.EDICollectionType;
+import javax.edi.bind.annotations.EDIComponent;
+import javax.edi.bind.annotations.EDISegment;
+import javax.edi.bind.annotations.elements.EDIElementFormat;
 
 @EDISegment(tag="ITEM")
 public class Item {

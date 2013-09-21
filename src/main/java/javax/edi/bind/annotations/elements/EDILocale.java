@@ -1,4 +1,4 @@
-package com.bradsdavis.edi.annotations;
+package javax.edi.bind.annotations.elements;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,8 +7,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface EDIElement {
-	boolean required() default false;	
-	boolean conditional() default false;
-	String dataElement() default "";
+public @interface EDILocale {
+	String language();
+	String region();
 }

@@ -1,13 +1,14 @@
-package com.bradsdavis.edi.annotations;
+package javax.edi.bind.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface EDIComponent {
-	String delimiter() default "";
+public @interface EDIElement {
+	boolean required() default false;	
+	boolean conditional() default false;
+	String dataElement() default "";
 }

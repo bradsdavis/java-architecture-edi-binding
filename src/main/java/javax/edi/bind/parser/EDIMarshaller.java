@@ -1,23 +1,23 @@
-package com.bradsdavis.edi.parser;
+package javax.edi.bind.parser;
 
 import java.io.Writer;
 import java.lang.reflect.Field;
 import java.util.Collection;
 
+import javax.edi.bind.annotations.EDICollectionType;
+import javax.edi.bind.annotations.EDIComponent;
+import javax.edi.bind.annotations.EDIElement;
+import javax.edi.bind.annotations.EDIMessage;
+import javax.edi.bind.annotations.EDISegment;
+import javax.edi.bind.annotations.EDISegmentGroup;
+import javax.edi.bind.util.FieldAwareConverter;
+
 import org.apache.commons.beanutils.PropertyUtils;
 
-import com.bradsdavis.edi.annotations.EDICollectionType;
-import com.bradsdavis.edi.annotations.EDIComponent;
-import com.bradsdavis.edi.annotations.EDIElement;
-import com.bradsdavis.edi.annotations.EDIMessage;
-import com.bradsdavis.edi.annotations.EDISegment;
-import com.bradsdavis.edi.annotations.EDISegmentGroup;
-import com.bradsdavis.edi.util.FieldAwareConverter;
 
+public class EDIMarshaller {
 
-public class EDIWriter {
-
-	private EDIWriter() {
+	private EDIMarshaller() {
 		// seal
 	}
 	
@@ -32,7 +32,7 @@ public class EDIWriter {
         processSegmentsAndSegmentGroups(message, obj, writer);
     }
     
-    public static <T> void processSegmentsAndSegmentGroups(EDIMessage message, T obj, Writer writer) throws Exception {
+    protected static <T> void processSegmentsAndSegmentGroups(EDIMessage message, T obj, Writer writer) throws Exception {
     	Class clazz = obj.getClass();
     	
     	//now, loop through all segments.
@@ -75,7 +75,7 @@ public class EDIWriter {
         }   
     }
 
-    public static <T> void write1SegmentGroup(EDIMessage message, T obj, Writer writer) throws Exception {
+    protected static <T> void write1SegmentGroup(EDIMessage message, T obj, Writer writer) throws Exception {
 		Class<T> clazz = (Class<T>)obj.getClass();
 
 		EDISegmentGroup segmentGroup = clazz.getAnnotation(EDISegmentGroup.class);
@@ -101,7 +101,7 @@ public class EDIWriter {
         }
     }
     
-    public static <T> void writeNSegmentGroups(EDIMessage message, T obj, Writer writer) throws Exception {
+    protected static <T> void writeNSegmentGroups(EDIMessage message, T obj, Writer writer) throws Exception {
 		Collection collectionObjs = (Collection)obj;
 		Object testObject = collectionObjs.iterator().next();
 		Class<T> clazz = (Class<T>)testObject.getClass();
@@ -132,11 +132,11 @@ public class EDIWriter {
         }
     }
     
-    public static <T> void writeSegmentGroup(EDIMessage message, T obj, Writer writer) throws Exception {
+    protected static <T> void writeSegmentGroup(EDIMessage message, T obj, Writer writer) throws Exception {
     	processSegmentsAndSegmentGroups(message, obj, writer);
     }
     
-    public static <T> void writeNSegments(EDIMessage message, T obj, Writer writer) throws Exception {
+    protected static <T> void writeNSegments(EDIMessage message, T obj, Writer writer) throws Exception {
     	Collection collectionObjs = (Collection)obj;
 		
     	for(Object collectionObj : collectionObjs) {
@@ -144,7 +144,7 @@ public class EDIWriter {
 		}
     }
     
-    public static <T> void writeSegment(EDIMessage message, T obj, Writer writer) throws Exception {
+    protected static <T> void writeSegment(EDIMessage message, T obj, Writer writer) throws Exception {
     	if(obj == null) {
     		return;
     	}
@@ -181,7 +181,7 @@ public class EDIWriter {
         }
     }
     
-    public static <T> void writeField(EDIMessage message, Field field, T obj, Writer writer) throws Exception {
+    protected static <T> void writeField(EDIMessage message, Field field, T obj, Writer writer) throws Exception {
     	Object value = PropertyUtils.getProperty(obj, field.getName());
     	if(value == null) {
     		return;

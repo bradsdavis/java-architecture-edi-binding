@@ -1,4 +1,4 @@
-package com.bradsdavis.edi.annotations.elements;
+package javax.edi.bind.annotations.elements;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

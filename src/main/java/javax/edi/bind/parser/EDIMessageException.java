@@ -1,4 +1,4 @@
-package com.bradsdavis.edi.parser;
+package javax.edi.bind.parser;
 
 public class EDIMessageException extends Exception {
 

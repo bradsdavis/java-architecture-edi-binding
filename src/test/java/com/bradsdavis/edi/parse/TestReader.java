@@ -3,13 +3,14 @@ package com.bradsdavis.edi.parse;
 import java.io.StringReader;
 import java.io.StringWriter;
 
+import javax.edi.bind.parser.EDIUnmarshaller;
+import javax.edi.bind.parser.EDIMarshaller;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.bradsdavis.edi.parser.EDIReader;
-import com.bradsdavis.edi.parser.EDIWriter;
 import com.bradsdavis.edi.testing.ExampleMessage;
 
 public class TestReader extends EDITestBase {
@@ -18,18 +19,18 @@ public class TestReader extends EDITestBase {
 	@Test
 	public void testReader() throws Exception {
 		StringWriter sw = new StringWriter();
-		EDIWriter.write(exampleMessage, sw);
+		EDIMarshaller.write(exampleMessage, sw);
 		
-		ExampleMessage message = EDIReader.read(ExampleMessage.class, new StringReader(sw.toString()));
+		ExampleMessage message = EDIUnmarshaller.read(ExampleMessage.class, new StringReader(sw.toString()));
 		
 		LOG.debug(exampleMessage.toString());
 		LOG.debug(message.toString());
 		
 		StringWriter resultMain = new StringWriter();
-		EDIWriter.write(exampleMessage, resultMain);
+		EDIMarshaller.write(exampleMessage, resultMain);
 		
 		StringWriter resultNew = new StringWriter();
-		EDIWriter.write(exampleMessage, resultNew);
+		EDIMarshaller.write(exampleMessage, resultNew);
 		
 		LOG.debug(resultMain.toString());
 		LOG.debug(resultNew.toString());

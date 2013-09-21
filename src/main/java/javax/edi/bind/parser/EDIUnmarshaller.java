@@ -1,4 +1,4 @@
-package com.bradsdavis.edi.parser;
+package javax.edi.bind.parser;
 
 import java.io.Reader;
 import java.lang.reflect.Field;
@@ -10,6 +10,14 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+import javax.edi.bind.annotations.EDICollectionType;
+import javax.edi.bind.annotations.EDIComponent;
+import javax.edi.bind.annotations.EDIMessage;
+import javax.edi.bind.annotations.EDISegment;
+import javax.edi.bind.annotations.EDISegmentGroup;
+import javax.edi.bind.util.CollectionFactory;
+import javax.edi.bind.util.FieldAwareConverter;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.convert.ConversionException;
 import org.apache.commons.io.LineIterator;
@@ -19,18 +27,10 @@ import org.apache.commons.lang.text.StrTokenizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.bradsdavis.edi.annotations.EDICollectionType;
-import com.bradsdavis.edi.annotations.EDIComponent;
-import com.bradsdavis.edi.annotations.EDIMessage;
-import com.bradsdavis.edi.annotations.EDISegment;
-import com.bradsdavis.edi.annotations.EDISegmentGroup;
-import com.bradsdavis.edi.util.CollectionFactory;
-import com.bradsdavis.edi.util.FieldAwareConverter;
+public class EDIUnmarshaller {
+	private static final Logger LOG = LoggerFactory.getLogger(EDIUnmarshaller.class);
 
-public class EDIReader {
-	private static final Logger LOG = LoggerFactory.getLogger(EDIReader.class);
-
-	private EDIReader() {
+	private EDIUnmarshaller() {
 		// seal
 	}
 
