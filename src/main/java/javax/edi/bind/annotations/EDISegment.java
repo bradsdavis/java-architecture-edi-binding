@@ -10,7 +10,4 @@ import java.lang.annotation.Target;
 public @interface EDISegment {
 	String tag();
 	String delimiter() default "\n";
-	int minOccurs() default 1;
-	int maxOccurs() default 1;
-	
 }

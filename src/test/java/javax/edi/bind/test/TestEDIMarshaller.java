@@ -6,7 +6,7 @@ import javax.edi.bind.EDIMarshaller;
 
 import org.junit.Test;
 
-public class TestWriter extends EDITestBase {
+public class TestEDIMarshaller extends EDITestBase {
 
 	@Test
 	public void testParser() throws Exception {

@@ -12,8 +12,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestReader extends EDITestBase {
-	private static final Logger LOG = LoggerFactory.getLogger(TestReader.class);
+public class TestEDIUnmarshaller extends EDITestBase {
+	private static final Logger LOG = LoggerFactory.getLogger(TestEDIUnmarshaller.class);
 	
 	@Test
 	public void testReader() throws Exception {

@@ -39,7 +39,7 @@ public class EDIUnmarshaller {
 		return parseEDIMessage(clz, lineIterator);
 	}
 
-	public static <T> T parseEDIMessage(Class<T> clz, LineIterator lineIterator) throws EDIMessageException, InstantiationException, IllegalAccessException, InvocationTargetException,
+	protected static <T> T parseEDIMessage(Class<T> clz, LineIterator lineIterator) throws EDIMessageException, InstantiationException, IllegalAccessException, InvocationTargetException,
 			ClassNotFoundException, ConversionException {
 		if (!clz.isAnnotationPresent(EDIMessage.class)) {
 			throw new EDIMessageException("Not EDI Message Class.");
