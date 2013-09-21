@@ -1,4 +1,4 @@
-package javax.edi.model.x12.edi850.segment;
+package javax.edi.model.x12;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -27,7 +27,7 @@ public class GroupEnvelope {
 	
 	@NotNull
 	@Size(min = 8, max = 8)
-	@EDIElementFormat(format="CCYYMMDD")
+	@EDIElementFormat("yyyyMMdd")
 	private String date; // CCYYMMDD format
 	
 	@NotNull

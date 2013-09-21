@@ -383,7 +383,7 @@ public class EDIUnmarshaller {
 
 	protected static Class getCollectionType(Field field) {
 		if (field.isAnnotationPresent(EDICollectionType.class)) {
-			return field.getAnnotation(EDICollectionType.class).type();
+			return field.getAnnotation(EDICollectionType.class).value();
 		}
 
 		return null;

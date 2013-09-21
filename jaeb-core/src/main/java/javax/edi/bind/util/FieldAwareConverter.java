@@ -36,7 +36,7 @@ public class FieldAwareConverter {
 		
 		if(field.isAnnotationPresent(EDIElementFormat.class)) {
 			EDIElementFormat formatAnnotation = field.getAnnotation(EDIElementFormat.class);
-			format = formatAnnotation.format();
+			format = formatAnnotation.value();
 		}
 		
 		if(field.isAnnotationPresent(EDILocale.class)) {
@@ -84,7 +84,7 @@ public class FieldAwareConverter {
 		
 		if(field.isAnnotationPresent(EDIElementFormat.class)) {
 			EDIElementFormat formatAnnotation = field.getAnnotation(EDIElementFormat.class);
-			format = formatAnnotation.format();
+			format = formatAnnotation.value();
 		}
 		
 		if(field.isAnnotationPresent(EDILocale.class)) {

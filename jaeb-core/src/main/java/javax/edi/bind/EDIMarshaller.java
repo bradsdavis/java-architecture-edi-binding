@@ -48,7 +48,7 @@ public class EDIMarshaller {
         			if(!field.isAnnotationPresent(EDICollectionType.class)) {
         				throw new EDIMessageException("@EDICollectionType Annotation is required for field: "+field.getName());
         			}
-        			Class testClass = field.getAnnotation(EDICollectionType.class).type();
+        			Class testClass = field.getAnnotation(EDICollectionType.class).value();
         			
         			if(testClass.isAnnotationPresent(EDISegment.class)) {
         				writeNSegments(message, collectionObjs, writer);

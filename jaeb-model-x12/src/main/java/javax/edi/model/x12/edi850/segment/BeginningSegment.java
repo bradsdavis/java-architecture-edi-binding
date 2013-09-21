@@ -32,7 +32,7 @@ public class BeginningSegment {
 	private String purchaseOrderNumber; // Your company's P.O. reference number for this order
 	
 	@NotNull
-	@EDIElementFormat(format="CCYYMMDD") 
+	@EDIElementFormat("yyyyMMdd") 
 	private Date purchaseOrderDate;
 	
 	@Size(min = 1, max = 30)
