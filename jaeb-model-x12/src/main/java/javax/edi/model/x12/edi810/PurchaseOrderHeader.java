@@ -35,4 +35,70 @@ public class PurchaseOrderHeader {
 		
 	private AdministrativeCommunicationsContact administrationCommunicationsContact;
 
+	
+	
+	
+	
+	
+	public TransactionSetHeader getTransactionSetHeader() {
+		return transactionSetHeader;
+	}
+
+	public void setTransactionSetHeader(TransactionSetHeader transactionSetHeader) {
+		this.transactionSetHeader = transactionSetHeader;
+	}
+
+	public BeginningSegment getBeginningSegment() {
+		return beginningSegment;
+	}
+
+	public void setBeginningSegment(BeginningSegment beginningSegment) {
+		this.beginningSegment = beginningSegment;
+	}
+
+	public List<ReferenceNumber> getReferenceNumbers() {
+		return referenceNumbers;
+	}
+
+	public void setReferenceNumbers(List<ReferenceNumber> referenceNumbers) {
+		this.referenceNumbers = referenceNumbers;
+	}
+
+	public List<SpecifyingDeliveryCarrier> getSpecifyingDeliveryCarriers() {
+		return specifyingDeliveryCarriers;
+	}
+
+	public void setSpecifyingDeliveryCarriers(
+			List<SpecifyingDeliveryCarrier> specifyingDeliveryCarriers) {
+		this.specifyingDeliveryCarriers = specifyingDeliveryCarriers;
+	}
+
+	public List<ReferenceIdentification> getReferenceIdentification() {
+		return referenceIdentification;
+	}
+
+	public void setReferenceIdentification(
+			List<ReferenceIdentification> referenceIdentification) {
+		this.referenceIdentification = referenceIdentification;
+	}
+
+	public Currency getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(Currency currency) {
+		this.currency = currency;
+	}
+
+	public AdministrativeCommunicationsContact getAdministrationCommunicationsContact() {
+		return administrationCommunicationsContact;
+	}
+
+	public void setAdministrationCommunicationsContact(
+			AdministrativeCommunicationsContact administrationCommunicationsContact) {
+		this.administrationCommunicationsContact = administrationCommunicationsContact;
+	}
+
+	
+	
 }

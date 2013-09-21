@@ -31,11 +31,11 @@ public class GeographicLocation {
 	
 	@Size(min = 1, max = 2)
 	@EDIElement
-	//@Conditional(X?)
+	(conditional=true)
 	private String locationQualifier; // 
 	
 	@Size(min = 1, max = 25)
 	@EDIElement
-	//@Conditional(X?)
+	(conditional=true)
 	private String locationIdentifier; // 
 }

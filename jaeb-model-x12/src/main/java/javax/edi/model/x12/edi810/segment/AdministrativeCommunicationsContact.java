@@ -15,43 +15,35 @@ public class AdministrativeCommunicationsContact {
 	private String contactFunctionCode;
 	
 	@Size(min=1,max=40)
-	@EDIElement
-	//@Conditional
+	@EDIElement(conditional=true)
 	private String name;
 	
 	@Size(min=2,max=2)
-	@EDIElement
-	//@Conditional(X?)
+	@EDIElement(conditional=true)
 	private String communicationNumberQualifier;
 	
 	@Size(min=7,max=25)
-	@EDIElement
-	//@Conditional(X?)
+	@EDIElement(conditional=true)
 	private String communicationNumber;
 	
 	@Size(min=2,max=2)
-	@EDIElement
-	//@Conditional(X?)
+	@EDIElement(conditional=true)
 	private String communicationNumberQualifier2;
 	
 	@Size(min=7,max=25)
-	@EDIElement
-	//@Conditional(X?)
+	@EDIElement(conditional=true)
 	private String communicationNumber2;
 	
 	@Size(min=2,max=2)
-	@EDIElement
-	//@Conditional(X?)
+	@EDIElement(conditional=true)
 	private String communicationNumberQualifier3;
 	
 	@Size(min=7,max=25)
-	@EDIElement
-	//@Conditional(X?)
+	@EDIElement(conditional=true)
 	private String communicationNumber3;
 	
 	@Size(min=1,max=20)
-	@EDIElement
-	//@Conditional
+	@EDIElement(conditional=true)
 	private String contactInquiryReference;
 	
 	
