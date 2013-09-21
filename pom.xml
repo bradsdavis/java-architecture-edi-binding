@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>javax.edi</groupId>
-	<artifactId>edi-converter</artifactId>
+	<artifactId>jaeb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Java EDI Converter</name>
 
@@ -54,7 +54,6 @@
 	</dependencies>
 	
 	<repositories>
-	
 		<repository>
 			<releases>
 				<enabled>false</enabled>
@@ -71,5 +70,6 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>jaeb-core</module>
+		<module>jaeb-model-x12</module>
 	</modules>
 </project>
