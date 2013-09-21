@@ -1,4 +1,4 @@
-package javax.edi.model.x12.edi810.message;
+package javax.edi.model.x12.edi810;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
