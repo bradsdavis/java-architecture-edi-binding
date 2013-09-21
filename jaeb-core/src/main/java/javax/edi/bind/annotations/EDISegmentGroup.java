@@ -7,6 +7,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface EDISegment {
-	String tag();
+public @interface EDISegmentGroup {
+	String header() default "";
+	String footer() default "";
 }

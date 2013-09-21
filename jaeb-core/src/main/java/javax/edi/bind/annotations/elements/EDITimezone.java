@@ -1,12 +1,12 @@
-package javax.edi.bind.annotations;
+package javax.edi.bind.annotations.elements;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(ElementType.TYPE)
+@Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface EDISegment {
-	String tag();
+public @interface EDITimezone {
+	String timezone();
 }

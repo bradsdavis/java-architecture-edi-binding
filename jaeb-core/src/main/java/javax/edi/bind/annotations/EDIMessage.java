@@ -7,6 +7,8 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface EDISegment {
-	String tag();
+public @interface EDIMessage {
+	String elementDelimiter() default "*";
+	String componentDelimiter() default ":";
+	String segmentDelimiter() default "\n";
 }
