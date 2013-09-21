@@ -2,6 +2,7 @@ package com.bradsdavis.edi.testing;
 
 import java.util.Collection;
 
+import com.bradsdavis.edi.annotations.EDICollectionType;
 import com.bradsdavis.edi.annotations.EDIMessage;
 
 @EDIMessage()
@@ -10,10 +11,12 @@ public class ExampleMessage {
 	private Item segment;
 	private Item another;
 	
+	@EDICollectionType(type=Item.class)
 	private Collection<Item> nSegments;
 	
 	private ExampleSegmentGroup segmentGroup;
-	
+
+	@EDICollectionType(type=ExampleSegmentGroup.class)
 	private Collection<ExampleSegmentGroup> multileGroups;
 	
 	public Collection<ExampleSegmentGroup> getMultileGroups() {

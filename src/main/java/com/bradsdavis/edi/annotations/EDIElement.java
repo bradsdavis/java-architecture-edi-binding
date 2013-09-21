@@ -9,4 +9,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface EDIElement {
 	boolean required() default false;	
+	boolean conditional() default false;
+	String dataElement() default "";
 }

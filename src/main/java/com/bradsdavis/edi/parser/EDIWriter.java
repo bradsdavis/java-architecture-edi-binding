@@ -6,6 +6,7 @@ import java.util.Collection;
 
 import org.apache.commons.beanutils.PropertyUtils;
 
+import com.bradsdavis.edi.annotations.EDICollectionType;
 import com.bradsdavis.edi.annotations.EDIComponent;
 import com.bradsdavis.edi.annotations.EDIElement;
 import com.bradsdavis.edi.annotations.EDIMessage;
@@ -44,12 +45,15 @@ public class EDIWriter {
         		Collection collectionObjs = (Collection)fieldObj;
 
         		if(collectionObjs.size() > 0) {
-        			Object testObject = collectionObjs.iterator().next();
+        			if(!field.isAnnotationPresent(EDICollectionType.class)) {
+        				throw new EDIMessageException("@EDICollectionType Annotation is required for field: "+field.getName());
+        			}
+        			Class testClass = field.getAnnotation(EDICollectionType.class).type();
         			
-        			if(testObject.getClass().isAnnotationPresent(EDISegment.class)) {
+        			if(testClass.isAnnotationPresent(EDISegment.class)) {
         				writeNSegments(message, collectionObjs, writer);
             		}
-        			else if(testObject.getClass().isAnnotationPresent(EDISegmentGroup.class)) {
+        			else if(testClass.isAnnotationPresent(EDISegmentGroup.class)) {
         				writeNSegmentGroups(message, collectionObjs, writer);
         			}
         			else {

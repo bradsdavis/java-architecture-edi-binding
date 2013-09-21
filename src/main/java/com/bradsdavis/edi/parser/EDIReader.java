@@ -6,6 +6,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -48,13 +50,14 @@ public class EDIReader {
 		
 		T obj = clz.newInstance();
 		
+		Queue<String> lookAhead = new LinkedList<String>();
 		while(fieldIterator.hasNext() && lineIterator.hasNext()) {
-			parseEDISegment(ediMessage, obj, fieldIterator, lineIterator);
+			parseEDISegment(ediMessage, obj, fieldIterator, lookAhead, lineIterator);
 		}
 		return obj;
     }
     
-    public static <T> void parseEDISegment(EDIMessage ediMessage, T object, Iterator<Field> fieldIterator, LineIterator lineIterator) throws EDIMessageException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException, ConversionException {
+    public static <T> void parseEDISegment(EDIMessage ediMessage, T object, Iterator<Field> fieldIterator, Queue<String> lookAhead, LineIterator lineIterator) throws EDIMessageException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException, ConversionException {
     	if(!fieldIterator.hasNext()) {
     		throw new EDIMessageException("No more fields to read.");
     	}
@@ -63,21 +66,66 @@ public class EDIReader {
     		throw new EDIMessageException("No more lines to read.");
     	}
     	
-    	//match up iterators...
-    	FieldMatch fm = advanceToMatch(fieldIterator, lineIterator);
+    	
+    	//get the queued object first...
+    	String line = lookAhead.size() > 0 ? lookAhead.remove() : lineIterator.next();
+    	
+    	//match up the field with the line...
+    	FieldMatch fm = advanceToMatch(fieldIterator, line);
+    	
     	if(fm != null) {
     		//we have a match between the current line and the current field. (FieldMatch) 
+    		if(Collection.class.isAssignableFrom(fm.getField().getType())) {
+    			Collection obj = CollectionFactory.newInstance(fm.getField().getType());
+    			BeanUtils.setProperty(object, fm.getField().getName(), obj);
     		
-    		Object obj = fm.getField().getType().newInstance();
-    		BeanUtils.setProperty(object, fm.getField().getName(), obj);
-    		parseEDIField(ediMessage, obj, fm.getLine());
+    			//look ahead to see if we need to break. 
+    	    	Class<?> collectionClass = getCollectionType(fm.getField());
+    	    	
+    	    	if(collectionClass.isAnnotationPresent(EDISegment.class)) {
+    	    		EDISegment es = collectionClass.getAnnotation(EDISegment.class);
+    	    		
+    	    		Queue<String> segments = queueLinesForType(es, lookAhead, lineIterator);
+    	    		for(String segment : segments) {
+    	    			Object collectionObject = collectionClass.newInstance();
+    	    			parseEDIField(ediMessage, collectionObject, fm.getLine());
+    	    			obj.add(collectionObject);
+    	    		}
+    	    	}
+    		}
+    		else {
+    			Object obj = fm.getField().getType().newInstance();
+        		BeanUtils.setProperty(object, fm.getField().getName(), obj);
+        		parseEDIField(ediMessage, obj, fm.getLine());
+    		}
     	}
     }
     
-    public static FieldMatch advanceToMatch(Iterator<Field> fieldIterator, LineIterator lineIterator) {
+    public static Queue<String> queueLinesForType(EDISegment segment, Queue<String> lookAhead, LineIterator lineIterator) {
+    	Queue<String> segments = new LinkedList<String>();
+    	
+    	while(lineIterator.hasNext()) {
+	    	String line = lineIterator.next();
+	    	StringTokenizer tokenizer = new StringTokenizer(line, "*");
+	    	
+	    	if(StringUtils.equals(segment.tag(), tokenizer.nextToken())) {
+	    		segments.add(line);
+	    	}
+	    	else {
+	    		lookAhead.add(line);
+	    		break;
+	    	}
+    	}
+    	
+    	
+    	return segments;
+    }
+    
+    
+    public static FieldMatch advanceToMatch(Iterator<Field> fieldIterator, String line) {
 		//advance the reader, read the line.
-    	String line = lineIterator.next();
     	StringTokenizer tokenizer = new StringTokenizer(line, "*");
+    	
     	
     	//first token is always the tag.
     	String ediSegmentTag = tokenizer.nextToken();
@@ -99,6 +147,11 @@ public class EDIReader {
     
     public static boolean matchesSegment(Field field, String segmentTag) {
     	Class<?> clz = field.getType();
+    	
+    	
+    	if(Collection.class.isAssignableFrom(clz)) {
+    		clz = getCollectionType(field);
+    	}
     	
     	if(clz.isAnnotationPresent(EDISegment.class)) {
     		EDISegment es = clz.getAnnotation(EDISegment.class);
@@ -127,6 +180,7 @@ public class EDIReader {
     	
     	//now, tokenize the line, and set the fields. 
     	StrTokenizer tokenizer = new StrTokenizer(line, "*");
+    	
     	tokenizer.setEmptyTokenAsNull(true);
     	tokenizer.setIgnoreEmptyTokens(false);
     	
