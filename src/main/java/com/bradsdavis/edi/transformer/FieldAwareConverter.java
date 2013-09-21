@@ -3,6 +3,7 @@ package com.bradsdavis.edi.transformer;
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -11,14 +12,19 @@ import org.apache.commons.convert.ConversionException;
 import org.apache.commons.convert.Converter;
 import org.apache.commons.convert.Converters;
 import org.apache.commons.convert.DateTimeConverters.DateToString;
+import org.apache.commons.convert.DateTimeConverters.StringToDate;
 import org.apache.commons.convert.NumberConverters.AbstractNumberConverter;
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.bradsdavis.edi.annotations.elements.EDIElementFormat;
 import com.bradsdavis.edi.annotations.elements.EDILocale;
 import com.bradsdavis.edi.annotations.elements.EDITimezone;
 
 public class FieldAwareConverter {
-
+	private static final Logger LOG = LoggerFactory.getLogger(FieldAwareConverter.class);
+	
 	public static <T> String convertToString(Field field, T obj) throws ConversionException, ClassNotFoundException {
 		if (obj == null) {
 			return null;
@@ -64,5 +70,63 @@ public class FieldAwareConverter {
 		}
 		
 		return (String)converter.convert(obj);
+	}
+	
+	
+	public static <T> Object convertFromString(Field field, String val) throws ConversionException, ClassNotFoundException {
+		if (val == null) {
+			return null;
+		}
+
+		String format = null;
+		Locale locale = null;
+		TimeZone timezone = null;
+		
+		if(field.isAnnotationPresent(EDIElementFormat.class)) {
+			EDIElementFormat formatAnnotation = field.getAnnotation(EDIElementFormat.class);
+			format = formatAnnotation.format();
+		}
+		
+		if(field.isAnnotationPresent(EDILocale.class)) {
+			EDILocale localeAnnotation = field.getAnnotation(EDILocale.class);
+			locale = new Locale(localeAnnotation.language(), localeAnnotation.region());
+		}
+		else {	
+			locale = Locale.getDefault();
+		}
+		 
+		if(field.isAnnotationPresent(EDITimezone.class)) {
+			EDITimezone timezoneAnnotation = field.getAnnotation(EDITimezone.class);
+			timezone = TimeZone.getTimeZone(timezoneAnnotation.timezone());
+		}
+		else {
+			timezone = TimeZone.getDefault();
+		}
+		
+		
+		Converter converter = Converters.getConverter(String.class, field.getType());
+		
+		if(converter instanceof AbstractNumberConverter) {
+			if(Number.class.isAssignableFrom(field.getType())) {
+				NumberFormat numberFormat = new DecimalFormat(format);
+				Number number;
+				try {
+					number = numberFormat.parse(val);
+					
+					LOG.debug("Number type: "+ReflectionToStringBuilder.toString(number));
+					
+				} catch (ParseException e) {
+					throw new ConversionException("Exception converting ["+val+"] with format: "+format);
+				}
+				Converter numberConverter = Converters.getConverter(number.getClass(), field.getType());
+				return numberConverter.convert(number);
+			}
+			return ((AbstractNumberConverter) converter).convert(val, locale,  timezone, format);
+		}
+		if(converter instanceof StringToDate) {
+			return ((StringToDate) converter).convert(val, locale, timezone, format);
+		}
+		
+		return converter.convert(val);
 	}
 }
