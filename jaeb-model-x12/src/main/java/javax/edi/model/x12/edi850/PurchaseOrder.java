@@ -1,12 +1,12 @@
-package javax.edi.model.x12.edi810;
+package javax.edi.model.x12.edi850;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.edi.bind.annotations.EDIMessage;
-import javax.edi.model.x12.edi810.segment.Detail;
-import javax.edi.model.x12.edi810.segment.GroupEnvelope;
-import javax.edi.model.x12.edi810.segment.InterchangeEnvelope;
-import javax.edi.model.x12.edi810.segment.Summary;
+import javax.edi.model.x12.edi850.segment.Detail;
+import javax.edi.model.x12.edi850.segment.GroupEnvelope;
+import javax.edi.model.x12.edi850.segment.InterchangeEnvelope;
+import javax.edi.model.x12.edi850.segment.Summary;
 
 @EDIMessage(segmentDelimiter="~",componentDelimiter=">",elementDelimiter="*")
 public class PurchaseOrder {

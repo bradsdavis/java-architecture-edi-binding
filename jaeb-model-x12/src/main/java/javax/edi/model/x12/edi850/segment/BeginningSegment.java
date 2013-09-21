@@ -1,4 +1,4 @@
-package javax.edi.model.x12.edi810.segment;
+package javax.edi.model.x12.edi850.segment;
 
 import java.util.Date;
 
