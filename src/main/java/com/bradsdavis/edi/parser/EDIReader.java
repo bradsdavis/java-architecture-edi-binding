@@ -10,8 +10,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-import javax.swing.text.Segment;
-
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.convert.ConversionException;
 import org.apache.commons.io.LineIterator;

@@ -8,7 +8,11 @@ public class ExampleSegmentGroup {
 	private Item exampleSegment;
 	private Price exampleSegmentAnother;
 	
-	
+	@Override
+	public String toString() {
+		return "ExampleSegmentGroup [exampleSegment=" + exampleSegment + ", exampleSegmentAnother=" + exampleSegmentAnother + "]";
+	}
+
 	public Item getExampleSegment() {
 		return exampleSegment;
 	}

@@ -35,6 +35,13 @@ public class Price {
 	@EDICollectionType(type=Date.class)
 	private Collection<Date> exampleDateComponents;
 	
+	
+	@Override
+	public String toString() {
+		return "Price [firstField=" + firstField + ", secondField=" + secondField + ", thirdField=" + thirdField + ", fourthField=" + fourthField + ", fifthField=" + fifthField
+				+ ", exampleComponent=" + exampleComponent + ", exampleDateComponents=" + exampleDateComponents + "]";
+	}
+
 	public Collection<Date> getExampleDateComponents() {
 		return exampleDateComponents;
 	}

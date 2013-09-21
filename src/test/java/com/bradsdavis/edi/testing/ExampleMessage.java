@@ -2,6 +2,8 @@ package com.bradsdavis.edi.testing;
 
 import java.util.Collection;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+
 import com.bradsdavis.edi.annotations.EDICollectionType;
 import com.bradsdavis.edi.annotations.EDIMessage;
 
@@ -19,6 +21,11 @@ public class ExampleMessage {
 	@EDICollectionType(type=ExampleSegmentGroup.class)
 	private Collection<ExampleSegmentGroup> multileGroups;
 	
+	@Override
+	public String toString() {
+		return "ExampleMessage [segment=" + segment + ", another=" + another + ", nSegments=" + nSegments + ", segmentGroup=" + segmentGroup + ", multileGroups=" + multileGroups + "]";
+	}
+
 	public Collection<ExampleSegmentGroup> getMultileGroups() {
 		return multileGroups;
 	}
@@ -59,4 +66,5 @@ public class ExampleMessage {
 	public void setAnother(Item another) {
 		this.another = another;
 	}
+	
 }

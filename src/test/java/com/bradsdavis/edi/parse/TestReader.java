@@ -3,8 +3,7 @@ package com.bradsdavis.edi.parse;
 import java.io.StringReader;
 import java.io.StringWriter;
 
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +22,18 @@ public class TestReader extends EDITestBase {
 		
 		ExampleMessage message = EDIReader.read(ExampleMessage.class, new StringReader(sw.toString()));
 		
-		LOG.debug("Result: ");
-		LOG.debug(ReflectionToStringBuilder.toString(message));
+		LOG.debug(exampleMessage.toString());
+		LOG.debug(message.toString());
+		
+		StringWriter resultMain = new StringWriter();
+		EDIWriter.write(exampleMessage, resultMain);
+		
+		StringWriter resultNew = new StringWriter();
+		EDIWriter.write(exampleMessage, resultNew);
+		
+		LOG.debug(resultMain.toString());
+		LOG.debug(resultNew.toString());
+		
+		Assert.assertTrue(resultMain.toString().equals(resultNew.toString()));
 	}
 }

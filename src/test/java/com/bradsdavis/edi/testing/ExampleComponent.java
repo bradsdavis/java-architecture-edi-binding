@@ -10,6 +10,13 @@ public class ExampleComponent {
 	
 	private Collection<String> fieldThree;
 	
+	
+	
+	@Override
+	public String toString() {
+		return "ExampleComponent [fieldOne=" + fieldOne + ", fieldTwo=" + fieldTwo + ", fieldThree=" + fieldThree + "]";
+	}
+
 	public Collection<String> getFieldThree() {
 		return fieldThree;
 	}
