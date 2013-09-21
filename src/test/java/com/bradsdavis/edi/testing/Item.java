@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
 
+import com.bradsdavis.edi.annotations.EDICollectionType;
 import com.bradsdavis.edi.annotations.EDIComponent;
 import com.bradsdavis.edi.annotations.EDISegment;
 import com.bradsdavis.edi.annotations.elements.EDIElementFormat;
@@ -26,10 +27,12 @@ public class Item {
 	private Float fifthField;
 	
 	@EDIComponent(delimiter=":")
+	@EDICollectionType(type=String.class)
 	private Collection<String> exampleComponent;
 	
 	@EDIElementFormat(format="yyyyMMdd")
 	@EDIComponent()
+	@EDICollectionType(type=Date.class)
 	private Collection<Date> exampleDateComponents;
 	
 	public Collection<Date> getExampleDateComponents() {

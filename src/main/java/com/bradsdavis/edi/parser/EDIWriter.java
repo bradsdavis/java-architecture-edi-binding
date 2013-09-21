@@ -11,7 +11,7 @@ import com.bradsdavis.edi.annotations.EDIElement;
 import com.bradsdavis.edi.annotations.EDIMessage;
 import com.bradsdavis.edi.annotations.EDISegment;
 import com.bradsdavis.edi.annotations.EDISegmentGroup;
-import com.bradsdavis.edi.transformer.FieldAwareConverter;
+import com.bradsdavis.edi.util.FieldAwareConverter;
 
 
 public class EDIWriter {
