@@ -29,5 +29,38 @@ public class AllowanceChargeOrService {
 	@Size(min=2, max=2)
 	private String methodOfHandlingCode;
 
+	public String getAllowanceChargeIndicator() {
+		return allowanceChargeIndicator;
+	}
+
+	public void setAllowanceChargeIndicator(String allowanceChargeIndicator) {
+		this.allowanceChargeIndicator = allowanceChargeIndicator;
+	}
+
+	public String getSpecialChargeOrAllowanceCode() {
+		return specialChargeOrAllowanceCode;
+	}
+
+	public void setSpecialChargeOrAllowanceCode(String specialChargeOrAllowanceCode) {
+		this.specialChargeOrAllowanceCode = specialChargeOrAllowanceCode;
+	}
+
+	public BigDecimal getAllowanceOrChargeTotalAmount() {
+		return allowanceOrChargeTotalAmount;
+	}
+
+	public void setAllowanceOrChargeTotalAmount(
+			BigDecimal allowanceOrChargeTotalAmount) {
+		this.allowanceOrChargeTotalAmount = allowanceOrChargeTotalAmount;
+	}
+
+	public String getMethodOfHandlingCode() {
+		return methodOfHandlingCode;
+	}
+
+	public void setMethodOfHandlingCode(String methodOfHandlingCode) {
+		this.methodOfHandlingCode = methodOfHandlingCode;
+	}
+
 
 }

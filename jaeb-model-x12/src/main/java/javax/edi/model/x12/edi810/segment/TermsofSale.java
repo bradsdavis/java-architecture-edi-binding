@@ -1,3 +1,4 @@
+
 package javax.edi.model.x12.edi810.segment;
 
 import java.util.Date;
@@ -35,6 +36,56 @@ public class TermsofSale {
 	@EDIElement(fieldName="ITD06", dataElement="446")
 	@EDIElementFormat("yyyyMMdd")
 	private Date termsNetDueDate;
+
+
+	public String getTermsTypeCode() {
+		return termsTypeCode;
+	}
+
+
+	public void setTermsTypeCode(String termsTypeCode) {
+		this.termsTypeCode = termsTypeCode;
+	}
+
+
+	public String getTermsBasisDateCode() {
+		return termsBasisDateCode;
+	}
+
+
+	public void setTermsBasisDateCode(String termsBasisDateCode) {
+		this.termsBasisDateCode = termsBasisDateCode;
+	}
+
+
+	public String getTermsDiscountPercent() {
+		return termsDiscountPercent;
+	}
+
+
+	public void setTermsDiscountPercent(String termsDiscountPercent) {
+		this.termsDiscountPercent = termsDiscountPercent;
+	}
+
+
+	public Date getTermsDiscountDueDate() {
+		return termsDiscountDueDate;
+	}
+
+
+	public void setTermsDiscountDueDate(Date termsDiscountDueDate) {
+		this.termsDiscountDueDate = termsDiscountDueDate;
+	}
+
+
+	public Date getTermsNetDueDate() {
+		return termsNetDueDate;
+	}
+
+
+	public void setTermsNetDueDate(Date termsNetDueDate) {
+		this.termsNetDueDate = termsNetDueDate;
+	}
 	
 
 }

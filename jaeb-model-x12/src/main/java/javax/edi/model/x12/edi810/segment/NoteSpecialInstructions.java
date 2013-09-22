@@ -16,6 +16,26 @@ public class NoteSpecialInstructions {
 	@EDIElement(fieldName="NTE02", dataElement="3")
 	@Size(min=1, max=60)
 	private String freeFormMessage;
+
+
+	public String getNoteReferenceCode() {
+		return noteReferenceCode;
+	}
+
+
+	public void setNoteReferenceCode(String noteReferenceCode) {
+		this.noteReferenceCode = noteReferenceCode;
+	}
+
+
+	public String getFreeFormMessage() {
+		return freeFormMessage;
+	}
+
+
+	public void setFreeFormMessage(String freeFormMessage) {
+		this.freeFormMessage = freeFormMessage;
+	}
 	
 
 }

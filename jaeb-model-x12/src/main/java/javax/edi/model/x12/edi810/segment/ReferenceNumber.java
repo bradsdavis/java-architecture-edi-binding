@@ -17,4 +17,24 @@ public class ReferenceNumber {
 	@EDIElement(fieldName="REF02", dataElement="127")
 	@Size(min=1,max=30)
 	private String referenceNumber;
+
+
+	public String getReferenceID() {
+		return referenceID;
+	}
+
+
+	public void setReferenceID(String referenceID) {
+		this.referenceID = referenceID;
+	}
+
+
+	public String getReferenceNumber() {
+		return referenceNumber;
+	}
+
+
+	public void setReferenceNumber(String referenceNumber) {
+		this.referenceNumber = referenceNumber;
+	}
 }

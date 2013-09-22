@@ -11,4 +11,12 @@ public class TransactionTotal {
 	@NotNull
 	private Integer numberOfLineItems;
 
+	public Integer getNumberOfLineItems() {
+		return numberOfLineItems;
+	}
+
+	public void setNumberOfLineItems(Integer numberOfLineItems) {
+		this.numberOfLineItems = numberOfLineItems;
+	}
+
 }

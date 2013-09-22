@@ -28,4 +28,36 @@ public class TotalMonetaryValueSummary {
 	@EDIElementFormat("####.##")
 	private BigDecimal termsDiscountAmount;
 
+	public BigDecimal getTotalInvoiceAmount() {
+		return totalInvoiceAmount;
+	}
+
+	public void setTotalInvoiceAmount(BigDecimal totalInvoiceAmount) {
+		this.totalInvoiceAmount = totalInvoiceAmount;
+	}
+
+	public BigDecimal getAmountSubjectToDiscount() {
+		return amountSubjectToDiscount;
+	}
+
+	public void setAmountSubjectToDiscount(BigDecimal amountSubjectToDiscount) {
+		this.amountSubjectToDiscount = amountSubjectToDiscount;
+	}
+
+	public BigDecimal getDiscountedAmountDue() {
+		return discountedAmountDue;
+	}
+
+	public void setDiscountedAmountDue(BigDecimal discountedAmountDue) {
+		this.discountedAmountDue = discountedAmountDue;
+	}
+
+	public BigDecimal getTermsDiscountAmount() {
+		return termsDiscountAmount;
+	}
+
+	public void setTermsDiscountAmount(BigDecimal termsDiscountAmount) {
+		this.termsDiscountAmount = termsDiscountAmount;
+	}
+
 }

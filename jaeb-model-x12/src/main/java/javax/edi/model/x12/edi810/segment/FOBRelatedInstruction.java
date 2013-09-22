@@ -18,4 +18,24 @@ public class FOBRelatedInstruction {
 	@Size(min=1, max=2)
 	private String locationQualifier;
 
+
+	public String getShipmentMethodOfPayment() {
+		return shipmentMethodOfPayment;
+	}
+
+
+	public void setShipmentMethodOfPayment(String shipmentMethodOfPayment) {
+		this.shipmentMethodOfPayment = shipmentMethodOfPayment;
+	}
+
+
+	public String getLocationQualifier() {
+		return locationQualifier;
+	}
+
+
+	public void setLocationQualifier(String locationQualifier) {
+		this.locationQualifier = locationQualifier;
+	}
+
 }

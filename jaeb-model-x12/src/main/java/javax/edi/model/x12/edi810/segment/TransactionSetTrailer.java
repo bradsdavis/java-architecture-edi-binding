@@ -18,4 +18,20 @@ public class TransactionSetTrailer {
 	@Size(min=4, max=9)
 	private String transactionControlNumber;
 
+	public String getNumberOfIncludedSegments() {
+		return numberOfIncludedSegments;
+	}
+
+	public void setNumberOfIncludedSegments(String numberOfIncludedSegments) {
+		this.numberOfIncludedSegments = numberOfIncludedSegments;
+	}
+
+	public String getTransactionControlNumber() {
+		return transactionControlNumber;
+	}
+
+	public void setTransactionControlNumber(String transactionControlNumber) {
+		this.transactionControlNumber = transactionControlNumber;
+	}
+
 }

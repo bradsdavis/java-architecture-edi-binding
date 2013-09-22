@@ -19,4 +19,20 @@ public class Currency {
 	@Size(min=3, max=3)
 	private String currencyCode;
 
+	public String getEntityIdentifierCode() {
+		return entityIdentifierCode;
+	}
+
+	public void setEntityIdentifierCode(String entityIdentifierCode) {
+		this.entityIdentifierCode = entityIdentifierCode;
+	}
+
+	public String getCurrencyCode() {
+		return currencyCode;
+	}
+
+	public void setCurrencyCode(String currencyCode) {
+		this.currencyCode = currencyCode;
+	}
+
 }

@@ -11,4 +11,12 @@ public class DestinationCountryCode {
 	@Size(min=2, max=3)
 	private String countryCode;
 
+	public String getCountryCode() {
+		return countryCode;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
+	}
+
 }

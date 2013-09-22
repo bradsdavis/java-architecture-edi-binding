@@ -26,4 +26,36 @@ public class Name {
 	@Size(min=2, max=17)
 	private String identificationCode;
 
+	public String getEntityIdentifierCode() {
+		return entityIdentifierCode;
+	}
+
+	public void setEntityIdentifierCode(String entityIdentifierCode) {
+		this.entityIdentifierCode = entityIdentifierCode;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getIdentificationCodeQualifier() {
+		return identificationCodeQualifier;
+	}
+
+	public void setIdentificationCodeQualifier(String identificationCodeQualifier) {
+		this.identificationCodeQualifier = identificationCodeQualifier;
+	}
+
+	public String getIdentificationCode() {
+		return identificationCode;
+	}
+
+	public void setIdentificationCode(String identificationCode) {
+		this.identificationCode = identificationCode;
+	}
+
 }

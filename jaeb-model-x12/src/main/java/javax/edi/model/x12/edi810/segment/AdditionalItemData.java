@@ -11,4 +11,12 @@ public class AdditionalItemData {
 	@EDIElement(fieldName="IT304", dataElement="383")
 	@Min(1) @Max(9)
 	private String quantityDifference;
+
+	public String getQuantityDifference() {
+		return quantityDifference;
+	}
+
+	public void setQuantityDifference(String quantityDifference) {
+		this.quantityDifference = quantityDifference;
+	}
 }

@@ -27,6 +27,38 @@ public class PricingInformation {
 	@EDIElement(fieldName="CTP05", dataElement="355")
 	@Size(min=2, max=2)
 	private String unitOfMeasureCode;
+
+	public String getPriceIDCode() {
+		return priceIDCode;
+	}
+
+	public void setPriceIDCode(String priceIDCode) {
+		this.priceIDCode = priceIDCode;
+	}
+
+	public BigDecimal getUnitPrice() {
+		return unitPrice;
+	}
+
+	public void setUnitPrice(BigDecimal unitPrice) {
+		this.unitPrice = unitPrice;
+	}
+
+	public BigInteger getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(BigInteger quantity) {
+		this.quantity = quantity;
+	}
+
+	public String getUnitOfMeasureCode() {
+		return unitOfMeasureCode;
+	}
+
+	public void setUnitOfMeasureCode(String unitOfMeasureCode) {
+		this.unitOfMeasureCode = unitOfMeasureCode;
+	}
 	
 
 }

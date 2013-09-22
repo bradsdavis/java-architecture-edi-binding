@@ -13,4 +13,20 @@ public class NameReferenceNumber {
 	
 	@Min(0) @Max(12)
 	private Collection<ReferenceNumber> referenceNumbers;
+
+	public Name getName() {
+		return name;
+	}
+
+	public void setName(Name name) {
+		this.name = name;
+	}
+
+	public Collection<ReferenceNumber> getReferenceNumbers() {
+		return referenceNumbers;
+	}
+
+	public void setReferenceNumbers(Collection<ReferenceNumber> referenceNumbers) {
+		this.referenceNumbers = referenceNumbers;
+	}
 }
