@@ -6,8 +6,8 @@ import javax.edi.bind.annotations.EDICollectionType;
 import javax.edi.bind.annotations.EDISegmentGroup;
 import javax.edi.model.x12.edi810.segment.AllowanceChargeOrService;
 import javax.edi.model.x12.edi810.segment.TotalMonetaryValueSummary;
-import javax.edi.model.x12.edi810.segment.TransactionTotal;
 import javax.edi.model.x12.segment.TransactionSetTrailer;
+import javax.edi.model.x12.segment.TransactionTotal;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 

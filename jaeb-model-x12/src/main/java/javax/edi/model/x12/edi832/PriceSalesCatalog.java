@@ -17,7 +17,6 @@ public class PriceSalesCatalog {
 	private GroupEnvelopeTrailer groupEnvelopeTrailer;
 	private InterchangeEnvelopeTrailer envelopeTrailer;
 	
-	
 	public InterchangeEnvelope getEnvelopeHeader() {
 		return envelopeHeader;
 	}
