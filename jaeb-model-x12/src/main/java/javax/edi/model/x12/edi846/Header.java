@@ -3,9 +3,9 @@ package javax.edi.model.x12.edi846;
 import java.util.Collection;
 
 import javax.edi.bind.annotations.EDISegmentGroup;
-import javax.edi.model.x12.TransactionSetHeader;
-import javax.edi.model.x12.edi810.segment.Name;
 import javax.edi.model.x12.edi846.segment.BeginningSegmentForInventoryInquiry;
+import javax.edi.model.x12.segment.Name;
+import javax.edi.model.x12.segment.TransactionSetHeader;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 

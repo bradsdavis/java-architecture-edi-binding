@@ -3,6 +3,8 @@ package javax.edi.model.x12.edi810.segment;
 import java.util.Collection;
 
 import javax.edi.bind.annotations.EDISegmentGroup;
+import javax.edi.model.x12.segment.Name;
+import javax.edi.model.x12.segment.ReferenceNumber;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 

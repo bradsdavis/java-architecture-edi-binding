@@ -1,4 +1,4 @@
-package javax.edi.model.x12.edi846;
+package javax.edi.model.x12.edi832;
 
 import javax.edi.bind.annotations.EDIMessage;
 import javax.edi.model.x12.segment.GroupEnvelope;
@@ -7,13 +7,16 @@ import javax.edi.model.x12.segment.InterchangeEnvelope;
 import javax.edi.model.x12.segment.InterchangeEnvelopeTrailer;
 
 @EDIMessage
-public class InventoryInquery {
+public class PriceSalesCatalog {
 
 	private InterchangeEnvelope envelopeHeader;
 	private GroupEnvelope groupEnvelopeHeader;
-	private InventoryInqueryBody body;
+	
+	private PriceSalesCatalogBody body;
+	
 	private GroupEnvelopeTrailer groupEnvelopeTrailer;
 	private InterchangeEnvelopeTrailer envelopeTrailer;
+	
 	
 	public InterchangeEnvelope getEnvelopeHeader() {
 		return envelopeHeader;
@@ -27,10 +30,10 @@ public class InventoryInquery {
 	public void setGroupEnvelopeHeader(GroupEnvelope groupEnvelopeHeader) {
 		this.groupEnvelopeHeader = groupEnvelopeHeader;
 	}
-	public InventoryInqueryBody getBody() {
+	public PriceSalesCatalogBody getBody() {
 		return body;
 	}
-	public void setBody(InventoryInqueryBody body) {
+	public void setBody(PriceSalesCatalogBody body) {
 		this.body = body;
 	}
 	public GroupEnvelopeTrailer getGroupEnvelopeTrailer() {

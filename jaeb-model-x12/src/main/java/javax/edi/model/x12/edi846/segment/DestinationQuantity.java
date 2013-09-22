@@ -7,7 +7,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class DestinationQuantity {
-
 	
 	@EDIElement(fieldName="SDQ01", dataElement="355")
 	@NotNull

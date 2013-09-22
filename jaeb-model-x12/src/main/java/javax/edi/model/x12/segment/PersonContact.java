@@ -1,4 +1,4 @@
-package javax.edi.model.x12.edi850.segment;
+package javax.edi.model.x12.segment;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -7,23 +7,23 @@ import javax.edi.bind.annotations.EDIElement;
 import javax.edi.bind.annotations.EDISegment;
 
 @EDISegment(tag = "PER")
-public class AdministrativeCommunicationsContact {
+public class PersonContact {
 
 	@NotNull
 	@Size(min=2,max=2)
-	@EDIElement
+	@EDIElement(fieldName="PER01", dataElement="366")
 	private String contactFunctionCode;
 	
 	@Size(min=1,max=40)
-	@EDIElement(conditional=true)
+	@EDIElement(fieldName="PER02", dataElement="93", conditional=true)
 	private String name;
 	
 	@Size(min=2,max=2)
-	@EDIElement(conditional=true)
+	@EDIElement(fieldName="PER03", dataElement="356", conditional=true)
 	private String communicationNumberQualifier;
 	
 	@Size(min=7,max=25)
-	@EDIElement(conditional=true)
+	@EDIElement(fieldName="PER04", dataElement="364", conditional=true)
 	private String communicationNumber;
 	
 	@Size(min=2,max=2)

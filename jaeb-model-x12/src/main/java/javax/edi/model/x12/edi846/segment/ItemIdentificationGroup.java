@@ -1,5 +1,7 @@
 package javax.edi.model.x12.edi846.segment;
 
+import javax.edi.model.x12.segment.ItemIdentification;
+
 public class ItemIdentificationGroup {
 
 	private ItemIdentification itemIdentifications;
