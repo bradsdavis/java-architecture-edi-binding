@@ -18,4 +18,24 @@ public class InterchangeEnvelopeTrailer {
 	private String interchangeControlNumber;
 
 
+	public String getNumberOfIncludedGroups() {
+		return numberOfIncludedGroups;
+	}
+
+
+	public void setNumberOfIncludedGroups(String numberOfIncludedGroups) {
+		this.numberOfIncludedGroups = numberOfIncludedGroups;
+	}
+
+
+	public String getInterchangeControlNumber() {
+		return interchangeControlNumber;
+	}
+
+
+	public void setInterchangeControlNumber(String interchangeControlNumber) {
+		this.interchangeControlNumber = interchangeControlNumber;
+	}
+
+
 }

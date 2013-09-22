@@ -1,3 +1,4 @@
+
 package javax.edi.model.x12.edi810;
 
 import java.util.Collection;
@@ -42,4 +43,62 @@ public class Header {
 	@Size(max=5)
 	private Collection<TermsofSale> termsofSale;
 	private FOBRelatedInstruction fobRelatedInstructions;
+	public TransactionSetHeader getTransactionSetHeader() {
+		return transactionSetHeader;
+	}
+	public void setTransactionSetHeader(TransactionSetHeader transactionSetHeader) {
+		this.transactionSetHeader = transactionSetHeader;
+	}
+	public BeginningSegmentforInvoice getBeginningSegmentforInvoice() {
+		return beginningSegmentforInvoice;
+	}
+	public void setBeginningSegmentforInvoice(
+			BeginningSegmentforInvoice beginningSegmentforInvoice) {
+		this.beginningSegmentforInvoice = beginningSegmentforInvoice;
+	}
+	public Currency getCurrency() {
+		return currency;
+	}
+	public void setCurrency(Currency currency) {
+		this.currency = currency;
+	}
+	public Collection<NoteSpecialInstructions> getNoteSpecialInstructions() {
+		return noteSpecialInstructions;
+	}
+	public void setNoteSpecialInstructions(
+			Collection<NoteSpecialInstructions> noteSpecialInstructions) {
+		this.noteSpecialInstructions = noteSpecialInstructions;
+	}
+	public ReferenceNumber getReferenceNumbers() {
+		return referenceNumbers;
+	}
+	public void setReferenceNumbers(ReferenceNumber referenceNumbers) {
+		this.referenceNumbers = referenceNumbers;
+	}
+	public Collection<Name> getNames() {
+		return names;
+	}
+	public void setNames(Collection<Name> names) {
+		this.names = names;
+	}
+	public DestinationCountryCode getDestinationCountryCode() {
+		return destinationCountryCode;
+	}
+	public void setDestinationCountryCode(
+			DestinationCountryCode destinationCountryCode) {
+		this.destinationCountryCode = destinationCountryCode;
+	}
+	public Collection<TermsofSale> getTermsofSale() {
+		return termsofSale;
+	}
+	public void setTermsofSale(Collection<TermsofSale> termsofSale) {
+		this.termsofSale = termsofSale;
+	}
+	public FOBRelatedInstruction getFobRelatedInstructions() {
+		return fobRelatedInstructions;
+	}
+	public void setFobRelatedInstructions(
+			FOBRelatedInstruction fobRelatedInstructions) {
+		this.fobRelatedInstructions = fobRelatedInstructions;
+	}
 }

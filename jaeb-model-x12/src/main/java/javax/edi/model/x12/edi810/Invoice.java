@@ -21,5 +21,29 @@ public class Invoice {
 	
 	@NotNull
 	private Trailer trailer;
+
+	public Header getHeader() {
+		return header;
+	}
+
+	public void setHeader(Header header) {
+		this.header = header;
+	}
+
+	public Collection<Detail> getDetail() {
+		return detail;
+	}
+
+	public void setDetail(Collection<Detail> detail) {
+		this.detail = detail;
+	}
+
+	public Trailer getTrailer() {
+		return trailer;
+	}
+
+	public void setTrailer(Trailer trailer) {
+		this.trailer = trailer;
+	}
 	
 }

@@ -16,6 +16,26 @@ public class GroupEnvelopeTrailer {
 	@NotNull
 	@Size(min=1, max=9)
 	private String groupControlNumber;
+
+
+	public String getNumberOfTransactionSets() {
+		return numberOfTransactionSets;
+	}
+
+
+	public void setNumberOfTransactionSets(String numberOfTransactionSets) {
+		this.numberOfTransactionSets = numberOfTransactionSets;
+	}
+
+
+	public String getGroupControlNumber() {
+		return groupControlNumber;
+	}
+
+
+	public void setGroupControlNumber(String groupControlNumber) {
+		this.groupControlNumber = groupControlNumber;
+	}
 	
 
 }

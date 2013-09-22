@@ -26,5 +26,39 @@ public class Trailer {
 	
 	@NotNull
 	private TransactionSetTrailer transactionSetTrailer;
+
+	public TotalMonetaryValueSummary getTotalMonetaryValueSummary() {
+		return totalMonetaryValueSummary;
+	}
+
+	public void setTotalMonetaryValueSummary(
+			TotalMonetaryValueSummary totalMonetaryValueSummary) {
+		this.totalMonetaryValueSummary = totalMonetaryValueSummary;
+	}
+
+	public Collection<AllowanceChargeOrService> getAllowanceChargeOrServices() {
+		return allowanceChargeOrServices;
+	}
+
+	public void setAllowanceChargeOrServices(
+			Collection<AllowanceChargeOrService> allowanceChargeOrServices) {
+		this.allowanceChargeOrServices = allowanceChargeOrServices;
+	}
+
+	public TransactionTotal getTransactionTotals() {
+		return transactionTotals;
+	}
+
+	public void setTransactionTotals(TransactionTotal transactionTotals) {
+		this.transactionTotals = transactionTotals;
+	}
+
+	public TransactionSetTrailer getTransactionSetTrailer() {
+		return transactionSetTrailer;
+	}
+
+	public void setTransactionSetTrailer(TransactionSetTrailer transactionSetTrailer) {
+		this.transactionSetTrailer = transactionSetTrailer;
+	}
 	
 }

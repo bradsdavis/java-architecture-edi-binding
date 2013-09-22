@@ -41,4 +41,55 @@ public class Detail {
 	@EDICollectionType(ReferenceNumber.class)
 	@Size(min=0, max=12)
 	private Collection<ReferenceNumber> referenceNumbers;
+
+	public Collection<BaselineItemData> getBaselineItemData() {
+		return baselineItemData;
+	}
+
+	public void setBaselineItemData(Collection<BaselineItemData> baselineItemData) {
+		this.baselineItemData = baselineItemData;
+	}
+
+	public Collection<NoteSpecialInstructions> getNoteSpecialInstructions() {
+		return noteSpecialInstructions;
+	}
+
+	public void setNoteSpecialInstructions(
+			Collection<NoteSpecialInstructions> noteSpecialInstructions) {
+		this.noteSpecialInstructions = noteSpecialInstructions;
+	}
+
+	public Collection<AdditionalItemData> getAdditionalItemData() {
+		return additionalItemData;
+	}
+
+	public void setAdditionalItemData(
+			Collection<AdditionalItemData> additionalItemData) {
+		this.additionalItemData = additionalItemData;
+	}
+
+	public Collection<PricingInformation> getPricingInformation() {
+		return pricingInformation;
+	}
+
+	public void setPricingInformation(
+			Collection<PricingInformation> pricingInformation) {
+		this.pricingInformation = pricingInformation;
+	}
+
+	public Collection<Name> getName() {
+		return name;
+	}
+
+	public void setName(Collection<Name> name) {
+		this.name = name;
+	}
+
+	public Collection<ReferenceNumber> getReferenceNumbers() {
+		return referenceNumbers;
+	}
+
+	public void setReferenceNumbers(Collection<ReferenceNumber> referenceNumbers) {
+		this.referenceNumbers = referenceNumbers;
+	}
 }
