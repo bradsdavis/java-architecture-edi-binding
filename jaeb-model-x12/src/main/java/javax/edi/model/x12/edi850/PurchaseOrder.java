@@ -5,17 +5,17 @@ import javax.validation.constraints.Size;
 import javax.edi.bind.annotations.EDIMessage;
 import javax.edi.model.x12.edi850.segment.Detail;
 import javax.edi.model.x12.edi850.segment.Summary;
-import javax.edi.model.x12.segment.GroupEnvelope;
-import javax.edi.model.x12.segment.InterchangeEnvelope;
+import javax.edi.model.x12.segment.GroupEnvelopeHeader;
+import javax.edi.model.x12.segment.InterchangeEnvelopeHeader;
 
 @EDIMessage(segmentDelimiter="~",componentDelimiter=">",elementDelimiter="*")
 public class PurchaseOrder {
 
 	@NotNull
-	private InterchangeEnvelope interchangeEnvelope;
+	private InterchangeEnvelopeHeader interchangeEnvelope;
 	
 	@NotNull
-	private GroupEnvelope groupEnvelope;
+	private GroupEnvelopeHeader groupEnvelope;
 	
 	@NotNull
 	@Size(min = 1, max = 1)
@@ -33,19 +33,19 @@ public class PurchaseOrder {
 	
 	
 	
-	public InterchangeEnvelope getInterchangeEnvelope() {
+	public InterchangeEnvelopeHeader getInterchangeEnvelope() {
 		return interchangeEnvelope;
 	}
 
-	public void setInterchangeEnvelope(InterchangeEnvelope interchangeEnvelope) {
+	public void setInterchangeEnvelope(InterchangeEnvelopeHeader interchangeEnvelope) {
 		this.interchangeEnvelope = interchangeEnvelope;
 	}
 
-	public GroupEnvelope getGroupEnvelope() {
+	public GroupEnvelopeHeader getGroupEnvelope() {
 		return groupEnvelope;
 	}
 
-	public void setGroupEnvelope(GroupEnvelope groupEnvelope) {
+	public void setGroupEnvelope(GroupEnvelopeHeader groupEnvelope) {
 		this.groupEnvelope = groupEnvelope;
 	}
 

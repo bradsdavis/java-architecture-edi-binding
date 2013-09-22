@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @EDISegment(tag = "ISA")
-public class InterchangeEnvelope {
+public class InterchangeEnvelopeHeader {
 	
 	@EDIElement(fieldName="ISA01", dataElement="I01")
 	@NotNull

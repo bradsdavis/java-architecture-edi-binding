@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @EDISegment(tag = "GS")
-public class GroupEnvelope {
+public class GroupEnvelopeHeader {
 	
 	@EDIElement(fieldName="GS01", dataElement="479")
 	@NotNull

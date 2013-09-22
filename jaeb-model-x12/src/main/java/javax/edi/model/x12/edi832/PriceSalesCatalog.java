@@ -1,32 +1,32 @@
 package javax.edi.model.x12.edi832;
 
 import javax.edi.bind.annotations.EDIMessage;
-import javax.edi.model.x12.segment.GroupEnvelope;
+import javax.edi.model.x12.segment.GroupEnvelopeHeader;
 import javax.edi.model.x12.segment.GroupEnvelopeTrailer;
-import javax.edi.model.x12.segment.InterchangeEnvelope;
+import javax.edi.model.x12.segment.InterchangeEnvelopeHeader;
 import javax.edi.model.x12.segment.InterchangeEnvelopeTrailer;
 
 @EDIMessage
 public class PriceSalesCatalog {
 
-	private InterchangeEnvelope envelopeHeader;
-	private GroupEnvelope groupEnvelopeHeader;
+	private InterchangeEnvelopeHeader envelopeHeader;
+	private GroupEnvelopeHeader groupEnvelopeHeader;
 	
 	private PriceSalesCatalogBody body;
 	
 	private GroupEnvelopeTrailer groupEnvelopeTrailer;
 	private InterchangeEnvelopeTrailer envelopeTrailer;
 	
-	public InterchangeEnvelope getEnvelopeHeader() {
+	public InterchangeEnvelopeHeader getEnvelopeHeader() {
 		return envelopeHeader;
 	}
-	public void setEnvelopeHeader(InterchangeEnvelope envelopeHeader) {
+	public void setEnvelopeHeader(InterchangeEnvelopeHeader envelopeHeader) {
 		this.envelopeHeader = envelopeHeader;
 	}
-	public GroupEnvelope getGroupEnvelopeHeader() {
+	public GroupEnvelopeHeader getGroupEnvelopeHeader() {
 		return groupEnvelopeHeader;
 	}
-	public void setGroupEnvelopeHeader(GroupEnvelope groupEnvelopeHeader) {
+	public void setGroupEnvelopeHeader(GroupEnvelopeHeader groupEnvelopeHeader) {
 		this.groupEnvelopeHeader = groupEnvelopeHeader;
 	}
 	public PriceSalesCatalogBody getBody() {
