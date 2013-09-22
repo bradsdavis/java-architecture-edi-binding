@@ -6,10 +6,10 @@ import javax.edi.bind.annotations.EDISegmentGroup;
 import javax.edi.model.x12.edi810.segment.BeginningSegmentforInvoice;
 import javax.edi.model.x12.edi810.segment.Currency;
 import javax.edi.model.x12.edi810.segment.DestinationCountryCode;
-import javax.edi.model.x12.edi810.segment.FOBRelatedInstructions;
+import javax.edi.model.x12.edi810.segment.FOBRelatedInstruction;
 import javax.edi.model.x12.edi810.segment.Name;
 import javax.edi.model.x12.edi810.segment.NoteSpecialInstructions;
-import javax.edi.model.x12.edi810.segment.ReferenceNumbers;
+import javax.edi.model.x12.edi810.segment.ReferenceNumber;
 import javax.edi.model.x12.edi810.segment.TermsofSale;
 import javax.edi.model.x12.edi810.segment.TransactionSetHeader;
 import javax.validation.constraints.Max;
@@ -32,7 +32,7 @@ public class Header {
 	@Size(min=0, max=100)
 	private Collection<NoteSpecialInstructions> noteSpecialInstructions;
 	
-	private ReferenceNumbers referenceNumbers;
+	private ReferenceNumber referenceNumbers;
 	
 	@Size(min=0, max=200)
 	private Collection<Name> names;
@@ -41,5 +41,5 @@ public class Header {
 	
 	@Size(max=5)
 	private Collection<TermsofSale> termsofSale;
-	private FOBRelatedInstructions fobRelatedInstructions;
+	private FOBRelatedInstruction fobRelatedInstructions;
 }

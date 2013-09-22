@@ -7,7 +7,7 @@ import javax.edi.bind.annotations.EDISegmentGroup;
 import javax.edi.model.x12.edi810.segment.AllowanceChargeOrService;
 import javax.edi.model.x12.edi810.segment.TotalMonetaryValueSummary;
 import javax.edi.model.x12.edi810.segment.TransactionSetTrailer;
-import javax.edi.model.x12.edi810.segment.TransactionTotals;
+import javax.edi.model.x12.edi810.segment.TransactionTotal;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -22,7 +22,7 @@ public class Trailer {
 	private Collection<AllowanceChargeOrService> allowanceChargeOrServices;
 	
 	@NotNull
-	private TransactionTotals transactionTotals;
+	private TransactionTotal transactionTotals;
 	
 	@NotNull
 	private TransactionSetTrailer transactionSetTrailer;

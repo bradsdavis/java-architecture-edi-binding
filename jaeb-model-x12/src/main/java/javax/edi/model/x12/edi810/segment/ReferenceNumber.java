@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @EDISegment(tag="REF")
-public class ReferenceNumbers {
+public class ReferenceNumber {
 
 	@EDIElement(fieldName="REF01", dataElement="128")
 	@NotNull

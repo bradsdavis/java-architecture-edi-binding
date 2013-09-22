@@ -12,5 +12,5 @@ public class NameReferenceNumber {
 	private Name name;
 	
 	@Min(0) @Max(12)
-	private Collection<ReferenceNumbers> referenceNumbers;
+	private Collection<ReferenceNumber> referenceNumbers;
 }

@@ -9,7 +9,7 @@ import javax.edi.model.x12.edi810.segment.BaselineItemData;
 import javax.edi.model.x12.edi810.segment.Name;
 import javax.edi.model.x12.edi810.segment.NoteSpecialInstructions;
 import javax.edi.model.x12.edi810.segment.PricingInformation;
-import javax.edi.model.x12.edi810.segment.ReferenceNumbers;
+import javax.edi.model.x12.edi810.segment.ReferenceNumber;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
@@ -38,7 +38,7 @@ public class Detail {
 	@Size(min=0, max=200)
 	private Collection<Name> name;
 	
-	@EDICollectionType(ReferenceNumbers.class)
+	@EDICollectionType(ReferenceNumber.class)
 	@Size(min=0, max=12)
-	private Collection<ReferenceNumbers> referenceNumbers;
+	private Collection<ReferenceNumber> referenceNumbers;
 }
