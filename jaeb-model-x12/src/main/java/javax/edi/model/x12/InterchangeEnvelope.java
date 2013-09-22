@@ -1,93 +1,94 @@
 package javax.edi.model.x12;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.util.Date;
 
 import javax.edi.bind.annotations.EDIElement;
 import javax.edi.bind.annotations.EDISegment;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @EDISegment(tag = "ISA")
 public class InterchangeEnvelope {
 	
+	@EDIElement(fieldName="ISA01", dataElement="I01")
 	@NotNull
-	@Size(min = 2,max = 2)
-	@EDIElement
-	private String authorizationInformationQualifier; // '00' Additional Data Identification
-	
+	@Size(min=2, max=2)
+	private String authorizationInformationQualifier;
+
+	@EDIElement(fieldName="ISA02", dataElement="I02")
 	@NotNull
-	@Size(min = 10,max = 10)
-	@EDIElement
-	private String authorizationInformation; // Blank
-	
-	@NotNull 
-	@Size(min = 2,max = 2)
-	@EDIElement
-	private String securityInformationQualifier; // '00' Password
-	
+	@Size(min=10, max=10)
+	private String authorizationInformation;
+
+	@EDIElement(fieldName="ISA03", dataElement="I03")
 	@NotNull
-	@Size(min = 10,max = 10)
-	@EDIElement
-	private String securityInformation; // Blank
-	
+	@Size(min=2, max=2)
+	private String securityInformationQualifier;
+
+	@EDIElement(fieldName="ISA04", dataElement="I04")
 	@NotNull
-	@Size(min = 2,max = 2)
-	@EDIElement
-	private String interChangeIdQualifier; //Trading Partner ID Qualifier e.g. '01' = DUNS Number, '12' = Telephone number
-	
+	@Size(min=10, max=10)
+	private String securityInformation;
+
+	@EDIElement(fieldName="ISA05", dataElement="I05")
 	@NotNull
-	@Size(min = 15,max = 15)
-	@EDIElement
-	private String interchangeSenderId; // Your compoany's ID i.e. '123456789'
-	
+	@Size(min=2, max=2)
+	private String senderInterchangeIDQualifier;
+
+	@EDIElement(fieldName="ISA06", dataElement="I06")
 	@NotNull
-	@Size(min = 2,max = 2)
-	@EDIElement
-	private String interchangeIdQualifier; // '01'
-	
+	@Size(min=15, max=15)
+	private String interchangeSenderID;
+
+	@EDIElement(fieldName="ISA07", dataElement="I05")
 	@NotNull
-	@Size(min = 15,max = 15)
-	@EDIElement
-	private String interchangeReceiverId; // USSCO'S ID e.g. test = '007981038', production = to be provided
-	
+	@Size(min=2, max=2)
+	private String receiverInterchangeIDQualifier;
+
+	@EDIElement(fieldName="ISA08", dataElement="I07")
 	@NotNull
-	@Size(min = 6, max = 6)
-	@EDIElement
-	private String interchangeDate; // YYMMDD format
-	
+	@Size(min=15, max=15)
+	private String interchangeReceiverID;
+
+	@EDIElement(fieldName="ISA09", dataElement="I08")
 	@NotNull
-	@Size(min = 4, max = 4)
-	@EDIElement
-	private String interchangeTime; // HHMM format
-	
+	@Size(min=6, max=6)
+	private Date interchangeDate;
+
+	@EDIElement(fieldName="ISA10", dataElement="I09")
 	@NotNull
-	@Size(min = 1, max = 1)
-	@EDIElement
-	private String interchangeControlId; // 'U' -ASC X12, TDCC & UCS
-	
+	@Size(min=4, max=4)
+	private String interchangeTime;
+
+	@EDIElement(fieldName="ISA11", dataElement="I10")
 	@NotNull
-	@Size(min = 5, max = 5)
-	@EDIElement
-	private String interchangeVersionNumber; // '00401'
-	
+	@Size(min=1, max=1)
+	private String interchangeControlID;
+
+	@EDIElement(fieldName="ISA12", dataElement="I11")
 	@NotNull
-	@Size(min = 9, max = 9)
-	@EDIElement
-	private String interchangeControlNumber; // 
-	
+	@Size(min=5, max=5)
+	private String interchangeVersionNumber;
+
+	@EDIElement(fieldName="ISA13", dataElement="I12")
 	@NotNull
-	@Size(min = 1, max = 1)
-	@EDIElement
-	private String acknowledgementRequested; // '1' Acknowledgement requested, '0' Acknowledgement NOT requested
-	
+	@Size(min=9, max=9)
+	private String interchangeControlNumber;
+
+	@EDIElement(fieldName="ISA14", dataElement="I13")
 	@NotNull
-	@Size(min = 1, max = 1)
-	@EDIElement
-	private String testIndicator; // 'T' Test, 'P' Production
-	
+	@Size(min=1, max=1)
+	private String iSAAcknowledgmentRequested;
+
+	@EDIElement(fieldName="ISA15", dataElement="I14")
 	@NotNull
-	@Size(min = 1, max = 1)
-	@EDIElement
-	private String subelementSeparator; // '>'
+	@Size(min=1, max=1)
+	private String testIndicator;
+
+	@EDIElement(fieldName="ISA16", dataElement="I15")
+	@NotNull
+	@Size(min=1, max=1)
+	private String subelementSeparator;
 
 	public String getAuthorizationInformationQualifier() {
 		return authorizationInformationQualifier;
@@ -122,43 +123,44 @@ public class InterchangeEnvelope {
 		this.securityInformation = securityInformation;
 	}
 
-	public String getInterChangeIdQualifier() {
-		return interChangeIdQualifier;
+	public String getSenderInterchangeIDQualifier() {
+		return senderInterchangeIDQualifier;
 	}
 
-	public void setInterChangeIdQualifier(String interChangeIdQualifier) {
-		this.interChangeIdQualifier = interChangeIdQualifier;
+	public void setSenderInterchangeIDQualifier(String senderInterchangeIDQualifier) {
+		this.senderInterchangeIDQualifier = senderInterchangeIDQualifier;
 	}
 
-	public String getInterchangeSenderId() {
-		return interchangeSenderId;
+	public String getInterchangeSenderID() {
+		return interchangeSenderID;
 	}
 
-	public void setInterchangeSenderId(String interchangeSenderId) {
-		this.interchangeSenderId = interchangeSenderId;
+	public void setInterchangeSenderID(String interchangeSenderID) {
+		this.interchangeSenderID = interchangeSenderID;
 	}
 
-	public String getInterchangeIdQualifier() {
-		return interchangeIdQualifier;
+	public String getReceiverInterchangeIDQualifier() {
+		return receiverInterchangeIDQualifier;
 	}
 
-	public void setInterchangeIdQualifier(String interchangeIdQualifier) {
-		this.interchangeIdQualifier = interchangeIdQualifier;
+	public void setReceiverInterchangeIDQualifier(
+			String receiverInterchangeIDQualifier) {
+		this.receiverInterchangeIDQualifier = receiverInterchangeIDQualifier;
 	}
 
-	public String getInterchangeReceiverId() {
-		return interchangeReceiverId;
+	public String getInterchangeReceiverID() {
+		return interchangeReceiverID;
 	}
 
-	public void setInterchangeReceiverId(String interchangeReceiverId) {
-		this.interchangeReceiverId = interchangeReceiverId;
+	public void setInterchangeReceiverID(String interchangeReceiverID) {
+		this.interchangeReceiverID = interchangeReceiverID;
 	}
 
-	public String getInterchangeDate() {
+	public Date getInterchangeDate() {
 		return interchangeDate;
 	}
 
-	public void setInterchangeDate(String interchangeDate) {
+	public void setInterchangeDate(Date interchangeDate) {
 		this.interchangeDate = interchangeDate;
 	}
 
@@ -170,12 +172,12 @@ public class InterchangeEnvelope {
 		this.interchangeTime = interchangeTime;
 	}
 
-	public String getInterchangeControlId() {
-		return interchangeControlId;
+	public String getInterchangeControlID() {
+		return interchangeControlID;
 	}
 
-	public void setInterchangeControlId(String interchangeControlId) {
-		this.interchangeControlId = interchangeControlId;
+	public void setInterchangeControlID(String interchangeControlID) {
+		this.interchangeControlID = interchangeControlID;
 	}
 
 	public String getInterchangeVersionNumber() {
@@ -194,12 +196,12 @@ public class InterchangeEnvelope {
 		this.interchangeControlNumber = interchangeControlNumber;
 	}
 
-	public String getAcknowledgementRequested() {
-		return acknowledgementRequested;
+	public String getiSAAcknowledgmentRequested() {
+		return iSAAcknowledgmentRequested;
 	}
 
-	public void setAcknowledgementRequested(String acknowledgementRequested) {
-		this.acknowledgementRequested = acknowledgementRequested;
+	public void setiSAAcknowledgmentRequested(String iSAAcknowledgmentRequested) {
+		this.iSAAcknowledgmentRequested = iSAAcknowledgmentRequested;
 	}
 
 	public String getTestIndicator() {
@@ -217,6 +219,5 @@ public class InterchangeEnvelope {
 	public void setSubelementSeparator(String subelementSeparator) {
 		this.subelementSeparator = subelementSeparator;
 	}
-	
 	
 }

@@ -4,6 +4,7 @@ package javax.edi.model.x12.edi810;
 import java.util.Collection;
 
 import javax.edi.bind.annotations.EDISegmentGroup;
+import javax.edi.model.x12.TransactionSetHeader;
 import javax.edi.model.x12.edi810.segment.BeginningSegmentforInvoice;
 import javax.edi.model.x12.edi810.segment.Currency;
 import javax.edi.model.x12.edi810.segment.DestinationCountryCode;
@@ -12,7 +13,6 @@ import javax.edi.model.x12.edi810.segment.Name;
 import javax.edi.model.x12.edi810.segment.NoteSpecialInstructions;
 import javax.edi.model.x12.edi810.segment.ReferenceNumber;
 import javax.edi.model.x12.edi810.segment.TermsofSale;
-import javax.edi.model.x12.edi810.segment.TransactionSetHeader;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;

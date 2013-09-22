@@ -1,84 +1,83 @@
 package javax.edi.model.x12;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.util.Date;
 
 import javax.edi.bind.annotations.EDIElement;
 import javax.edi.bind.annotations.EDISegment;
-import javax.edi.bind.annotations.elements.EDIElementFormat;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @EDISegment(tag = "GS")
 public class GroupEnvelope {
+	
+	@EDIElement(fieldName="GS01", dataElement="479")
+	@NotNull
+	@Size(min=2, max=2)
+	private String functionalIDCode;
 
+	@EDIElement(fieldName="GS02", dataElement="142")
 	@NotNull
-	@Size(min = 2, max = 2)
-	@EDIElement
-	private String functionalIdCode; // 'PO' (Purchase Order)
-	
-	@NotNull
-	@Size(min = 2, max = 15)
-	@EDIElement
-	private String applicationSenderCode; // Your company's ID
-	
-	@NotNull
-	@Size(min = 2, max = 15)
-	@EDIElement
-	private String applicationReceiverCode; // '007981038' for testing, production id provided later
-	
-	@NotNull
-	@Size(min = 8, max = 8)
-	@EDIElementFormat("yyyyMMdd")
-	private String date; // CCYYMMDD format
-	
-	@NotNull
-	@Size(min = 4, max = 6)
-	@EDIElement
-	private String time; // HHMM or HHMMSS format
-	
-	@NotNull
-	@Size(min = 1, max = 9)
-	@EDIElement
-	private String groupControlNumber; // An identifying number used to track this group envelope
-	
-	@NotNull
-	@Size(min = 1, max = 2)
-	@EDIElement
-	private String responsibleAgencyCode; // 'X' for X12 format from the Accredited Standards Committee
-	
-	@NotNull
-	@Size(min = 1, max = 12)
-	@EDIElement
-	private String versionReleaseIdentifierCode; // '004010'
+	@Size(min=2, max=15)
+	private String applicationSendersCode;
 
-	public String getFunctionalIdCode() {
-		return functionalIdCode;
+	@EDIElement(fieldName="GS03", dataElement="124")
+	@NotNull
+	@Size(min=2, max=15)
+	private String applicationReceiversCode;
+
+	@EDIElement(fieldName="GS04", dataElement="373")
+	@NotNull
+	private Date date;
+
+	@EDIElement(fieldName="GS05", dataElement="337")
+	@NotNull
+	@Size(min=4, max=6)
+	private String time;
+
+	@EDIElement(fieldName="GS06", dataElement="28")
+	@NotNull
+	@Size(min=1, max=9)
+	private String groupControlNumber;
+
+	@EDIElement(fieldName="GS07", dataElement="455")
+	@NotNull
+	@Size(min=1, max=2)
+	private String responsibleAgencyCode;
+
+	@EDIElement(fieldName="GS08", dataElement="480")
+	@NotNull
+	@Size(min=1, max=12)
+	private String versionReleaseIndustryIdentifierCode;
+
+	public String getFunctionalIDCode() {
+		return functionalIDCode;
 	}
 
-	public void setFunctionalIdCode(String functionalIdCode) {
-		this.functionalIdCode = functionalIdCode;
+	public void setFunctionalIDCode(String functionalIDCode) {
+		this.functionalIDCode = functionalIDCode;
 	}
 
-	public String getApplicationSenderCode() {
-		return applicationSenderCode;
+	public String getApplicationSendersCode() {
+		return applicationSendersCode;
 	}
 
-	public void setApplicationSenderCode(String applicationSenderCode) {
-		this.applicationSenderCode = applicationSenderCode;
+	public void setApplicationSendersCode(String applicationSendersCode) {
+		this.applicationSendersCode = applicationSendersCode;
 	}
 
-	public String getApplicationReceiverCode() {
-		return applicationReceiverCode;
+	public String getApplicationReceiversCode() {
+		return applicationReceiversCode;
 	}
 
-	public void setApplicationReceiverCode(String applicationReceiverCode) {
-		this.applicationReceiverCode = applicationReceiverCode;
+	public void setApplicationReceiversCode(String applicationReceiversCode) {
+		this.applicationReceiversCode = applicationReceiversCode;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
@@ -106,11 +105,13 @@ public class GroupEnvelope {
 		this.responsibleAgencyCode = responsibleAgencyCode;
 	}
 
-	public String getVersionReleaseIdentifierCode() {
-		return versionReleaseIdentifierCode;
+	public String getVersionReleaseIndustryIdentifierCode() {
+		return versionReleaseIndustryIdentifierCode;
 	}
 
-	public void setVersionReleaseIdentifierCode(String versionReleaseIdentifierCode) {
-		this.versionReleaseIdentifierCode = versionReleaseIdentifierCode;
+	public void setVersionReleaseIndustryIdentifierCode(
+			String versionReleaseIndustryIdentifierCode) {
+		this.versionReleaseIndustryIdentifierCode = versionReleaseIndustryIdentifierCode;
 	}
+
 }

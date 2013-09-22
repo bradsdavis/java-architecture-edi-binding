@@ -1,4 +1,4 @@
-package javax.edi.model.x12.edi810.segment;
+package javax.edi.model.x12;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
