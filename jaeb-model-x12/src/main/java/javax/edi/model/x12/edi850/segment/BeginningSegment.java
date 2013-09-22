@@ -62,29 +62,100 @@ public class BeginningSegment {
 	@Size(min = 2, max = 2)
 	@EDIElement
 	private String transactionTypeCode; //
-	
+
 	public String getTransactionSetPurposeCode() {
 		return transactionSetPurposeCode;
 	}
+
 	public void setTransactionSetPurposeCode(String transactionSetPurposeCode) {
 		this.transactionSetPurposeCode = transactionSetPurposeCode;
 	}
+
 	public String getPurchaseOrderTypeCode() {
 		return purchaseOrderTypeCode;
 	}
+
 	public void setPurchaseOrderTypeCode(String purchaseOrderTypeCode) {
 		this.purchaseOrderTypeCode = purchaseOrderTypeCode;
 	}
+
+	public String getReleaseNumber() {
+		return releaseNumber;
+	}
+
+	public void setReleaseNumber(String releaseNumber) {
+		this.releaseNumber = releaseNumber;
+	}
+
 	public String getPurchaseOrderNumber() {
 		return purchaseOrderNumber;
 	}
+
 	public void setPurchaseOrderNumber(String purchaseOrderNumber) {
 		this.purchaseOrderNumber = purchaseOrderNumber;
 	}
+
 	public Date getPurchaseOrderDate() {
 		return purchaseOrderDate;
 	}
-	public void setDate(Date purchaseOrderDate) {
+
+	public void setPurchaseOrderDate(Date purchaseOrderDate) {
 		this.purchaseOrderDate = purchaseOrderDate;
+	}
+
+	public String getContractNumber() {
+		return contractNumber;
+	}
+
+	public void setContractNumber(String contractNumber) {
+		this.contractNumber = contractNumber;
+	}
+
+	public String getAcknowledgementType() {
+		return acknowledgementType;
+	}
+
+	public void setAcknowledgementType(String acknowledgementType) {
+		this.acknowledgementType = acknowledgementType;
+	}
+
+	public String getInvoiceTypeCode() {
+		return invoiceTypeCode;
+	}
+
+	public void setInvoiceTypeCode(String invoiceTypeCode) {
+		this.invoiceTypeCode = invoiceTypeCode;
+	}
+
+	public String getContractTypeCode() {
+		return contractTypeCode;
+	}
+
+	public void setContractTypeCode(String contractTypeCode) {
+		this.contractTypeCode = contractTypeCode;
+	}
+
+	public String getPurchaseCategory() {
+		return purchaseCategory;
+	}
+
+	public void setPurchaseCategory(String purchaseCategory) {
+		this.purchaseCategory = purchaseCategory;
+	}
+
+	public String getSecurityLevelCode() {
+		return securityLevelCode;
+	}
+
+	public void setSecurityLevelCode(String securityLevelCode) {
+		this.securityLevelCode = securityLevelCode;
+	}
+
+	public String getTransactionTypeCode() {
+		return transactionTypeCode;
+	}
+
+	public void setTransactionTypeCode(String transactionTypeCode) {
+		this.transactionTypeCode = transactionTypeCode;
 	}
 }

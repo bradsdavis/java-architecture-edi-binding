@@ -97,4 +97,10 @@ public class AdministrativeCommunicationsContact {
 	public void setCommunicationNumber3(String communicationNumber3) {
 		this.communicationNumber3 = communicationNumber3;
 	}
+	public String getContactInquiryReference() {
+		return contactInquiryReference;
+	}
+	public void setContactInquiryReference(String contactInquiryReference) {
+		this.contactInquiryReference = contactInquiryReference;
+	}
 }

@@ -38,4 +38,52 @@ public class GeographicLocation {
 	@EDIElement
 	(conditional=true)
 	private String locationIdentifier; // 
+
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
+	public String getStateProvince() {
+		return stateProvince;
+	}
+
+	public void setStateProvince(String stateProvince) {
+		this.stateProvince = stateProvince;
+	}
+
+	public String getPostalCode() {
+		return postalCode;
+	}
+
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
+	}
+
+	public String getCountyCode() {
+		return countyCode;
+	}
+
+	public void setCountyCode(String countyCode) {
+		this.countyCode = countyCode;
+	}
+
+	public String getLocationQualifier() {
+		return locationQualifier;
+	}
+
+	public void setLocationQualifier(String locationQualifier) {
+		this.locationQualifier = locationQualifier;
+	}
+
+	public String getLocationIdentifier() {
+		return locationIdentifier;
+	}
+
+	public void setLocationIdentifier(String locationIdentifier) {
+		this.locationIdentifier = locationIdentifier;
+	}
 }

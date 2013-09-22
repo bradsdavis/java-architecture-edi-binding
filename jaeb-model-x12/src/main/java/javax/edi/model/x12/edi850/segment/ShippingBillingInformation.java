@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 public class ShippingBillingInformation {
 
 	@Size(min=1)
-	private ShipToBillToName shipToBillToName;
+	private ShippingBillingName shipToBillToName;
 
 	@Size(min=1)
 	private AdditionalNameInformation additionalNameInformation;

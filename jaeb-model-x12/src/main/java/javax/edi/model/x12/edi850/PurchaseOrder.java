@@ -3,10 +3,10 @@ package javax.edi.model.x12.edi850;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.edi.bind.annotations.EDIMessage;
-import javax.edi.model.x12.edi850.segment.Detail;
+import javax.edi.model.x12.edi850.segment.PurchaseOrderDetail;
 import javax.edi.model.x12.edi850.segment.GroupEnvelope;
 import javax.edi.model.x12.edi850.segment.InterchangeEnvelope;
-import javax.edi.model.x12.edi850.segment.Summary;
+import javax.edi.model.x12.edi850.segment.PurchaseOrderSummary;
 
 @EDIMessage(segmentDelimiter="~",componentDelimiter=">",elementDelimiter="*")
 public class PurchaseOrder {
@@ -18,20 +18,13 @@ public class PurchaseOrder {
 	private GroupEnvelope groupEnvelope;
 	
 	@NotNull
-	@Size(min = 1, max = 1)
-	private PurchaseOrderHeader heading;
+	private PurchaseOrderHeader purchaseOrderHeader;
 	
 	@NotNull
-	@Size(min = 1, max = 1)
-	private Detail detail;
+	private PurchaseOrderDetail detail;
 	
 	@NotNull
-	@Size(min = 1, max = 1)
-	private Summary summary;
-
-	
-	
-	
+	private PurchaseOrderSummary summary;
 	
 	public InterchangeEnvelope getInterchangeEnvelope() {
 		return interchangeEnvelope;
@@ -49,30 +42,27 @@ public class PurchaseOrder {
 		this.groupEnvelope = groupEnvelope;
 	}
 
-	public PurchaseOrderHeader getHeading() {
-		return heading;
+	public PurchaseOrderHeader getPurchaseOrderHeader() {
+		return purchaseOrderHeader;
 	}
 
-	public void setHeading(PurchaseOrderHeader heading) {
-		this.heading = heading;
+	public void setPurchaseOrderHeader(PurchaseOrderHeader purchaseOrderHeader) {
+		this.purchaseOrderHeader = purchaseOrderHeader;
 	}
 
-	public Detail getDetail() {
+	public PurchaseOrderDetail getDetail() {
 		return detail;
 	}
 
-	public void setDetail(Detail detail) {
+	public void setDetail(PurchaseOrderDetail detail) {
 		this.detail = detail;
 	}
 
-	public Summary getSummary() {
+	public PurchaseOrderSummary getSummary() {
 		return summary;
 	}
 
-	public void setSummary(Summary summary) {
+	public void setSummary(PurchaseOrderSummary summary) {
 		this.summary = summary;
 	}
-	
-	
-	
 }

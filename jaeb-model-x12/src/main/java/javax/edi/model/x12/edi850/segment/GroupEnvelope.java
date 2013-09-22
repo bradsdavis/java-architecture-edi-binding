@@ -49,4 +49,68 @@ public class GroupEnvelope {
 	@Size(min = 1, max = 12)
 	@EDIElement
 	private String versionReleaseIdentifierCode; // '004010'
+
+	public String getFunctionalIdCode() {
+		return functionalIdCode;
+	}
+
+	public void setFunctionalIdCode(String functionalIdCode) {
+		this.functionalIdCode = functionalIdCode;
+	}
+
+	public String getApplicationSenderCode() {
+		return applicationSenderCode;
+	}
+
+	public void setApplicationSenderCode(String applicationSenderCode) {
+		this.applicationSenderCode = applicationSenderCode;
+	}
+
+	public String getApplicationReceiverCode() {
+		return applicationReceiverCode;
+	}
+
+	public void setApplicationReceiverCode(String applicationReceiverCode) {
+		this.applicationReceiverCode = applicationReceiverCode;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public String getGroupControlNumber() {
+		return groupControlNumber;
+	}
+
+	public void setGroupControlNumber(String groupControlNumber) {
+		this.groupControlNumber = groupControlNumber;
+	}
+
+	public String getResponsibleAgencyCode() {
+		return responsibleAgencyCode;
+	}
+
+	public void setResponsibleAgencyCode(String responsibleAgencyCode) {
+		this.responsibleAgencyCode = responsibleAgencyCode;
+	}
+
+	public String getVersionReleaseIdentifierCode() {
+		return versionReleaseIdentifierCode;
+	}
+
+	public void setVersionReleaseIdentifierCode(String versionReleaseIdentifierCode) {
+		this.versionReleaseIdentifierCode = versionReleaseIdentifierCode;
+	}
 }

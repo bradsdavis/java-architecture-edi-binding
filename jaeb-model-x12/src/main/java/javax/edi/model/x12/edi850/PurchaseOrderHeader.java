@@ -2,16 +2,18 @@ package javax.edi.model.x12.edi850;
 
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.edi.bind.annotations.EDISegmentGroup;
-import javax.edi.model.x12.edi850.segment.AdministrativeCommunicationsContact;
 import javax.edi.model.x12.edi850.segment.BeginningSegment;
-import javax.edi.model.x12.edi850.segment.Currency;
+import javax.edi.model.x12.edi850.segment.PurchaseOrderItem;
 import javax.edi.model.x12.edi850.segment.ReferenceIdentification;
 import javax.edi.model.x12.edi850.segment.ReferenceNumber;
+import javax.edi.model.x12.edi850.segment.ShippingBillingEntry;
 import javax.edi.model.x12.edi850.segment.SpecifyingDeliveryCarrier;
 import javax.edi.model.x12.edi850.segment.TransactionSetHeader;
+import javax.edi.model.x12.edi850.segment.TransactionSetTotals;
+import javax.edi.model.x12.edi850.segment.TransactionSetTrailer;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @EDISegmentGroup
 public class PurchaseOrderHeader {
@@ -29,16 +31,10 @@ public class PurchaseOrderHeader {
 	private List<SpecifyingDeliveryCarrier> specifyingDeliveryCarriers;
 
 	@Size(max=1000)
-	private List<ReferenceIdentification> referenceIdentification;
+	private List<ReferenceIdentification> referenceIdentifications;
 
-	private Currency currency;
-		
-	private AdministrativeCommunicationsContact administrationCommunicationsContact;
-
-	
-	
-	
-	
+	@Size(max=200)
+	private List<ShippingBillingEntry> shippingBillingEntries;
 	
 	public TransactionSetHeader getTransactionSetHeader() {
 		return transactionSetHeader;
@@ -73,32 +69,23 @@ public class PurchaseOrderHeader {
 		this.specifyingDeliveryCarriers = specifyingDeliveryCarriers;
 	}
 
-	public List<ReferenceIdentification> getReferenceIdentification() {
-		return referenceIdentification;
+	public List<ReferenceIdentification> getReferenceIdentifications() {
+		return referenceIdentifications;
 	}
 
-	public void setReferenceIdentification(
-			List<ReferenceIdentification> referenceIdentification) {
-		this.referenceIdentification = referenceIdentification;
+	public void setReferenceIdentifications(
+			List<ReferenceIdentification> referenceIdentifications) {
+		this.referenceIdentifications = referenceIdentifications;
 	}
 
-	public Currency getCurrency() {
-		return currency;
+	public List<ShippingBillingEntry> getShippingBillingEntries() {
+		return shippingBillingEntries;
 	}
-
-	public void setCurrency(Currency currency) {
-		this.currency = currency;
-	}
-
-	public AdministrativeCommunicationsContact getAdministrationCommunicationsContact() {
-		return administrationCommunicationsContact;
-	}
-
-	public void setAdministrationCommunicationsContact(
-			AdministrativeCommunicationsContact administrationCommunicationsContact) {
-		this.administrationCommunicationsContact = administrationCommunicationsContact;
-	}
-
 	
+	public void setShippingBillingEntries(
+			List<ShippingBillingEntry> shippingBillingEntries) {
+		this.shippingBillingEntries = shippingBillingEntries;
+	}
+
 	
 }

@@ -36,4 +36,52 @@ public class SpecifyingDeliveryCarrier {
 	@EDIElement
 	//@Conditional
 	private String shipmentOrderStatusCode; // 
+
+	public String getRoutingSequenceCode() {
+		return routingSequenceCode;
+	}
+
+	public void setRoutingSequenceCode(String routingSequenceCode) {
+		this.routingSequenceCode = routingSequenceCode;
+	}
+
+	public String getIdentificationCodeQualifier() {
+		return identificationCodeQualifier;
+	}
+
+	public void setIdentificationCodeQualifier(String identificationCodeQualifier) {
+		this.identificationCodeQualifier = identificationCodeQualifier;
+	}
+
+	public String getIdentificationCode() {
+		return identificationCode;
+	}
+
+	public void setIdentificationCode(String identificationCode) {
+		this.identificationCode = identificationCode;
+	}
+
+	public String getTransportationMethod() {
+		return transportationMethod;
+	}
+
+	public void setTransportationMethod(String transportationMethod) {
+		this.transportationMethod = transportationMethod;
+	}
+
+	public String getRouting() {
+		return routing;
+	}
+
+	public void setRouting(String routing) {
+		this.routing = routing;
+	}
+
+	public String getShipmentOrderStatusCode() {
+		return shipmentOrderStatusCode;
+	}
+
+	public void setShipmentOrderStatusCode(String shipmentOrderStatusCode) {
+		this.shipmentOrderStatusCode = shipmentOrderStatusCode;
+	}
 }
