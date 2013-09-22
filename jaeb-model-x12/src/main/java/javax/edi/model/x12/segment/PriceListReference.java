@@ -19,7 +19,6 @@ public class PriceListReference {
 	private String priceListIssueNumber;
 	
 	@EDIElement(fieldName="G3603", dataElement="373")
-	@Size(min=8, max=8)
 	private Date priceListDate;
 	
 }

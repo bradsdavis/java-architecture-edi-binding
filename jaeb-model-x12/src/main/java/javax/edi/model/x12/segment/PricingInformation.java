@@ -20,7 +20,6 @@ public class PricingInformation {
 	@EDIElementFormat("####.00")
 	private BigDecimal unitPrice;
 	
-	
 	@EDIElement(fieldName="CTP04", dataElement="380")
 	private BigInteger quantity;
 	

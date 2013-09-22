@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.edi.bind.annotations.EDISegmentGroup;
 import javax.edi.model.x12.edi850.segment.BeginningSegment;
-import javax.edi.model.x12.edi850.segment.Currency;
 import javax.edi.model.x12.edi850.segment.ReferenceIdentification;
 import javax.edi.model.x12.edi850.segment.ReferenceNumber;
 import javax.edi.model.x12.edi850.segment.SpecifyingDeliveryCarrier;
+import javax.edi.model.x12.segment.Currency;
 import javax.edi.model.x12.segment.PersonContact;
 import javax.edi.model.x12.segment.TransactionSetHeader;
 import javax.validation.constraints.NotNull;
