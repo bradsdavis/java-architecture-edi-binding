@@ -19,4 +19,10 @@ public class AdditionalItemData {
 	public void setQuantityDifference(String quantityDifference) {
 		this.quantityDifference = quantityDifference;
 	}
+
+	@Override
+	public String toString() {
+		return "AdditionalItemData [quantityDifference=" + quantityDifference
+				+ "]";
+	}
 }

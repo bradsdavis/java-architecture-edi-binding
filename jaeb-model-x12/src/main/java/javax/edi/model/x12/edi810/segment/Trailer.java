@@ -60,5 +60,14 @@ public class Trailer {
 	public void setTransactionSetTrailer(TransactionSetTrailer transactionSetTrailer) {
 		this.transactionSetTrailer = transactionSetTrailer;
 	}
+
+	@Override
+	public String toString() {
+		return "Trailer [totalMonetaryValueSummary="
+				+ totalMonetaryValueSummary + ", allowanceChargeOrServices="
+				+ allowanceChargeOrServices + ", transactionTotals="
+				+ transactionTotals + ", transactionSetTrailer="
+				+ transactionSetTrailer + "]";
+	}
 	
 }

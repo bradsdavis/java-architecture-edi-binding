@@ -155,6 +155,29 @@ public class FunctionalGroupResponseTrailer {
 			String functionalGroupSyntaxErrorCode5) {
 		this.functionalGroupSyntaxErrorCode5 = functionalGroupSyntaxErrorCode5;
 	}
+
+
+	@Override
+	public String toString() {
+		return "FunctionalGroupResponseTrailer [functionalGroupAcknowledgeCode="
+				+ functionalGroupAcknowledgeCode
+				+ ", numberOfTransactionSetsIncluded="
+				+ numberOfTransactionSetsIncluded
+				+ ", numberOfReceivedTransactionSets="
+				+ numberOfReceivedTransactionSets
+				+ ", numberOfAcceptedTransactionSets="
+				+ numberOfAcceptedTransactionSets
+				+ ", functionalGroupSyntaxErrorCode1="
+				+ functionalGroupSyntaxErrorCode1
+				+ ", functionalGroupSyntaxErrorCode2="
+				+ functionalGroupSyntaxErrorCode2
+				+ ", functionalGroupSyntaxErrorCode3="
+				+ functionalGroupSyntaxErrorCode3
+				+ ", functionalGroupSyntaxErrorCode4="
+				+ functionalGroupSyntaxErrorCode4
+				+ ", functionalGroupSyntaxErrorCode5="
+				+ functionalGroupSyntaxErrorCode5 + "]";
+	}
 	
 
 	

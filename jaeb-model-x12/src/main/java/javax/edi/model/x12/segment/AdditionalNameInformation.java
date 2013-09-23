@@ -19,5 +19,10 @@ public class AdditionalNameInformation {
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		return "AdditionalNameInformation [name=" + name + "]";
+	}
+
 	
 }

@@ -35,4 +35,10 @@ public class Currency {
 		this.currencyCode = currencyCode;
 	}
 
+	@Override
+	public String toString() {
+		return "Currency [entityIdentifierCode=" + entityIdentifierCode
+				+ ", currencyCode=" + currencyCode + "]";
+	}
+
 }

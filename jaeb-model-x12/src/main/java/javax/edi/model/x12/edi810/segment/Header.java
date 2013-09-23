@@ -102,4 +102,15 @@ public class Header {
 			FOBRelatedInstruction fobRelatedInstructions) {
 		this.fobRelatedInstructions = fobRelatedInstructions;
 	}
+	@Override
+	public String toString() {
+		return "Header [transactionSetHeader=" + transactionSetHeader
+				+ ", beginningSegmentforInvoice=" + beginningSegmentforInvoice
+				+ ", currency=" + currency + ", noteSpecialInstructions="
+				+ noteSpecialInstructions + ", referenceNumbers="
+				+ referenceNumbers + ", names=" + names
+				+ ", destinationCountryCode=" + destinationCountryCode
+				+ ", termsofSale=" + termsofSale + ", fobRelatedInstructions="
+				+ fobRelatedInstructions + "]";
+	}
 }

@@ -18,6 +18,7 @@ public class SegmentAwareReader extends BufferedReader {
 	public SegmentAwareReader(Reader in, char segmentDelimiter, boolean ignoreNewLine) {
 		super(in);
 		this.segmentDelimiter = segmentDelimiter;
+		this.ignoreNewLine = ignoreNewLine;
 	}
 	
 	public String readSegment() throws IOException {

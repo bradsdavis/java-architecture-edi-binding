@@ -38,6 +38,12 @@ public class InvoiceBody {
 	public void setTrailer(Trailer trailer) {
 		this.trailer = trailer;
 	}
+
+	@Override
+	public String toString() {
+		return "InvoiceBody [header=" + header + ", detail=" + detail
+				+ ", trailer=" + trailer + "]";
+	}
 	
 	
 }

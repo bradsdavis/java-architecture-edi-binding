@@ -143,4 +143,19 @@ public class BaselineItemData {
 		this.productServiceID3 = productServiceID3;
 	}
 
+	@Override
+	public String toString() {
+		return "BaselineItemData [assignedIdentificationNumber="
+				+ assignedIdentificationNumber + ", quantityInvoiced="
+				+ quantityInvoiced + ", unitOfMeasureCode=" + unitOfMeasureCode
+				+ ", unitPrice=" + unitPrice + ", basisUnitPriceCode="
+				+ basisUnitPriceCode + ", productServiceIDQualifier1="
+				+ productServiceIDQualifier1 + ", productServiceID1="
+				+ productServiceID1 + ", productServiceIDQualifier2="
+				+ productServiceIDQualifier2 + ", productServiceID2="
+				+ productServiceID2 + ", prodServIDQualifier3="
+				+ prodServIDQualifier3 + ", productServiceID3="
+				+ productServiceID3 + "]";
+	}
+
 }

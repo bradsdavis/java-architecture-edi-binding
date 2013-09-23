@@ -62,5 +62,15 @@ public class AllowanceChargeOrService {
 		this.methodOfHandlingCode = methodOfHandlingCode;
 	}
 
+	@Override
+	public String toString() {
+		return "AllowanceChargeOrService [allowanceChargeIndicator="
+				+ allowanceChargeIndicator + ", specialChargeOrAllowanceCode="
+				+ specialChargeOrAllowanceCode
+				+ ", allowanceOrChargeTotalAmount="
+				+ allowanceOrChargeTotalAmount + ", methodOfHandlingCode="
+				+ methodOfHandlingCode + "]";
+	}
+
 
 }

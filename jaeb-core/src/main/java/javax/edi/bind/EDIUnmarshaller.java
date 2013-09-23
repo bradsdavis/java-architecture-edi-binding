@@ -46,7 +46,7 @@ public class EDIUnmarshaller {
 		}
 		EDIMessage ediMessage = clz.getAnnotation(EDIMessage.class);
 		
-		SegmentIterator SegmentIterator = new SegmentIterator(reader, ediMessage.segmentDelimiter(), true);
+		SegmentIterator segmentIterator = new SegmentIterator(reader, ediMessage.segmentDelimiter(), true);
 
 		Field[] fields = clz.getDeclaredFields();
 		Iterator<Field> fieldIterator = Arrays.asList(fields).iterator();
@@ -54,24 +54,24 @@ public class EDIUnmarshaller {
 		T obj = clz.newInstance();
 
 		Queue<String> lookAhead = new LinkedList<String>();
-		while (fieldIterator.hasNext() && (SegmentIterator.hasNext() || lookAhead.size() > 0)) {
-			parseEDISegmentOrSegmentGroup(ediMessage, obj, fieldIterator, lookAhead, SegmentIterator);
+		while (fieldIterator.hasNext() && (segmentIterator.hasNext() || lookAhead.size() > 0)) {
+			parseEDISegmentOrSegmentGroup(ediMessage, obj, fieldIterator, lookAhead, segmentIterator);
 		}
 		return obj;
 	}
 
-	protected static <T> void parseEDISegmentOrSegmentGroup(EDIMessage ediMessage, T object, Iterator<Field> fieldIterator, Queue<String> lookAhead, SegmentIterator SegmentIterator)
+	protected static <T> void parseEDISegmentOrSegmentGroup(EDIMessage ediMessage, T object, Iterator<Field> fieldIterator, Queue<String> lookAhead, SegmentIterator segmentIterator)
 			throws EDIMessageException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException, ConversionException {
 		if (!fieldIterator.hasNext()) {
 			throw new EDIMessageException("No more fields to read.");
 		}
 
-		if (!SegmentIterator.hasNext() && lookAhead.size() == 0) {
+		if (!segmentIterator.hasNext() && lookAhead.size() == 0) {
 			return;
 		}
 
 		// get the queued object first...
-		String line = lookAhead.size() > 0 ? lookAhead.remove() : SegmentIterator.next();
+		String line = lookAhead.size() > 0 ? lookAhead.remove() : segmentIterator.next();
 
 		// match up the field with the line...
 		FieldMatch fm = advanceToMatch(ediMessage, fieldIterator, line);
@@ -79,14 +79,14 @@ public class EDIUnmarshaller {
 		if (fm != null) {
 			Class<?> fieldType = getEDISegmentOrGroupType(fm.getField());
 			if (fieldType.isAnnotationPresent(EDISegment.class)) {
-				processSegment(ediMessage, object, lookAhead, SegmentIterator, fm);
+				processSegment(ediMessage, object, lookAhead, segmentIterator, fm);
 			} else if (fieldType.isAnnotationPresent(EDISegmentGroup.class)) {
-				processSegmentGroup(ediMessage, object, lookAhead, SegmentIterator, fm);
+				processSegmentGroup(ediMessage, object, lookAhead, segmentIterator, fm);
 			}
 		}
 	}
 
-	protected static <T> void processSegmentGroup(EDIMessage ediMessage, T object, Queue<String> lookAhead, SegmentIterator SegmentIterator, FieldMatch fm) throws InstantiationException,
+	protected static <T> void processSegmentGroup(EDIMessage ediMessage, T object, Queue<String> lookAhead, SegmentIterator segmentIterator, FieldMatch fm) throws InstantiationException,
 			IllegalAccessException, InvocationTargetException, ClassNotFoundException, ConversionException, EDIMessageException {
 
 		LOG.debug("Object: "+ReflectionToStringBuilder.toString(object));
@@ -124,13 +124,13 @@ public class EDIUnmarshaller {
 				Iterator<Field> fieldIterator = Arrays.asList(fields).iterator();
 				
 				Object collectionObj = segmentGroupClass.newInstance();
-				while (fieldIterator.hasNext() && (SegmentIterator.hasNext() || lookAhead.size() > 0)) {
-					parseEDISegmentOrSegmentGroup(ediMessage, collectionObj, fieldIterator, lookAhead, SegmentIterator);
+				while (fieldIterator.hasNext() && (segmentIterator.hasNext() || lookAhead.size() > 0)) {
+					parseEDISegmentOrSegmentGroup(ediMessage, collectionObj, fieldIterator, lookAhead, segmentIterator);
 				}
 				obj.add(collectionObj);
 				
 				//look to next line...
-				String nextLine = lookAhead.size() > 0 ? lookAhead.remove() : SegmentIterator.next();
+				String nextLine = lookAhead.size() > 0 ? lookAhead.remove() : segmentIterator.next();
 				//get the first element of the line.
 				StrTokenizer nextLineTokenizer = new StrTokenizer(nextLine, ediMessage.elementDelimiter());
 				
@@ -147,7 +147,7 @@ public class EDIUnmarshaller {
 				
 				
 				//now, look ahead to see whether the next line is of the same object type..
-				if(!SegmentIterator.hasNext() && lookAhead.size() == 0) {
+				if(!segmentIterator.hasNext() && lookAhead.size() == 0) {
 					break;
 				}
 			}
@@ -158,8 +158,8 @@ public class EDIUnmarshaller {
 			Iterator<Field> fieldIterator = Arrays.asList(fields).iterator();
 
 			Object obj = segmentGroupClass.newInstance();
-			while (fieldIterator.hasNext() && (SegmentIterator.hasNext() || lookAhead.size() > 0)) {
-				parseEDISegmentOrSegmentGroup(ediMessage, obj, fieldIterator, lookAhead, SegmentIterator);
+			while (fieldIterator.hasNext() && (segmentIterator.hasNext() || lookAhead.size() > 0)) {
+				parseEDISegmentOrSegmentGroup(ediMessage, obj, fieldIterator, lookAhead, segmentIterator);
 			}
 			
 			BeanUtils.setProperty(object, fm.getField().getName(), obj);
@@ -169,7 +169,7 @@ public class EDIUnmarshaller {
 		
 		//look at next...
 		if(StringUtils.isNotBlank(es.header())) {
-			line = lookAhead.size() > 0 ? lookAhead.remove() : SegmentIterator.next(); 
+			line = lookAhead.size() > 0 ? lookAhead.remove() : segmentIterator.next(); 
 		
 			if(StringUtils.endsWith(es.footer(), line)) {
 				//feed line.
@@ -231,7 +231,7 @@ public class EDIUnmarshaller {
 
 	protected static FieldMatch advanceToMatch(EDIMessage ediMessage, Iterator<Field> fieldIterator, String line) {
 		// advance the reader, read the line.
-		StringTokenizer tokenizer = new StringTokenizer(line, CharUtils.toString(ediMessage.segmentDelimiter()));
+		StringTokenizer tokenizer = new StringTokenizer(line, CharUtils.toString(ediMessage.elementDelimiter()));
 
 		// first token is always the tag.
 		String ediSegmentTag = tokenizer.nextToken();
@@ -249,6 +249,7 @@ public class EDIUnmarshaller {
 
 		return null;
 	}
+	
 
 	protected static String getSegmentTag(Field field, boolean inner) {
 		Class<?> clz = field.getType();
@@ -302,7 +303,7 @@ public class EDIUnmarshaller {
 			} else {
 				// get the segement group's first field, and recurse.
 				if (clz.getDeclaredFields().length > 0) {
-					return matchesSegment(clz.getDeclaredFields()[1], segmentTag);
+					return matchesSegment(clz.getDeclaredFields()[0], segmentTag);
 				}
 			}
 		}

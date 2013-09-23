@@ -12,7 +12,7 @@ import javax.edi.model.x12.segment.InterchangeEnvelopeTrailer;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@EDIMessage(segmentDelimiter="~",componentDelimiter=">",elementDelimiter="*")
+@EDIMessage()
 public class PurchaseOrder {
 
 	@NotNull

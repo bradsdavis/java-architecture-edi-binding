@@ -10,8 +10,6 @@ import javax.edi.model.x12.segment.Name;
 import javax.edi.model.x12.segment.NoteSpecialInstructions;
 import javax.edi.model.x12.segment.PricingInformation;
 import javax.edi.model.x12.segment.ReferenceNumber;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 @EDISegmentGroup
@@ -91,5 +89,14 @@ public class Detail {
 
 	public void setReferenceNumbers(Collection<ReferenceNumber> referenceNumbers) {
 		this.referenceNumbers = referenceNumbers;
+	}
+
+	@Override
+	public String toString() {
+		return "Detail [baselineItemData=" + baselineItemData
+				+ ", noteSpecialInstructions=" + noteSpecialInstructions
+				+ ", additionalItemData=" + additionalItemData
+				+ ", pricingInformation=" + pricingInformation + ", name="
+				+ name + ", referenceNumbers=" + referenceNumbers + "]";
 	}
 }

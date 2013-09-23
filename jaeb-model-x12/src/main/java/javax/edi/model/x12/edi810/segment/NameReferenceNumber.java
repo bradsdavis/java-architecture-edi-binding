@@ -32,4 +32,10 @@ public class NameReferenceNumber {
 	public void setReferenceNumbers(Collection<ReferenceNumber> referenceNumbers) {
 		this.referenceNumbers = referenceNumbers;
 	}
+
+	@Override
+	public String toString() {
+		return "NameReferenceNumber [name=" + name + ", referenceNumbers="
+				+ referenceNumbers + "]";
+	}
 }

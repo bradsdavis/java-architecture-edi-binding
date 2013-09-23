@@ -38,4 +38,12 @@ public class FOBRelatedInstruction {
 		this.locationQualifier = locationQualifier;
 	}
 
+
+	@Override
+	public String toString() {
+		return "FOBRelatedInstruction [shipmentMethodOfPayment="
+				+ shipmentMethodOfPayment + ", locationQualifier="
+				+ locationQualifier + "]";
+	}
+
 }

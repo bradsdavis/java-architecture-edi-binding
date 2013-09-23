@@ -33,5 +33,11 @@ public class AddressInformation {
 		this.addressLine2 = addressLine2;
 	}
 
+	@Override
+	public String toString() {
+		return "AddressInformation [addressLine1=" + addressLine1
+				+ ", addressLine2=" + addressLine2 + "]";
+	}
+
 	
 }
