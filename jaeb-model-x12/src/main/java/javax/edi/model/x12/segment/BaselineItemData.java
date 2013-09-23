@@ -1,7 +1,10 @@
 package javax.edi.model.x12.segment;
 
+import java.math.BigDecimal;
+
 import javax.edi.bind.annotations.EDIElement;
 import javax.edi.bind.annotations.EDISegment;
+import javax.edi.bind.annotations.elements.EDIElementFormat;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -24,8 +27,8 @@ public class BaselineItemData {
 
 	@EDIElement(fieldName="IT104", dataElement="212")
 	@NotNull
-	@Size(min=1, max=14)
-	private String unitPrice;
+	@EDIElementFormat("####.##")
+	private BigDecimal unitPrice;
 
 	@EDIElement(fieldName="IT105", dataElement="639")
 	@Size(min=2, max=2)
@@ -79,11 +82,11 @@ public class BaselineItemData {
 		this.unitOfMeasureCode = unitOfMeasureCode;
 	}
 
-	public String getUnitPrice() {
+	public BigDecimal getUnitPrice() {
 		return unitPrice;
 	}
-
-	public void setUnitPrice(String unitPrice) {
+	
+	public void setUnitPrice(BigDecimal unitPrice) {
 		this.unitPrice = unitPrice;
 	}
 

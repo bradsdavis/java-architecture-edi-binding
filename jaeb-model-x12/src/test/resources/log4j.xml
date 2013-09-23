@@ -22,7 +22,7 @@
     </category>
  	
  	<category name="org.apache.commons.beanutils">
-        <priority value="DEBUG" />
+        <priority value="INFO" />
     </category>
  	
     <root>

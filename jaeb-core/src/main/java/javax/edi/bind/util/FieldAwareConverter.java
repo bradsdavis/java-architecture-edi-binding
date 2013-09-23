@@ -18,6 +18,7 @@ import org.apache.commons.convert.Converters;
 import org.apache.commons.convert.DateTimeConverters.DateToString;
 import org.apache.commons.convert.DateTimeConverters.StringToDate;
 import org.apache.commons.convert.NumberConverters.AbstractNumberConverter;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -108,18 +109,18 @@ public class FieldAwareConverter {
 		
 		if(converter instanceof AbstractNumberConverter) {
 			if(Number.class.isAssignableFrom(field.getType())) {
-				NumberFormat numberFormat = new DecimalFormat(format);
 				Number number;
-				try {
-					number = numberFormat.parse(val);
-					
-					LOG.debug("Number type: "+ReflectionToStringBuilder.toString(number));
-					
-				} catch (ParseException e) {
-					throw new ConversionException("Exception converting ["+val+"] with format: "+format);
+				if(StringUtils.isNotBlank(format)) {
+					NumberFormat numberFormat = new DecimalFormat(format);
+					try {
+						number = numberFormat.parse(val);
+						Converter numberConverter = Converters.getConverter(number.getClass(), targetType);
+						return (T)numberConverter.convert(number);
+					} catch (ParseException e) {
+						throw new ConversionException("Exception converting ["+val+"] with format: "+format+" on class: "+targetType);
+					}
 				}
-				Converter numberConverter = Converters.getConverter(number.getClass(), targetType);
-				return (T)numberConverter.convert(number);
+			
 			}
 			return (T)((AbstractNumberConverter) converter).convert(val, locale,  timezone, format);
 		}
