@@ -9,31 +9,26 @@ import javax.edi.model.x12.segment.AddressInformation;
 import javax.edi.model.x12.segment.GeographicLocation;
 import javax.edi.model.x12.segment.Name;
 import javax.edi.model.x12.segment.PersonContact;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @EDISegmentGroup
-public class ShippingBillingGroup {
+public class ShipmentInformationGroup {
 
-	@NotNull
-	private Name name;
-	
+	private Name shipToName;
 	private AdditionalNameInformation additionalNameInformation;
-	
 	private AddressInformation addressInformation;
-	
 	private GeographicLocation geographicLocation;
 	
-	@Size(max=3)
 	@EDICollectionType(PersonContact.class)
-	private Collection<PersonContact> personContacts;
+	@Size(max=3)
+	private Collection<PersonContact> administrativeContact;
 
-	public Name getName() {
-		return name;
+	public Name getShipToName() {
+		return shipToName;
 	}
 
-	public void setName(Name name) {
-		this.name = name;
+	public void setShipToName(Name shipToName) {
+		this.shipToName = shipToName;
 	}
 
 	public AdditionalNameInformation getAdditionalNameInformation() {
@@ -61,12 +56,14 @@ public class ShippingBillingGroup {
 		this.geographicLocation = geographicLocation;
 	}
 
-	public Collection<PersonContact> getPersonContacts() {
-		return personContacts;
+	public Collection<PersonContact> getAdministrativeContact() {
+		return administrativeContact;
 	}
 
-	public void setPersonContacts(
-			Collection<PersonContact> personContacts) {
-		this.personContacts = personContacts;
+	public void setAdministrativeContact(
+			Collection<PersonContact> administrativeContact) {
+		this.administrativeContact = administrativeContact;
 	}
+	
+	
 }

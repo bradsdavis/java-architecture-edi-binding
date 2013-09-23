@@ -1,5 +1,7 @@
 package javax.edi.model.x12.segment;
 
+import java.util.Date;
+
 import javax.edi.bind.annotations.EDIElement;
 import javax.edi.bind.annotations.EDISegment;
 import javax.edi.bind.annotations.elements.EDIElementFormat;

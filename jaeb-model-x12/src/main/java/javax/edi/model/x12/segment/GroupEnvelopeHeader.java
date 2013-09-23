@@ -29,7 +29,6 @@ public class GroupEnvelopeHeader {
 
 	@EDIElement(fieldName="GS04", dataElement="373")
 	@NotNull
-	@Size(min = 8, max = 8)
 	@EDIElementFormat("yyyyMMdd")
 	private Date date;
 

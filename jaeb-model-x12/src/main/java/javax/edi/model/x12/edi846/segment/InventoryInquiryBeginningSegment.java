@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.edi.bind.annotations.EDIElement;
 import javax.edi.bind.annotations.EDISegment;
+import javax.edi.bind.annotations.elements.EDIElementFormat;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -29,6 +30,7 @@ public class InventoryInquiryBeginningSegment {
 	@EDIElement(fieldName="BIA04", dataElement="373")
 	@NotNull
 	@Size(min=4, max=8)
+	@EDIElementFormat("yyyyMMdd")
 	private Date date;
 
 	public String getTransactionSetPurposeCode() {

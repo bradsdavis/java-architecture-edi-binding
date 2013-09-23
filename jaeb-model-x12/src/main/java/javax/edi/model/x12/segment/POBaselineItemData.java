@@ -1,7 +1,11 @@
 package javax.edi.model.x12.segment;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 import javax.edi.bind.annotations.EDIElement;
 import javax.edi.bind.annotations.EDISegment;
+import javax.edi.bind.annotations.elements.EDIElementFormat;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -15,27 +19,24 @@ public class POBaselineItemData {
 	
 	@EDIElement(fieldName="PO102", dataElement="330")
 	@NotNull
-	@Size(min=1, max=9)
-	//@Size(min = 1, max = 15, groups={USSCO.class})
-	private String quantityOrdered;
+	private BigInteger quantity;
 	
 	@EDIElement(fieldName="PO103", dataElement="355")
 	@NotNull
 	@Size(min=2, max=2)
-	private String unitOfMeasure; // e.g. 'EA'=each,’DZ’=dozen, 'BX'=box,'CT'=carton
+	private String unitOfMeasure;
 	
-	@EDIElement(fieldName="PO104", dataElement="212", conditional=true)//X?
-	@Size(min=1, max=14)
-	//@Size(min = 1, max = 17, groups={USSCO.class})
-	private String unitPrice;
+	@EDIElement(fieldName="PO104", dataElement="212")
+	@EDIElementFormat("####.##")
+	private BigDecimal unitPrice;
 	
 	@EDIElement(fieldName="PO105", dataElement="639")
 	@Size(min=2, max=2)
-	private String basisUnitPriceCode; // e.g. 'EA', 'BX', 'DZ', etc.
+	private String basisUnitPriceCode;
 	
 	@EDIElement(fieldName="PO106", dataElement="235")
 	@Size(min=2, max=2)
-	private String prodServIDQual1; // 'BP'=buyer’s part number, 'IN'=buyer’s item number
+	private String prodServiceIDQualifier1;
 	
 	@EDIElement(fieldName="PO107", dataElement="234", conditional=true)//X?
 	@Size(min=1, max=30)
@@ -131,6 +132,15 @@ public class POBaselineItemData {
 		this.assignedIdentifier = assignedIdentifier;
 	}
 
+	public BigInteger getQuantity() {
+		return quantity;
+	}
+
+
+	public void setQuantity(BigInteger quantity) {
+		this.quantity = quantity;
+	}
+
 	public String getUnitOfMeasure() {
 		return unitOfMeasure;
 	}
@@ -139,11 +149,11 @@ public class POBaselineItemData {
 		this.unitOfMeasure = unitOfMeasure;
 	}
 
-	public String getUnitPrice() {
+	public BigDecimal getUnitPrice() {
 		return unitPrice;
 	}
 
-	public void setUnitPrice(String unitPrice) {
+	public void setUnitPrice(BigDecimal unitPrice) {
 		this.unitPrice = unitPrice;
 	}
 
@@ -155,12 +165,12 @@ public class POBaselineItemData {
 		this.basisUnitPriceCode = basisUnitPriceCode;
 	}
 
-	public String getProdServIDQual1() {
-		return prodServIDQual1;
+	public String getProdServiceIDQualifier1() {
+		return prodServiceIDQualifier1;
 	}
 
-	public void setProdServIDQual1(String prodServIDQual1) {
-		this.prodServIDQual1 = prodServIDQual1;
+	public void setProdServiceIDQualifier1(String prodServiceIDQualifier1) {
+		this.prodServiceIDQualifier1 = prodServiceIDQualifier1;
 	}
 
 	public String getProdServID1() {
@@ -185,14 +195,6 @@ public class POBaselineItemData {
 
 	public void setProdServID2(String prodServID2) {
 		this.prodServID2 = prodServID2;
-	}
-
-	public String getQuantityOrdered() {
-		return quantityOrdered;
-	}
-
-	public void setQuantityOrdered(String quantityOrdered) {
-		this.quantityOrdered = quantityOrdered;
 	}
 
 	public String getProdServIDQual3() {

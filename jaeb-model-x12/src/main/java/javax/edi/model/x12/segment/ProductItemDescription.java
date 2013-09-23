@@ -116,4 +116,5 @@ public class ProductItemDescription {
 	public void setLanguageCode(String languageCode) {
 		this.languageCode = languageCode;
 	}
+
 }

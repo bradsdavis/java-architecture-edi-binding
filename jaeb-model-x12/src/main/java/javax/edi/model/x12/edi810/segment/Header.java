@@ -5,32 +5,18 @@ import java.util.Collection;
 
 import javax.edi.bind.annotations.EDICollectionType;
 import javax.edi.bind.annotations.EDISegmentGroup;
-<<<<<<< HEAD:jaeb-model-x12/src/main/java/javax/edi/model/x12/edi810/Header.java
-import javax.edi.model.x12.ReferenceNumber;
-import javax.edi.model.x12.TransactionSetHeader;
-import javax.edi.model.x12.edi810.segment.BeginningSegmentforInvoice;
-import javax.edi.model.x12.edi810.segment.Currency;
-import javax.edi.model.x12.edi810.segment.DestinationCountryCode;
-import javax.edi.model.x12.edi810.segment.FOBRelatedInstruction;
-import javax.edi.model.x12.edi810.segment.Name;
-import javax.edi.model.x12.edi810.segment.NoteSpecialInstructions;
-import javax.edi.model.x12.edi810.segment.TermsofSale;
-=======
 import javax.edi.model.x12.segment.Currency;
 import javax.edi.model.x12.segment.FOBRelatedInstruction;
 import javax.edi.model.x12.segment.GeographicLocation;
 import javax.edi.model.x12.segment.Name;
 import javax.edi.model.x12.segment.NoteSpecialInstructions;
 import javax.edi.model.x12.segment.ReferenceNumber;
-import javax.edi.model.x12.segment.TermsofSale;
+import javax.edi.model.x12.segment.TermsOfSale;
 import javax.edi.model.x12.segment.TransactionSetHeader;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
->>>>>>> a859e4e14bbdd49fdeb1bb81dbca24e4aede01f5:jaeb-model-x12/src/main/java/javax/edi/model/x12/edi810/segment/Header.java
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@EDISegmentGroup()
+@EDISegmentGroup
 public class Header {
 
 	@NotNull
@@ -42,21 +28,21 @@ public class Header {
 	//optional
 	private Currency currency;
 
-	@Size(min=0, max=100)
 	@EDICollectionType(NoteSpecialInstructions.class)
+	@Size(min=0, max=100)
 	private Collection<NoteSpecialInstructions> noteSpecialInstructions;
 	
 	private ReferenceNumber referenceNumbers;
 	
-	@Size(min=0, max=200)
 	@EDICollectionType(Name.class)
+	@Size(min=0, max=200)
 	private Collection<Name> names;
 	
 	private GeographicLocation destinationCountryCode;
 	
+	@EDICollectionType(TermsOfSale.class)
 	@Size(max=5)
-	@EDICollectionType(TermsofSale.class)
-	private Collection<TermsofSale> termsofSale;
+	private Collection<TermsOfSale> termsofSale;
 	
 	private FOBRelatedInstruction fobRelatedInstructions;
 	
@@ -105,10 +91,10 @@ public class Header {
 			GeographicLocation destinationCountryCode) {
 		this.destinationCountryCode = destinationCountryCode;
 	}
-	public Collection<TermsofSale> getTermsofSale() {
+	public Collection<TermsOfSale> getTermsofSale() {
 		return termsofSale;
 	}
-	public void setTermsofSale(Collection<TermsofSale> termsofSale) {
+	public void setTermsofSale(Collection<TermsOfSale> termsofSale) {
 		this.termsofSale = termsofSale;
 	}
 	public FOBRelatedInstruction getFobRelatedInstructions() {

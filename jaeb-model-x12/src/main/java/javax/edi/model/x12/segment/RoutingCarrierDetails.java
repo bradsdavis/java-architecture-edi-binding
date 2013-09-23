@@ -15,16 +15,18 @@ public class RoutingCarrierDetails {
 	@EDIElement(fieldName="TD502", dataElement="66")
 	private String identificationCodeQualifier;
 	
+	
+	@EDIElement(fieldName="TD503", dataElement="67")
 	@Size(min=2, max=80)
-	@EDIElement(fieldName="TD503", dataElement="67")	
 	private String identificationCode;
 	
+	@EDIElement(fieldName="TD504", dataElement="91")
 	@Size(min=1, max=2)
-	@EDIElement(fieldName="TD504", dataElement="387")	
-	private String transportationMethodTypeCode;
+	private String transportationMethod;
 	
+	
+	@EDIElement(fieldName="TD505", dataElement="387")
 	@Size(min=1, max=35)
-	@EDIElement(fieldName="TD505", dataElement="387")	
 	private String routing;
 	
 	@Size(min = 2, max = 2)
@@ -35,45 +37,56 @@ public class RoutingCarrierDetails {
 		return routingSequenceCode;
 	}
 
+
 	public void setRoutingSequenceCode(String routingSequenceCode) {
 		this.routingSequenceCode = routingSequenceCode;
 	}
+
 
 	public String getIdentificationCodeQualifier() {
 		return identificationCodeQualifier;
 	}
 
+
 	public void setIdentificationCodeQualifier(String identificationCodeQualifier) {
 		this.identificationCodeQualifier = identificationCodeQualifier;
 	}
+
 
 	public String getIdentificationCode() {
 		return identificationCode;
 	}
 
+
 	public void setIdentificationCode(String identificationCode) {
 		this.identificationCode = identificationCode;
 	}
 
-	public String getTransportationMethodTypeCode() {
-		return transportationMethodTypeCode;
+
+	public String getTransportationMethod() {
+		return transportationMethod;
 	}
 
-	public void setTransportationMethodTypeCode(String transportationMethodTypeCode) {
-		this.transportationMethodTypeCode = transportationMethodTypeCode;
+
+	public void setTransportationMethod(String transportationMethod) {
+		this.transportationMethod = transportationMethod;
 	}
+
 
 	public String getRouting() {
 		return routing;
 	}
 
+
 	public void setRouting(String routing) {
 		this.routing = routing;
 	}
 
+
 	public String getShipmentOrderStatusCode() {
 		return shipmentOrderStatusCode;
 	}
+
 
 	public void setShipmentOrderStatusCode(String shipmentOrderStatusCode) {
 		this.shipmentOrderStatusCode = shipmentOrderStatusCode;

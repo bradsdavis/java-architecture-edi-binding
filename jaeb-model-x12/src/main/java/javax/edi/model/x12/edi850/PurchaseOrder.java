@@ -13,18 +13,16 @@ public class PurchaseOrder {
 
 	@NotNull
 	private InterchangeEnvelopeHeader envelopeHeader;
-	
 	@NotNull
 	private GroupEnvelopeHeader groupEnvelopeHeader;
 	
 	@NotNull
-	private PurchaseOrderBody body;
-	
-	@NotNull
 	private GroupEnvelopeTrailer groupEnvelopeTrailer;
-	
 	@NotNull
 	private InterchangeEnvelopeTrailer envelopeTrailer;
+	
+	@NotNull
+	private PurchaseOrderBody body;
 
 	public InterchangeEnvelopeHeader getEnvelopeHeader() {
 		return envelopeHeader;
@@ -42,14 +40,6 @@ public class PurchaseOrder {
 		this.groupEnvelopeHeader = groupEnvelopeHeader;
 	}
 
-	public PurchaseOrderBody getBody() {
-		return body;
-	}
-
-	public void setBody(PurchaseOrderBody body) {
-		this.body = body;
-	}
-
 	public GroupEnvelopeTrailer getGroupEnvelopeTrailer() {
 		return groupEnvelopeTrailer;
 	}
@@ -64,5 +54,13 @@ public class PurchaseOrder {
 
 	public void setEnvelopeTrailer(InterchangeEnvelopeTrailer envelopeTrailer) {
 		this.envelopeTrailer = envelopeTrailer;
+	}
+
+	public PurchaseOrderBody getBody() {
+		return body;
+	}
+
+	public void setBody(PurchaseOrderBody body) {
+		this.body = body;
 	}
 }

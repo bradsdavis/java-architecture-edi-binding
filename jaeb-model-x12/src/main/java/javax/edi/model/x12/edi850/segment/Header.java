@@ -20,12 +20,12 @@ public class Header {
 	@NotNull
 	private PurchaseOrderBeginningSegment beginningSegment;
 	
-	@Size(max=12)
 	@EDICollectionType(ReferenceNumber.class)
+	@Size(max=12)
 	private Collection<ReferenceNumber> referenceNumbers;
 	
-	@Size(max=12)
 	@EDICollectionType(RoutingCarrierDetails.class)
+	@Size(max=12)
 	private Collection<RoutingCarrierDetails> routingCarrierDetails;
 
 	@Size(max=1000)
@@ -81,7 +81,7 @@ public class Header {
 	public Collection<ShippingBillingGroup> getShippingBillingGroups() {
 		return shippingBillingGroups;
 	}
-	
+
 	public void setShippingBillingGroups(
 			Collection<ShippingBillingGroup> shippingBillingGroups) {
 		this.shippingBillingGroups = shippingBillingGroups;
