@@ -9,116 +9,105 @@ import javax.validation.constraints.Size;
 public class BaselineItemData {
 
 	@Size(min = 1, max = 20)
-	@EDIElement
+	@EDIElement(fieldName="PO101",dataElement="350")
 	private String assignedIdentifier; // Line number (USSCO system will truncate after 6 bytes).
 	
 	@NotNull
-	@Size(min = 1, max = 1)
-	@EDIElement
+	@Size(min = 1, max = 15)
+	@EDIElement(fieldName="PO102",dataElement="330")
 	private String quantityOrdered; // e.g. '1', '2', '3', '20', etc.     
 	
 	@NotNull
 	@Size(min = 2, max = 2)
-	@EDIElement
+	@EDIElement(fieldName="PO103",dataElement="355")
 	private String uomCode; // e.g. 'EA'=each,’DZ’=dozen, 'BX'=box,'CT'=carton
 
 	@Size(min = 1, max = 17)
-	@EDIElement
-	//@Conditional(X?)
+	@EDIElement(fieldName="PO104",dataElement="212",conditional=true)//X?
 	private String unitPrice; // e.g. '1.00', '.34', '3.35', etc.  
 	
 	@Size(min = 2, max = 2)
-	@EDIElement
+	@EDIElement(fieldName="PO105",dataElement="639")
 	private String basisUnitPriceCode; // e.g. 'EA', 'BX', 'DZ', etc.
 	
 	@Size(min = 2, max = 2)
-	@EDIElement
+	@EDIElement(fieldName="PO106",dataElement="235")
 	private String productServiceIdQualifier; // 'BP'=buyer’s part number, 'IN'=buyer’s item number
 
 	@Size(min = 1, max = 48)
-	@EDIElement
-	//@Conditional (X?)
+	@EDIElement(fieldName="PO107",dataElement="234",conditional=true)//X?
 	private String productServiceId; // Your Item number
 	
 	@Size(min = 2, max = 2)
-	@EDIElement
+	@EDIElement(fieldName="PO108",dataElement="235")
 	private String productServiceIdQualifier2; // 'VN'=vendor's item number
 	
 	@Size(min = 1, max = 48)
-	@EDIElement
-	//@Conditional (X?)
+	@EDIElement(fieldName="PO109",dataElement="234",conditional=true)//X?
 	private String productServiceId2; // USSCO’s item number
 	
 	@Size(min = 2, max = 2)
-	@EDIElement
+	@EDIElement(fieldName="PO110",dataElement="235")
 	private String productServiceIdQualifier3; // 
 	
 	@Size(min = 1, max = 48)
-	@EDIElement
-	//@Conditional (X?)
+	@EDIElement(fieldName="PO111",dataElement="234",conditional=true)//X?
 	private String productServiceId3; // 
 
 	@Size(min = 2, max = 2)
-	@EDIElement
+	@EDIElement(fieldName="PO112",dataElement="235")
 	private String productServiceIdQualifier4; // 
 	
 	@Size(min = 1, max = 48)
-	@EDIElement
-	//@Conditional (X?)
+	@EDIElement(fieldName="PO113",dataElement="234",conditional=true)//X?
 	private String productServiceId4; // 
 	
 	@Size(min = 2, max = 2)
-	@EDIElement
+	@EDIElement(fieldName="PO114",dataElement="235")
 	private String productServiceIdQualifier5; // 
 	
 	@Size(min = 1, max = 48)
-	@EDIElement
-	//@Conditional (X?)
+	@EDIElement(fieldName="PO115",dataElement="234",conditional=true)//X?
 	private String productServiceId5; // 
 	
 	@Size(min = 2, max = 2)
-	@EDIElement
+	@EDIElement(fieldName="PO116",dataElement="235")
 	private String productServiceIdQualifier6; // 
 	
 	@Size(min = 1, max = 48)
-	@EDIElement
-	//@Conditional (X?)
+	@EDIElement(fieldName="PO117",dataElement="234",conditional=true)//X?
 	private String productServiceId6; // 
 	
 	@Size(min = 2, max = 2)
-	@EDIElement
+	@EDIElement(fieldName="PO118",dataElement="235")
 	private String productServiceIdQualifier7; // 
 	
 	@Size(min = 1, max = 48)
-	@EDIElement
-	//@Conditional (X?)
+	@EDIElement(fieldName="PO119",dataElement="234",conditional=true)//X?
 	private String productServiceId7; // 
 	
 	@Size(min = 2, max = 2)
-	@EDIElement
+	@EDIElement(fieldName="PO120",dataElement="235")
 	private String productServiceIdQualifier8; // 
 	
 	@Size(min = 1, max = 48)
-	@EDIElement
-	//@Conditional (X?)
+	@EDIElement(fieldName="PO121",dataElement="234",conditional=true)//X?
 	private String productServiceId8; // 
 	
 	@Size(min = 2, max = 2)
-	@EDIElement
+	@EDIElement(fieldName="PO122",dataElement="235")
 	private String productServiceIdQualifier9; // 
 	
 	@Size(min = 1, max = 48)
-	@EDIElement
-	//@Conditional (X?)
+	@EDIElement(fieldName="PO123",dataElement="234",conditional=true)//X?
 	private String productServiceId9; // 
 	
 	@Size(min = 2, max = 2)
-	@EDIElement
+	@EDIElement(fieldName="PO124",dataElement="235")
 	private String productServiceIdQualifier10; // 
 	
 	@Size(min = 1, max = 48)
-	@EDIElement
-	//@Conditional (X?)
+	@EDIElement(fieldName="PO125",dataElement="234",conditional=true)//X?
 	private String productServiceId10; // 
 
 	public String getAssignedIdentifier() {

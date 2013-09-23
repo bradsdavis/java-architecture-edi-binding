@@ -11,11 +11,11 @@ public class AddressInformation {
 	
 	@NotNull
 	@Size(min = 1, max = 35)
-	@EDIElement
+	@EDIElement(fieldName="N301",dataElement="166")
 	private String address1; //
 	
 	@Size(min = 1, max = 35)
-	@EDIElement
+	@EDIElement(fieldName="N302",dataElement="166")
 	private String address2; //
 
 	public String getAddress1() {

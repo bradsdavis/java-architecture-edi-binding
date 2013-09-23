@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 public class AdditionalNameInformation {
 	
 	@Size(min = 1, max = 35)
-	@EDIElement
+	@EDIElement(fieldName="N201",dataElement="98")
 	private String name; // 
 
 	public String getName() {

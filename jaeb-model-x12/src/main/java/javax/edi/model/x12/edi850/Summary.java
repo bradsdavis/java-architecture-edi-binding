@@ -1,10 +1,12 @@
-package javax.edi.model.x12.edi850.segment;
+package javax.edi.model.x12.edi850;
 
 import javax.edi.bind.annotations.EDISegmentGroup;
+import javax.edi.model.x12.edi850.segment.TransactionSetTotals;
+import javax.edi.model.x12.edi850.segment.TransactionSetTrailer;
 import javax.validation.constraints.NotNull;
 
 @EDISegmentGroup
-public class PurchaseOrderSummary {
+public class Summary {
 
 	@NotNull
 	private TransactionSetTotals transactionSetTotals;

@@ -14,25 +14,25 @@ public class Price {
 
 	private String firstField;
 	
-	@EDIElementFormat(format="yyyyMMdd")
+	@EDIElementFormat("yyyyMMdd")
 	private Date secondField;
 	
-	@EDIElementFormat(format="MM-dd-yyyy")
+	@EDIElementFormat("MM-dd-yyyy")
 	private Date thirdField;
 	
-	@EDIElementFormat(format="#,###.00")
+	@EDIElementFormat("#,###.00")
 	private BigDecimal fourthField;
 	
-	@EDIElementFormat(format="#,###.00")
+	@EDIElementFormat("#,###.00")
 	private Float fifthField;
 	
 	@EDIComponent(delimiter=":")
-	@EDICollectionType(type=String.class)
+	@EDICollectionType(String.class)
 	private Collection<String> exampleComponent;
 	
-	@EDIElementFormat(format="yyyyMMdd")
+	@EDIElementFormat("yyyyMMdd")
 	@EDIComponent(delimiter=":")
-	@EDICollectionType(type=Date.class)
+	@EDICollectionType(Date.class)
 	private Collection<Date> exampleDateComponents;
 	
 	

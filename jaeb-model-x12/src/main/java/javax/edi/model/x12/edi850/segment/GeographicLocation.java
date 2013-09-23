@@ -11,32 +11,28 @@ public class GeographicLocation {
 	
 	@NotNull
 	@Size(min = 2, max = 25)
-	@EDIElement
+	@EDIElement(fieldName="N401",dataElement="19")
 	private String cityName; // Name of city
 	
 	@NotNull
 	@Size(min = 2, max = 2)
-	@EDIElement
+	@EDIElement(fieldName="N402",dataElement="156")
 	private String stateProvince; // Name of state or province
 	
 	@Size(min = 3, max = 10)
-	@EDIElement
-	//@Conditional
+	@EDIElement(fieldName="N403",dataElement="116")
 	private String postalCode; // Postal zip code e.g. '60018')
 	
 	@Size(min = 2, max = 3)
-	@EDIElement
-	//@Conditional
-	private String countyCode; // e.g. 'US'
+	@EDIElement(fieldName="N404",dataElement="26")
+	private String countryCode; // e.g. 'US'
 	
 	@Size(min = 1, max = 2)
-	@EDIElement
-	(conditional=true)
+	@EDIElement(fieldName="N405",dataElement="309",conditional=true) //X?
 	private String locationQualifier; // 
 	
 	@Size(min = 1, max = 25)
-	@EDIElement
-	(conditional=true)
+	@EDIElement(fieldName="N406",dataElement="310",conditional=true)//X?
 	private String locationIdentifier; // 
 
 	public String getCityName() {
@@ -63,12 +59,12 @@ public class GeographicLocation {
 		this.postalCode = postalCode;
 	}
 
-	public String getCountyCode() {
-		return countyCode;
+	public String getCountryCode() {
+		return countryCode;
 	}
 
-	public void setCountyCode(String countyCode) {
-		this.countyCode = countyCode;
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
 	}
 
 	public String getLocationQualifier() {

@@ -11,31 +11,29 @@ public class ShippingBillingName {
 
 	@NotNull
 	@Size(min = 2, max = 3)
-	@EDIElement
+	@EDIElement(fieldName="N101",dataElement="98")
 	private String entityIdentifierCode1; // 'ST' = Ship To, 'BT' = Bill To, 'SF' = Ship from
 	
 	@Size(min = 1, max = 35)
-	@EDIElement
-	//@Conditional
+	@EDIElement(fieldName="N102",dataElement="93",conditional=true)
 	private String name; // Ship To Company - Name
 	
 	@Size(min = 1, max = 2)
-	@EDIElement
-	//@Conditional
+	@EDIElement(fieldName="N103",dataElement="66",conditional=true)
 	private String identificationCodeQualifier; //'92' = assigne by buyer, '91' = assigned by USSO
 	
 	@Size(min = 2, max = 17)
-	@EDIElement
-	//@Conditional
+	@EDIElement(fieldName="N104",dataElement="67",conditional=true)
 	private String identificationCode; 
 //	If N101 is ?BT?, Then USSCO Acct   Nbr goes here
 //	If N101 is ?SF?, Then USSCO Facility code goes here
 
 	@Size(min = 2, max = 2)
+	@EDIElement(fieldName="N105",dataElement="706")
 	private String entityRelationshipCode; 
 	
 	@Size(min = 2, max = 3)
-	@EDIElement
+	@EDIElement(fieldName="N106",dataElement="98")
 	private String entityIdentifierCode2; // 
 
 	public String getEntityIdentifierCode1() {

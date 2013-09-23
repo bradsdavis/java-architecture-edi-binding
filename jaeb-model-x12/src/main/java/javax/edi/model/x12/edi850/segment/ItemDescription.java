@@ -8,44 +8,41 @@ import javax.validation.constraints.Size;
 @EDISegment(tag="PID")
 public class ItemDescription {
 
-	@EDIElement
+	@EDIElement(fieldName="PID01",dataElement="349")
 	@NotNull
 	@Size(min=1,max=1)
 	private String itemDescType; // 'F'
 	
 	@Size(min = 2, max = 3)
-	@EDIElement
+	@EDIElement(fieldName="PID02",dataElement="750")
 	private String productCharacteristicCode; //
 	
 	@Size(min = 2, max = 2)
-	@EDIElement
-	//@Conditional(X?)
+	@EDIElement(fieldName="PID03",dataElement="559",conditional=true)//X?
 	private String agencyQualifierCode; //
 	
 	@Size(min = 1, max = 12)
-	@EDIElement
-	//@Conditional(X?)
+	@EDIElement(fieldName="PID04",dataElement="751",conditional=true)//X?
 	private String productDescriptionCode; // 
 	
 	@Size(min = 1, max = 80)
-	@EDIElement
-	//@Conditional(X?)
+	@EDIElement(fieldName="PID05",dataElement="352",conditional=true)//X?
 	private String description; // 
 	
 	@Size(min = 2, max = 2)
-	@EDIElement
+	@EDIElement(fieldName="PID06",dataElement="752")
 	private String surfaceLayerPositionCode; //
 	
 	@Size(min = 1, max = 15)
-	@EDIElement
+	@EDIElement(fieldName="PID07",dataElement="822")
 	private String sourceSubQualifier; // 
 	
 	@Size(min = 1, max = 1)
-	@EDIElement
+	@EDIElement(fieldName="PID08",dataElement="1073")
 	private String yesNoConditionOrResponseCode; // 
 	
 	@Size(min = 2, max = 3)
-	@EDIElement
+	@EDIElement(fieldName="PID09",dataElement="819")
 	private String languageCode; // 
 
 	public String getItemDescType() {

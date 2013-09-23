@@ -9,32 +9,27 @@ import javax.edi.bind.annotations.EDISegment;
 public class SpecifyingDeliveryCarrier {
 	
 	@Size(min = 1, max = 2)
-	@EDIElement
+	@EDIElement(fieldName="TD501",dataElement="133")
 	private String routingSequenceCode; //
 	
 	@Size(min = 1, max = 2)
-	@EDIElement
-	//@Conditional
+	@EDIElement(fieldName="TD502",dataElement="66",conditional=true)
 	private String identificationCodeQualifier; // 
 	
 	@Size(min = 2, max = 80)
-	@EDIElement
-	//@Conditionl
+	@EDIElement(fieldName="TD503",dataElement="67",conditional=true)
 	private String identificationCode; // Carrier Specific Billing ID for third party billing only.
 	
 	@Size(min = 1, max = 2)
-	@EDIElement
-	//@Conditional
+	@EDIElement(fieldName="TD504",dataElement="91",conditional=true)
 	private String transportationMethod; // 
 	
 	@Size(min = 1, max = 35)
-	@EDIElement
-	//@Conditional
+	@EDIElement(fieldName="TD505",dataElement="387",conditional=true)
 	private String routing; // Carrier Code used for third party billing only.  Use "UPS" for United Parcel Service and "FDX" for Federal Express.
 	
 	@Size(min = 2, max = 2)
-	@EDIElement
-	//@Conditional
+	@EDIElement(fieldName="TD506",dataElement="368",conditional=true)
 	private String shipmentOrderStatusCode; // 
 
 	public String getRoutingSequenceCode() {

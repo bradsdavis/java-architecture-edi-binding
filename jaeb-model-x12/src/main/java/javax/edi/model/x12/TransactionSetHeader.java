@@ -1,4 +1,4 @@
-package javax.edi.model.x12.edi850.segment;
+package javax.edi.model.x12;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -9,12 +9,12 @@ import javax.edi.bind.annotations.EDISegment;
 @EDISegment(tag="ST")
 public class TransactionSetHeader {
 
-	@EDIElement(fieldName="ST01",dataElement="143")
+	@EDIElement(fieldName="ST01", description="Transaction Set ID Code")
 	@NotNull
 	@Size(min = 3,max = 3)
 	private String transactionSetIdentifierCode; // '850' Purchase Order
 	
-	@EDIElement(fieldName="ST02",dataElement="329")
+	@EDIElement(fieldName="ST02", description="Transaction Set Control #")
 	@NotNull
 	@Size(min = 4,max = 9)
 	private String transactionSetControlNumber; // An identifying number used to track this transaction

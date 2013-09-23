@@ -1,12 +1,11 @@
 package javax.edi.model.x12.edi850;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.edi.bind.annotations.EDIMessage;
-import javax.edi.model.x12.edi850.segment.PurchaseOrderDetail;
-import javax.edi.model.x12.edi850.segment.GroupEnvelope;
-import javax.edi.model.x12.edi850.segment.InterchangeEnvelope;
-import javax.edi.model.x12.edi850.segment.PurchaseOrderSummary;
+import javax.edi.model.x12.GroupEnvelope;
+import javax.edi.model.x12.GroupEnvelopeTrailer;
+import javax.edi.model.x12.InterchangeEnvelope;
+import javax.edi.model.x12.InterchangeEnvelopeTrailer;
+import javax.validation.constraints.NotNull;
 
 @EDIMessage(segmentDelimiter="~",componentDelimiter=">",elementDelimiter="*")
 public class PurchaseOrder {
@@ -18,13 +17,19 @@ public class PurchaseOrder {
 	private GroupEnvelope groupEnvelope;
 	
 	@NotNull
-	private PurchaseOrderHeader purchaseOrderHeader;
+	private Header header;
 	
 	@NotNull
-	private PurchaseOrderDetail detail;
+	private Detail detail;
 	
 	@NotNull
-	private PurchaseOrderSummary summary;
+	private Summary summary;
+	
+	@NotNull
+	private GroupEnvelopeTrailer groupEnvelopeTrailer;
+	
+	@NotNull
+	private InterchangeEnvelopeTrailer interchangeEnveloperTrailer;
 	
 	public InterchangeEnvelope getInterchangeEnvelope() {
 		return interchangeEnvelope;
@@ -42,27 +47,44 @@ public class PurchaseOrder {
 		this.groupEnvelope = groupEnvelope;
 	}
 
-	public PurchaseOrderHeader getPurchaseOrderHeader() {
-		return purchaseOrderHeader;
+	public Header getHeader() {
+		return header;
 	}
 
-	public void setPurchaseOrderHeader(PurchaseOrderHeader purchaseOrderHeader) {
-		this.purchaseOrderHeader = purchaseOrderHeader;
+	public void setHeader(Header header) {
+		this.header = header;
 	}
 
-	public PurchaseOrderDetail getDetail() {
+	public Detail getDetail() {
 		return detail;
 	}
 
-	public void setDetail(PurchaseOrderDetail detail) {
+	public void setDetail(Detail detail) {
 		this.detail = detail;
 	}
 
-	public PurchaseOrderSummary getSummary() {
+	public Summary getSummary() {
 		return summary;
 	}
 
-	public void setSummary(PurchaseOrderSummary summary) {
+	public void setSummary(Summary summary) {
 		this.summary = summary;
+	}
+
+	public GroupEnvelopeTrailer getGroupEnvelopeTrailer() {
+		return groupEnvelopeTrailer;
+	}
+
+	public void setGroupEnvelopeTrailer(GroupEnvelopeTrailer groupEnvelopeTrailer) {
+		this.groupEnvelopeTrailer = groupEnvelopeTrailer;
+	}
+
+	public InterchangeEnvelopeTrailer getInterchangeEnveloperTrailer() {
+		return interchangeEnveloperTrailer;
+	}
+
+	public void setInterchangeEnveloperTrailer(
+			InterchangeEnvelopeTrailer interchangeEnveloperTrailer) {
+		this.interchangeEnveloperTrailer = interchangeEnveloperTrailer;
 	}
 }

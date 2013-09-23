@@ -13,12 +13,12 @@ public class ExampleMessage {
 	private Item segment;
 	private Item another;
 	
-	@EDICollectionType(type=Item.class)
+	@EDICollectionType(Item.class)
 	private Collection<Item> nSegments;
 	
 	private ExampleSegmentGroup segmentGroup;
 
-	@EDICollectionType(type=ExampleSegmentGroup.class)
+	@EDICollectionType(ExampleSegmentGroup.class)
 	private Collection<ExampleSegmentGroup> multileGroups;
 	
 	@Override

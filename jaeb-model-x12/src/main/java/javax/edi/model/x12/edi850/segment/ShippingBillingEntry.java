@@ -1,5 +1,8 @@
 package javax.edi.model.x12.edi850.segment;
 
+import java.util.Collection;
+
+import javax.edi.bind.annotations.EDICollectionType;
 import javax.edi.bind.annotations.EDISegmentGroup;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -17,7 +20,8 @@ public class ShippingBillingEntry {
 	private GeographicLocation geographicLocation;
 	
 	@Size(max=3)
-	private AdministrativeCommunicationsContact administrativeCommunicationsContact;
+	@EDICollectionType(AdministrativeCommunicationsContact.class)
+	private Collection<AdministrativeCommunicationsContact> administrativeCommunicationsContacts;
 
 	public ShippingBillingName getShippingBillingName() {
 		return shippingBillingName;
@@ -52,12 +56,12 @@ public class ShippingBillingEntry {
 		this.geographicLocation = geographicLocation;
 	}
 
-	public AdministrativeCommunicationsContact getAdministrativeCommunicationsContact() {
-		return administrativeCommunicationsContact;
+	public Collection<AdministrativeCommunicationsContact> getAdministrativeCommunicationsContacts() {
+		return administrativeCommunicationsContacts;
 	}
 
-	public void setAdministrativeCommunicationsContact(
-			AdministrativeCommunicationsContact administrativeCommunicationsContact) {
-		this.administrativeCommunicationsContact = administrativeCommunicationsContact;
+	public void setAdministrativeCommunicationsContacts(
+			Collection<AdministrativeCommunicationsContact> administrativeCommunicationsContacts) {
+		this.administrativeCommunicationsContacts = administrativeCommunicationsContacts;
 	}
 }

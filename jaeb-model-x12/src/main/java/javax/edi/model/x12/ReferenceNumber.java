@@ -1,4 +1,4 @@
-package javax.edi.model.x12.edi850.segment;
+package javax.edi.model.x12;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -11,12 +11,11 @@ public class ReferenceNumber {
 	
 	@NotNull
 	@Size(min = 2, max = 2)
-	@EDIElement
+	@EDIElement(fieldName="REF01",dataElement="128")
 	private String referenceIdentificationQualifier; // ''SS'=Detail ADOT indicator, ?SU?=reg ADOT indicator?RU?=routing info,?PO?=consumer PO data,?ZZ?=wrap & label indicator,?11?=consolidated PO #
 	
 	@Size(min = 1, max = 35)
-	@EDIElement
-	//@Conditional
+	@EDIElement(fieldName="REF02",dataElement="127",conditional=true)
 	private String referenceIdentification;
 //	DTL ADOT indicator if REF01=SS
 //			Route info if REF01=RU
@@ -30,8 +29,7 @@ public class ReferenceNumber {
 //			  
 	
 	@Size(min = 1, max = 2)
-	@EDIElement
-	//@Conditional
+	@EDIElement(fieldName="REF03",dataElement="352",conditional=true)
 	private String referenceDescription; 
 //	Route tag info if REF01=RU
 //			Consumer PO tag info if REF01=PO

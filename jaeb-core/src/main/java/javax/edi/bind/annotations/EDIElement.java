@@ -10,5 +10,8 @@ import java.lang.annotation.Target;
 public @interface EDIElement {
 	boolean required() default false;	
 	boolean conditional() default false;
+	
 	String dataElement() default "";
+	String description() default "";
+	String fieldName() default "";
 }
