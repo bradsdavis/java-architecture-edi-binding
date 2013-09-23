@@ -7,6 +7,8 @@ import javax.edi.bind.util.ReflectiveToStringStyle;
 import javax.edi.model.x12.X12MarshallerFactory;
 import javax.edi.model.x12.edi832.PriceSalesCatalog;
 import javax.edi.model.x12.edi846.InventoryInquery;
+import javax.edi.model.x12.edi855.POAcknowledgement;
+import javax.edi.model.x12.edi856.AdvanceShipmentNotice;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.junit.Ignore;
@@ -31,25 +33,45 @@ public class X12MarshallerFactoryTest {
 	@Test
 	public void testReadEDI810() throws Exception {
 		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("x8104010.txt"));
-		Invoice invoice = EDIUnmarshaller.unmarshal(Invoice.class, isr);
+		Invoice edi= EDIUnmarshaller.unmarshal(Invoice.class, isr);
 		
-		LOG.debug(ReflectionToStringBuilder.toString(invoice, new ReflectiveToStringStyle()));
+		LOG.debug(ReflectionToStringBuilder.toString(edi , new ReflectiveToStringStyle()));
 	}
 	
 	@Ignore
 	@Test
 	public void testReadEDI832() throws Exception {
 		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("x8324010.txt"));
-		PriceSalesCatalog invoice = EDIUnmarshaller.unmarshal(PriceSalesCatalog.class, isr);
+		PriceSalesCatalog edi= EDIUnmarshaller.unmarshal(PriceSalesCatalog.class, isr);
 		
-		LOG.debug(ReflectionToStringBuilder.toString(invoice, new ReflectiveToStringStyle()));
+		LOG.debug(ReflectionToStringBuilder.toString(edi , new ReflectiveToStringStyle()));
 	}
 	
+	@Ignore
 	@Test
 	public void testReadEDI846() throws Exception {
 		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("x8464010.txt"));
-		InventoryInquery invoice = EDIUnmarshaller.unmarshal(InventoryInquery.class, isr);
+		InventoryInquery edi= EDIUnmarshaller.unmarshal(InventoryInquery.class, isr);
 		
-		LOG.debug(ReflectionToStringBuilder.toString(invoice, new ReflectiveToStringStyle()));
+		LOG.debug(ReflectionToStringBuilder.toString(edi, new ReflectiveToStringStyle()));
+	}
+	
+	@Ignore
+	@Test
+	public void testReadEDI855() throws Exception {
+		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("x8554010.txt"));
+		POAcknowledgement edi= EDIUnmarshaller.unmarshal(POAcknowledgement.class, isr);
+		
+		LOG.debug(ReflectionToStringBuilder.toString(edi, new ReflectiveToStringStyle()));
+	}
+	
+
+
+	@Test
+	public void testReadEDI856() throws Exception {
+		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("x8564010.txt"));
+		AdvanceShipmentNotice edi = EDIUnmarshaller.unmarshal(AdvanceShipmentNotice.class, isr);
+		
+		LOG.debug(ReflectionToStringBuilder.toString(edi, new ReflectiveToStringStyle()));
 	}
 }

@@ -1,7 +1,5 @@
 package javax.edi.model.x12.edi856.segment;
 
-import java.util.Collection;
-
 import javax.edi.bind.annotations.EDISegmentGroup;
 import javax.edi.model.x12.segment.TransactionSetHeader;
 import javax.validation.constraints.NotNull;
@@ -15,18 +13,6 @@ public class Header {
 	@NotNull
 	private AdvanceShipmentNoticeBeginningSegment beginningSegment;
 
-	private Collection<ShipmentLevelGroup> shipmentLevelGroups;
-
-	
-	public Collection<ShipmentLevelGroup> getShipmentLevelGroups() {
-		return shipmentLevelGroups;
-	}
-	
-	public void setShipmentLevelGroups(
-			Collection<ShipmentLevelGroup> shipmentLevelGroups) {
-		this.shipmentLevelGroups = shipmentLevelGroups;
-	}
-	
 	public TransactionSetHeader getTransactionSetHeader() {
 		return transactionSetHeader;
 	}

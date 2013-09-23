@@ -416,6 +416,7 @@ public class EDIUnmarshaller {
 			return field.getAnnotation(EDICollectionType.class).value();
 		}
 
+		LOG.warn("Ensure the field: "+field.toString()+" contains the @EDICollectionType annotation.");
 		return null;
 	}
 
