@@ -30,6 +30,8 @@ public class PricingInformation {
 	@Size(min=2, max=2)
 	private String unitOfMeasureCode;
 
+	
+	
 	public String getClassOfTradeCode() {
 		return classOfTradeCode;
 	}

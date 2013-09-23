@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import javax.edi.bind.EDIUnmarshaller;
 import javax.edi.bind.util.ReflectiveToStringStyle;
 import javax.edi.model.x12.X12MarshallerFactory;
+import javax.edi.model.x12.edi832.PriceSalesCatalog;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.junit.Test;
@@ -18,7 +19,7 @@ public class X12MarshallerFactoryTest {
 	
 	
 	public void testX12MarshallerFactory() throws Exception {
-		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("edi-test1.txt"));
+		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("x8104010.txt"));
 		X12MarshallerFactory.EDIMarshaller(isr);
 		
 	}
@@ -26,8 +27,16 @@ public class X12MarshallerFactoryTest {
 
 	@Test
 	public void testReadEDI810() throws Exception {
-		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("edi-test1.txt"));
+		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("x8104010.txt"));
 		Invoice invoice = EDIUnmarshaller.unmarshal(Invoice.class, isr);
+		
+		LOG.debug(ReflectionToStringBuilder.toString(invoice, new ReflectiveToStringStyle()));
+	}
+	
+	@Test
+	public void testReadEDI832() throws Exception {
+		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("x8324010.txt"));
+		PriceSalesCatalog invoice = EDIUnmarshaller.unmarshal(PriceSalesCatalog.class, isr);
 		
 		LOG.debug(ReflectionToStringBuilder.toString(invoice, new ReflectiveToStringStyle()));
 	}
