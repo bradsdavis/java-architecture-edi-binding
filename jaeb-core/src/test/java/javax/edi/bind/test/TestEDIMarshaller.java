@@ -11,7 +11,7 @@ public class TestEDIMarshaller extends EDITestBase {
 	@Test
 	public void testParser() throws Exception {
 		StringWriter sw = new StringWriter();
-		EDIMarshaller.write(exampleMessage, sw);
+		EDIMarshaller.marshal(exampleMessage, sw);
 		System.out.println(sw.toString());
 	}
 	

@@ -26,7 +26,7 @@ public class Item {
 	@EDIElementFormat("#,###.00")
 	private Float fifthField;
 	
-	@EDIComponent(delimiter=":")
+	@EDIComponent(delimiter=':')
 	@EDICollectionType(String.class)
 	private Collection<String> exampleComponent;
 	

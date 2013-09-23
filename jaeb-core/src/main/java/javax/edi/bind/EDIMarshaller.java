@@ -51,10 +51,10 @@ public class EDIMarshaller {
         			Class testClass = field.getAnnotation(EDICollectionType.class).value();
         			
         			if(testClass.isAnnotationPresent(EDISegment.class)) {
-        				writeNSegments(message, collectionObjs, writer);
+        				writeMultiSegments(message, collectionObjs, writer);
             		}
         			else if(testClass.isAnnotationPresent(EDISegmentGroup.class)) {
-        				writeNSegmentGroups(message, collectionObjs, writer);
+        				writeMultiSegmentGroups(message, collectionObjs, writer);
         			}
         			else {
         				throw new EDIMessageException("EDI Message Class Field is not Annotated as Segment of SegmentGroup.");
@@ -66,7 +66,7 @@ public class EDIMarshaller {
         			writeSegment(message, fieldObj, writer);
         		}
     			else if(fieldObj.getClass().isAnnotationPresent(EDISegmentGroup.class)) {
-    				write1SegmentGroup(message, fieldObj, writer);
+    				writeSingleSegmentGroup(message, fieldObj, writer);
     			}
     			else {
     				throw new EDIMessageException("EDI Message Class Field["+field.getName()+"] is not Annotated as Segment of SegmentGroup.");
@@ -75,7 +75,7 @@ public class EDIMarshaller {
         }   
     }
 
-    protected static <T> void write1SegmentGroup(EDIMessage message, T obj, Writer writer) throws Exception {
+    protected static <T> void writeSingleSegmentGroup(EDIMessage message, T obj, Writer writer) throws Exception {
 		Class<T> clazz = (Class<T>)obj.getClass();
 
 		EDISegmentGroup segmentGroup = clazz.getAnnotation(EDISegmentGroup.class);
@@ -90,7 +90,7 @@ public class EDIMarshaller {
         
         if(segmentGroup.header() != null && segmentGroup.header() != "") {
         	//print the header / footer.
-        	writer.append(segmentGroup.header()+message.segmentDelimiter());
+        	writer.append(segmentGroup.header()).append(message.segmentDelimiter());
         }
 
 		writeSegmentGroup(message, obj, writer);
@@ -101,7 +101,7 @@ public class EDIMarshaller {
         }
     }
     
-    protected static <T> void writeNSegmentGroups(EDIMessage message, T obj, Writer writer) throws Exception {
+    protected static <T> void writeMultiSegmentGroups(EDIMessage message, T obj, Writer writer) throws Exception {
 		Collection collectionObjs = (Collection)obj;
 		Object testObject = collectionObjs.iterator().next();
 		Class<T> clazz = (Class<T>)testObject.getClass();
@@ -118,7 +118,8 @@ public class EDIMarshaller {
         
         if(segmentGroup.header() != null && segmentGroup.header() != "") {
         	//print the header / footer.
-        	writer.append(segmentGroup.header()+message.segmentDelimiter());
+        	writer.append(segmentGroup.header());
+        	writer.append(message.segmentDelimiter());
         }
 
 
@@ -128,7 +129,8 @@ public class EDIMarshaller {
         
         if(segmentGroup.footer() != null && segmentGroup.footer() != "") {
         	//print the header / footer.
-        	writer.append(segmentGroup.footer()+message.segmentDelimiter());
+        	writer.append(segmentGroup.footer());
+        	writer.append(message.segmentDelimiter());
         }
     }
     
@@ -136,7 +138,7 @@ public class EDIMarshaller {
     	processSegmentsAndSegmentGroups(message, obj, writer);
     }
     
-    protected static <T> void writeNSegments(EDIMessage message, T obj, Writer writer) throws Exception {
+    protected static <T> void writeMultiSegments(EDIMessage message, T obj, Writer writer) throws Exception {
     	Collection collectionObjs = (Collection)obj;
 		
     	for(Object collectionObj : collectionObjs) {
@@ -183,8 +185,8 @@ public class EDIMarshaller {
     	}
     	
     	if(field.isAnnotationPresent(EDIComponent.class)) {
-    		EDIComponent ediComponent = field.getAnnotation(EDIComponent.class);
-    		String componentDelimiter = (ediComponent.delimiter() == null || ediComponent.delimiter().equals("")) ? message.componentDelimiter() : ediComponent.delimiter(); 
+    		EDIComponent ediComponent = field.getAnnotation(EDIComponent.class); 
+    		char componentDelimiter = ediComponent.delimiter() == Character.UNASSIGNED ? message.componentDelimiter() : ediComponent.delimiter(); 
     		
     		//treat as component.
     		if(Collection.class.isAssignableFrom(value.getClass())) {

@@ -17,10 +17,11 @@ import javax.edi.bind.annotations.EDISegment;
 import javax.edi.bind.annotations.EDISegmentGroup;
 import javax.edi.bind.util.CollectionFactory;
 import javax.edi.bind.util.FieldAwareConverter;
+import javax.edi.bind.util.SegmentIterator;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.convert.ConversionException;
-import org.apache.commons.io.LineIterator;
+import org.apache.commons.lang.CharUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.text.StrTokenizer;
@@ -35,16 +36,17 @@ public class EDIUnmarshaller {
 	}
 
 	public static <T> T unmarshal(Class<T> clz, Reader reader) throws Exception {
-		LineIterator lineIterator = new LineIterator(reader);
-		return parseEDIMessage(clz, lineIterator);
+		return parseEDIMessage(clz,  reader);
 	}
 
-	protected static <T> T parseEDIMessage(Class<T> clz, LineIterator lineIterator) throws EDIMessageException, InstantiationException, IllegalAccessException, InvocationTargetException,
+	protected static <T> T parseEDIMessage(Class<T> clz, Reader reader) throws EDIMessageException, InstantiationException, IllegalAccessException, InvocationTargetException,
 			ClassNotFoundException, ConversionException {
 		if (!clz.isAnnotationPresent(EDIMessage.class)) {
 			throw new EDIMessageException("Not EDI Message Class.");
 		}
 		EDIMessage ediMessage = clz.getAnnotation(EDIMessage.class);
+		
+		SegmentIterator SegmentIterator = new SegmentIterator(reader, ediMessage.segmentDelimiter(), true);
 
 		Field[] fields = clz.getDeclaredFields();
 		Iterator<Field> fieldIterator = Arrays.asList(fields).iterator();
@@ -52,24 +54,24 @@ public class EDIUnmarshaller {
 		T obj = clz.newInstance();
 
 		Queue<String> lookAhead = new LinkedList<String>();
-		while (fieldIterator.hasNext() && (lineIterator.hasNext() || lookAhead.size() > 0)) {
-			parseEDISegmentOrSegmentGroup(ediMessage, obj, fieldIterator, lookAhead, lineIterator);
+		while (fieldIterator.hasNext() && (SegmentIterator.hasNext() || lookAhead.size() > 0)) {
+			parseEDISegmentOrSegmentGroup(ediMessage, obj, fieldIterator, lookAhead, SegmentIterator);
 		}
 		return obj;
 	}
 
-	protected static <T> void parseEDISegmentOrSegmentGroup(EDIMessage ediMessage, T object, Iterator<Field> fieldIterator, Queue<String> lookAhead, LineIterator lineIterator)
+	protected static <T> void parseEDISegmentOrSegmentGroup(EDIMessage ediMessage, T object, Iterator<Field> fieldIterator, Queue<String> lookAhead, SegmentIterator SegmentIterator)
 			throws EDIMessageException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException, ConversionException {
 		if (!fieldIterator.hasNext()) {
 			throw new EDIMessageException("No more fields to read.");
 		}
 
-		if (!lineIterator.hasNext() && lookAhead.size() == 0) {
+		if (!SegmentIterator.hasNext() && lookAhead.size() == 0) {
 			return;
 		}
 
 		// get the queued object first...
-		String line = lookAhead.size() > 0 ? lookAhead.remove() : lineIterator.next();
+		String line = lookAhead.size() > 0 ? lookAhead.remove() : SegmentIterator.next();
 
 		// match up the field with the line...
 		FieldMatch fm = advanceToMatch(ediMessage, fieldIterator, line);
@@ -77,14 +79,14 @@ public class EDIUnmarshaller {
 		if (fm != null) {
 			Class<?> fieldType = getEDISegmentOrGroupType(fm.getField());
 			if (fieldType.isAnnotationPresent(EDISegment.class)) {
-				processSegment(ediMessage, object, lookAhead, lineIterator, fm);
+				processSegment(ediMessage, object, lookAhead, SegmentIterator, fm);
 			} else if (fieldType.isAnnotationPresent(EDISegmentGroup.class)) {
-				processSegmentGroup(ediMessage, object, lookAhead, lineIterator, fm);
+				processSegmentGroup(ediMessage, object, lookAhead, SegmentIterator, fm);
 			}
 		}
 	}
 
-	protected static <T> void processSegmentGroup(EDIMessage ediMessage, T object, Queue<String> lookAhead, LineIterator lineIterator, FieldMatch fm) throws InstantiationException,
+	protected static <T> void processSegmentGroup(EDIMessage ediMessage, T object, Queue<String> lookAhead, SegmentIterator SegmentIterator, FieldMatch fm) throws InstantiationException,
 			IllegalAccessException, InvocationTargetException, ClassNotFoundException, ConversionException, EDIMessageException {
 
 		LOG.debug("Object: "+ReflectionToStringBuilder.toString(object));
@@ -122,13 +124,13 @@ public class EDIUnmarshaller {
 				Iterator<Field> fieldIterator = Arrays.asList(fields).iterator();
 				
 				Object collectionObj = segmentGroupClass.newInstance();
-				while (fieldIterator.hasNext() && (lineIterator.hasNext() || lookAhead.size() > 0)) {
-					parseEDISegmentOrSegmentGroup(ediMessage, collectionObj, fieldIterator, lookAhead, lineIterator);
+				while (fieldIterator.hasNext() && (SegmentIterator.hasNext() || lookAhead.size() > 0)) {
+					parseEDISegmentOrSegmentGroup(ediMessage, collectionObj, fieldIterator, lookAhead, SegmentIterator);
 				}
 				obj.add(collectionObj);
 				
 				//look to next line...
-				String nextLine = lookAhead.size() > 0 ? lookAhead.remove() : lineIterator.next();
+				String nextLine = lookAhead.size() > 0 ? lookAhead.remove() : SegmentIterator.next();
 				//get the first element of the line.
 				StrTokenizer nextLineTokenizer = new StrTokenizer(nextLine, ediMessage.elementDelimiter());
 				
@@ -145,7 +147,7 @@ public class EDIUnmarshaller {
 				
 				
 				//now, look ahead to see whether the next line is of the same object type..
-				if(!lineIterator.hasNext() && lookAhead.size() == 0) {
+				if(!SegmentIterator.hasNext() && lookAhead.size() == 0) {
 					break;
 				}
 			}
@@ -156,8 +158,8 @@ public class EDIUnmarshaller {
 			Iterator<Field> fieldIterator = Arrays.asList(fields).iterator();
 
 			Object obj = segmentGroupClass.newInstance();
-			while (fieldIterator.hasNext() && (lineIterator.hasNext() || lookAhead.size() > 0)) {
-				parseEDISegmentOrSegmentGroup(ediMessage, obj, fieldIterator, lookAhead, lineIterator);
+			while (fieldIterator.hasNext() && (SegmentIterator.hasNext() || lookAhead.size() > 0)) {
+				parseEDISegmentOrSegmentGroup(ediMessage, obj, fieldIterator, lookAhead, SegmentIterator);
 			}
 			
 			BeanUtils.setProperty(object, fm.getField().getName(), obj);
@@ -167,7 +169,7 @@ public class EDIUnmarshaller {
 		
 		//look at next...
 		if(StringUtils.isNotBlank(es.header())) {
-			line = lookAhead.size() > 0 ? lookAhead.remove() : lineIterator.next(); 
+			line = lookAhead.size() > 0 ? lookAhead.remove() : SegmentIterator.next(); 
 		
 			if(StringUtils.endsWith(es.footer(), line)) {
 				//feed line.
@@ -181,7 +183,7 @@ public class EDIUnmarshaller {
 	}
 	
 
-	protected static <T> void processSegment(EDIMessage ediMessage, T object, Queue<String> lookAhead, LineIterator lineIterator, FieldMatch fm) throws InstantiationException, IllegalAccessException,
+	protected static <T> void processSegment(EDIMessage ediMessage, T object, Queue<String> lookAhead, SegmentIterator SegmentIterator, FieldMatch fm) throws InstantiationException, IllegalAccessException,
 			InvocationTargetException, ClassNotFoundException, ConversionException {
 		// we have a match between the current line and the current field.
 		// (FieldMatch)
@@ -195,7 +197,7 @@ public class EDIUnmarshaller {
 			if (collectionClass.isAnnotationPresent(EDISegment.class)) {
 				EDISegment es = collectionClass.getAnnotation(EDISegment.class);
 
-				Queue<String> segments = queueLinesForType(ediMessage, es, lookAhead, lineIterator);
+				Queue<String> segments = queueLinesForType(ediMessage, es, lookAhead, SegmentIterator);
 				for (String segment : segments) {
 					Object collectionObject = collectionClass.newInstance();
 					parseEDISegmentFields(ediMessage, collectionObject, fm.getLine());
@@ -209,12 +211,12 @@ public class EDIUnmarshaller {
 		}
 	}
 
-	protected static Queue<String> queueLinesForType(EDIMessage ediMessage, EDISegment segment, Queue<String> lookAhead, LineIterator lineIterator) {
+	protected static Queue<String> queueLinesForType(EDIMessage ediMessage, EDISegment segment, Queue<String> lookAhead, SegmentIterator SegmentIterator) {
 		Queue<String> segments = new LinkedList<String>();
 
-		while (lineIterator.hasNext()) {
-			String line = lineIterator.next();
-			StringTokenizer tokenizer = new StringTokenizer(line, ediMessage.segmentDelimiter());
+		while (SegmentIterator.hasNext()) {
+			String line = SegmentIterator.next();
+			StringTokenizer tokenizer = new StringTokenizer(line, CharUtils.toString(ediMessage.segmentDelimiter()));
 
 			if (StringUtils.equals(segment.tag(), tokenizer.nextToken())) {
 				segments.add(line);
@@ -229,7 +231,7 @@ public class EDIUnmarshaller {
 
 	protected static FieldMatch advanceToMatch(EDIMessage ediMessage, Iterator<Field> fieldIterator, String line) {
 		// advance the reader, read the line.
-		StringTokenizer tokenizer = new StringTokenizer(line, ediMessage.segmentDelimiter());
+		StringTokenizer tokenizer = new StringTokenizer(line, CharUtils.toString(ediMessage.segmentDelimiter()));
 
 		// first token is always the tag.
 		String ediSegmentTag = tokenizer.nextToken();
@@ -335,7 +337,9 @@ public class EDIUnmarshaller {
 				Collection obj = CollectionFactory.newInstance(field.getType());
 				Class objType = getCollectionType(field);
 
-				String componentDelimiter = StringUtils.defaultIfBlank(ediComponent.delimiter(), ediMessage.componentDelimiter());
+				
+				
+				char componentDelimiter = ediComponent.delimiter() == Character.UNASSIGNED ? ediMessage.componentDelimiter() : ediComponent.delimiter();
 
 				// parse each element to the collection.
 				StrTokenizer componentTokenizer = new StrTokenizer(val, componentDelimiter);
