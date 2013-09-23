@@ -21,6 +21,30 @@ public class AdditionalItemData {
 	@Min(1) @Max(9)
 	private String quantityDifference;
 
+	public String getProductServiceID() {
+		return productServiceID;
+	}
+
+	public void setProductServiceID(String productServiceID) {
+		this.productServiceID = productServiceID;
+	}
+
+	public String getUnitOfMeasurementCode() {
+		return unitOfMeasurementCode;
+	}
+
+	public void setUnitOfMeasurementCode(String unitOfMeasurementCode) {
+		this.unitOfMeasurementCode = unitOfMeasurementCode;
+	}
+
+	public String getShipmentOrderStatusCode() {
+		return shipmentOrderStatusCode;
+	}
+
+	public void setShipmentOrderStatusCode(String shipmentOrderStatusCode) {
+		this.shipmentOrderStatusCode = shipmentOrderStatusCode;
+	}
+
 	public String getQuantityDifference() {
 		return quantityDifference;
 	}
@@ -28,10 +52,5 @@ public class AdditionalItemData {
 	public void setQuantityDifference(String quantityDifference) {
 		this.quantityDifference = quantityDifference;
 	}
-
-	@Override
-	public String toString() {
-		return "AdditionalItemData [quantityDifference=" + quantityDifference
-				+ "]";
-	}
+	
 }

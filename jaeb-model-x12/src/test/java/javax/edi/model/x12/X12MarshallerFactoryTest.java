@@ -28,19 +28,23 @@ public class X12MarshallerFactoryTest {
 	public void testX12MarshallerFactory() throws Exception {
 		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("x8104010.txt"));
 		X12MarshallerFactory.EDIMarshaller(isr);
-		
 	}
 	
 
-	@Ignore
 	@Test
 	public void testReadEDI810() throws Exception {
 		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("x8104010.txt"));
 		Invoice edi= EDIUnmarshaller.unmarshal(Invoice.class, isr);
 		
 		LOG.debug(ReflectionToStringBuilder.toString(edi , new ReflectiveToStringStyle()));
+		
+		StringWriter sw = new StringWriter();
+		EDIMarshaller.marshal(edi, sw);
+		
+		LOG.debug("Marshalled: "+sw.toString());
 	}
-	
+
+	@Ignore
 	@Test
 	public void testReadEDI832() throws Exception {
 		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("x8324010.txt"));
