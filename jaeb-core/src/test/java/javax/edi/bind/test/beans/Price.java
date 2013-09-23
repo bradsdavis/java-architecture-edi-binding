@@ -26,12 +26,12 @@ public class Price {
 	@EDIElementFormat("#,###.00")
 	private Float fifthField;
 	
-	@EDIComponent(delimiter=":")
+	@EDIComponent(delimiter=':')
 	@EDICollectionType(String.class)
 	private Collection<String> exampleComponent;
 	
 	@EDIElementFormat("yyyyMMdd")
-	@EDIComponent(delimiter=":")
+	@EDIComponent(delimiter=':')
 	@EDICollectionType(Date.class)
 	private Collection<Date> exampleDateComponents;
 	

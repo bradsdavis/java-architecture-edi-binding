@@ -18,18 +18,18 @@ public class TestEDIUnmarshaller extends EDITestBase {
 	@Test
 	public void testReader() throws Exception {
 		StringWriter sw = new StringWriter();
-		EDIMarshaller.write(exampleMessage, sw);
+		EDIMarshaller.marshal(exampleMessage, sw);
 		
-		ExampleMessage message = EDIUnmarshaller.read(ExampleMessage.class, new StringReader(sw.toString()));
+		ExampleMessage message = EDIUnmarshaller.unmarshal(ExampleMessage.class, new StringReader(sw.toString()));
 		
 		LOG.debug(exampleMessage.toString());
 		LOG.debug(message.toString());
 		
 		StringWriter resultMain = new StringWriter();
-		EDIMarshaller.write(exampleMessage, resultMain);
+		EDIMarshaller.marshal(exampleMessage, resultMain);
 		
 		StringWriter resultNew = new StringWriter();
-		EDIMarshaller.write(exampleMessage, resultNew);
+		EDIMarshaller.marshal(exampleMessage, resultNew);
 		
 		LOG.debug(resultMain.toString());
 		LOG.debug(resultNew.toString());

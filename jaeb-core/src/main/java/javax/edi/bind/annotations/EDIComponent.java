@@ -9,5 +9,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface EDIComponent {
-	String delimiter() default "";
+	char delimiter() default 0;
 }
