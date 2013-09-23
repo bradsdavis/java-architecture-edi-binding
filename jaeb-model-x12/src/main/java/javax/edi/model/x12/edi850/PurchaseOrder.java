@@ -8,7 +8,7 @@ import javax.edi.model.x12.segment.InterchangeEnvelopeHeader;
 import javax.edi.model.x12.segment.InterchangeEnvelopeTrailer;
 import javax.validation.constraints.NotNull;
 
-@EDIMessage(segmentDelimiter="~",componentDelimiter=">",elementDelimiter="*")
+@EDIMessage(segmentDelimiter='~',componentDelimiter='>',elementDelimiter='*')
 public class PurchaseOrder {
 
 	@NotNull

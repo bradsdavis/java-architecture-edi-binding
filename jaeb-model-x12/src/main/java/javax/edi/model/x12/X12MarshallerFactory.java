@@ -12,11 +12,11 @@ public class X12MarshallerFactory {
 		//seal
 	}
 	
-	public static EDIMarshaller(Reader reader) {
-		//have to use a pushback reader to be safe.
-
-		PushbackReader pushbackReader = new PushbackReader(reader);
-		IOUtils.read
-		
-	}
+//	public static EDIMarshaller(Reader reader) {
+//		//have to use a pushback reader to be safe.
+//
+//		PushbackReader pushbackReader = new PushbackReader(reader);
+//		//IOUtils.read
+//		
+//	}
 }
