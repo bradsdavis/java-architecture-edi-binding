@@ -30,7 +30,7 @@ public class X12MarshallerFactoryTest {
 		X12MarshallerFactory.EDIMarshaller(isr);
 	}
 	
-
+	@Ignore
 	@Test
 	public void testReadEDI810() throws Exception {
 		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("x8104010.txt"));
@@ -59,7 +59,7 @@ public class X12MarshallerFactoryTest {
 		LOG.debug("Marshalled: "+sw.toString());
 	}
 	
-	@Ignore
+	
 	@Test
 	public void testReadEDI846() throws Exception {
 		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("x8464010.txt"));

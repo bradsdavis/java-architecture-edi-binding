@@ -49,8 +49,7 @@ public class EDIUnmarshaller {
 		}
 		EDIMessage ediMessage = clz.getAnnotation(EDIMessage.class);
 
-		SegmentIterator segmentIterator = new SegmentIterator(reader,
-				ediMessage.segmentDelimiter(), true);
+		SegmentIterator segmentIterator = new SegmentIterator(reader, ediMessage.segmentDelimiter(), true);
 
 		Field[] fields = clz.getDeclaredFields();
 		Iterator<Field> fieldIterator = Arrays.asList(fields).iterator();
@@ -80,9 +79,6 @@ public class EDIUnmarshaller {
 		// match up the field with the line...
 		FieldMatch fm = advanceToMatch(ediMessage, fieldIterator, line);
 
-		//
-		
-		
 		if (fm != null) {
 			Class<?> fieldType = getEDISegmentOrGroupType(fm.getField());
 			if (fieldType.isAnnotationPresent(EDISegment.class)) {
