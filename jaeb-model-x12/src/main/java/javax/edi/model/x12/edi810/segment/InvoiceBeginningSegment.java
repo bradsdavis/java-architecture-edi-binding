@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @EDISegment(tag="BIG")
-public class BeginningSegmentforInvoice {
+public class InvoiceBeginningSegment {
 	
 	@EDIElement(fieldName="BIG01")
 	@EDIElementFormat("yyyyMMdd")
@@ -28,10 +28,6 @@ public class BeginningSegmentforInvoice {
 	@EDIElement(fieldName="BIG04")
 	@Size(min=1, max=22)
 	private String purchaseOrderNumber;
-	
-	
-	
-	
 	
 	@EDIElement(fieldName="BIG07")
 	@Size(min=2, max=2)
