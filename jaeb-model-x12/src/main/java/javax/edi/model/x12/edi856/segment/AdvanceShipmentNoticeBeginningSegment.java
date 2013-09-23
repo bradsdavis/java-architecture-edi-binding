@@ -4,22 +4,29 @@ import java.util.Date;
 
 import javax.edi.bind.annotations.EDIElement;
 import javax.edi.bind.annotations.EDISegment;
+import javax.edi.bind.annotations.elements.EDIElementFormat;
+import javax.validation.constraints.Size;
 
 @EDISegment(tag="BSN")
 public class AdvanceShipmentNoticeBeginningSegment {
 
+	@Size(min=2, max=2)
 	@EDIElement(fieldName="BSN01")
 	private String transactionSetPurposeCode;
 
+	@Size(min=2, max=30)
 	@EDIElement(fieldName="BSN02")
 	private String shipmentIdentification;
 
 	@EDIElement(fieldName="BSN03")
+	@EDIElementFormat("yyyyMMdd")
 	private Date date;
 
-	@EDIElement(fieldName="BSN04")
-	private Date time;
+	@Size(min=4, max=4)
+	@EDIElementFormat("hhmm")
+	private String time;
 
+	@Size(min=4, max=4)
 	@EDIElement(fieldName="BSN05")
 	private String hierarchicalStructure;
 
@@ -46,12 +53,12 @@ public class AdvanceShipmentNoticeBeginningSegment {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-
-	public Date getTime() {
+	
+	public String getTime() {
 		return time;
 	}
 
-	public void setTime(Date time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 

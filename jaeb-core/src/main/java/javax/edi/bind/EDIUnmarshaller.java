@@ -34,7 +34,7 @@ public class EDIUnmarshaller {
 		// seal
 	}
 
-	public static <T> T read(Class<T> clz, Reader reader) throws Exception {
+	public static <T> T unmarshal(Class<T> clz, Reader reader) throws Exception {
 		LineIterator lineIterator = new LineIterator(reader);
 		return parseEDIMessage(clz, lineIterator);
 	}

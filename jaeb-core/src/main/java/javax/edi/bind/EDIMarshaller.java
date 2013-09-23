@@ -21,7 +21,7 @@ public class EDIMarshaller {
 		// seal
 	}
 	
-    public static <T> void write(T obj, Writer writer) throws Exception {
+    public static <T> void marshal(T obj, Writer writer) throws Exception {
     	Class<T> clazz = (Class<T>)obj.getClass(); 
     	
         if(!clazz.isAnnotationPresent(EDIMessage.class)) {

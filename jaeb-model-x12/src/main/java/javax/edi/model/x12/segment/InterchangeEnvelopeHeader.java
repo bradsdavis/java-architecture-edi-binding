@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.edi.bind.annotations.EDIElement;
 import javax.edi.bind.annotations.EDISegment;
+import javax.edi.bind.annotations.elements.EDIElementFormat;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -52,7 +53,7 @@ public class InterchangeEnvelopeHeader {
 
 	@EDIElement(fieldName="ISA09", dataElement="I08")
 	@NotNull
-	@Size(min=6, max=6)
+	@EDIElementFormat("yyMMdd")
 	private Date interchangeDate;
 
 	@EDIElement(fieldName="ISA10", dataElement="I09")

@@ -30,9 +30,6 @@ public class BeginningSegmentforInvoice {
 	private String purchaseOrderNumber;
 	
 	
-	
-	
-	
 	@EDIElement(fieldName="BIG07")
 	@Size(min=2, max=2)
 	private String transactionTypeCode;

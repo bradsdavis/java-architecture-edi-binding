@@ -16,7 +16,6 @@ import javax.validation.constraints.Size;
 @EDIMessage
 public class Invoice {
 	
-	
 	@NotNull
 	private InterchangeEnvelopeHeader envelopeHeader;
 	@NotNull

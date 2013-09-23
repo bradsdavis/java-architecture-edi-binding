@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.edi.bind.annotations.EDIElement;
 import javax.edi.bind.annotations.EDISegment;
+import javax.edi.bind.annotations.elements.EDIElementFormat;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -32,6 +33,7 @@ public class POAcknowledgementBeginningSegment {
 	
 	@EDIElement(fieldName="BAK04", dataElement="323")
 	@NotNull
+	@EDIElementFormat("yyyyMMdd")
 	private Date purchaseOrderDate;
 	
 	

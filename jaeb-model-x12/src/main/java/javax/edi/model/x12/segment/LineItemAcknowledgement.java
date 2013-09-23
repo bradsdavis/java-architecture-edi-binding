@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.util.Date;
 
 import javax.edi.bind.annotations.EDIElement;
+import javax.edi.bind.annotations.elements.EDIElementFormat;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -30,7 +31,7 @@ public class LineItemAcknowledgement {
 
 
 	@EDIElement(fieldName="ACK05", dataElement="373")
-	@Size(min=8, max=8)
+	@EDIElementFormat("yyyyMMdd")
 	private Date date;
 
 
