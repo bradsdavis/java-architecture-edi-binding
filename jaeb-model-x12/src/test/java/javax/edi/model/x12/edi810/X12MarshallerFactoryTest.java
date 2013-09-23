@@ -1,7 +1,9 @@
 package javax.edi.model.x12.edi810;
 
 import java.io.InputStreamReader;
+import java.io.StringWriter;
 
+import javax.edi.bind.EDIMarshaller;
 import javax.edi.bind.EDIUnmarshaller;
 import javax.edi.bind.util.ReflectiveToStringStyle;
 import javax.edi.model.x12.X12MarshallerFactory;
@@ -45,6 +47,12 @@ public class X12MarshallerFactoryTest {
 		PriceSalesCatalog edi= EDIUnmarshaller.unmarshal(PriceSalesCatalog.class, isr);
 		
 		LOG.debug(ReflectionToStringBuilder.toString(edi , new ReflectiveToStringStyle()));
+		
+		
+		StringWriter sw = new StringWriter();
+		EDIMarshaller.marshal(edi, sw);
+		
+		LOG.debug("Marshalled: "+sw.toString());
 	}
 	
 	@Ignore
@@ -54,24 +62,39 @@ public class X12MarshallerFactoryTest {
 		InventoryInquery edi= EDIUnmarshaller.unmarshal(InventoryInquery.class, isr);
 		
 		LOG.debug(ReflectionToStringBuilder.toString(edi, new ReflectiveToStringStyle()));
+
+		StringWriter sw = new StringWriter();
+		EDIMarshaller.marshal(edi, sw);
+		
+		LOG.debug("Marshalled: "+sw.toString());
 	}
 	
-	@Ignore
 	@Test
 	public void testReadEDI855() throws Exception {
 		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("x8554010.txt"));
 		POAcknowledgement edi= EDIUnmarshaller.unmarshal(POAcknowledgement.class, isr);
 		
 		LOG.debug(ReflectionToStringBuilder.toString(edi, new ReflectiveToStringStyle()));
+
+		StringWriter sw = new StringWriter();
+		EDIMarshaller.marshal(edi, sw);
+		
+		LOG.debug("Marshalled: "+sw.toString());
 	}
 	
 
 
+	@Ignore
 	@Test
 	public void testReadEDI856() throws Exception {
 		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("x8564010.txt"));
 		AdvanceShipmentNotice edi = EDIUnmarshaller.unmarshal(AdvanceShipmentNotice.class, isr);
 		
 		LOG.debug(ReflectionToStringBuilder.toString(edi, new ReflectiveToStringStyle()));
+
+		StringWriter sw = new StringWriter();
+		EDIMarshaller.marshal(edi, sw);
+		
+		LOG.debug("Marshalled: "+sw.toString());
 	}
 }

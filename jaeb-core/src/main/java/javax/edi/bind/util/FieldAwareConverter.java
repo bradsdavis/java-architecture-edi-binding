@@ -60,7 +60,7 @@ public class FieldAwareConverter {
 		Converter converter = Converters.getConverter(obj.getClass(), String.class);
 		
 		if(converter instanceof AbstractNumberConverter) {
-			if(obj instanceof Number) {
+			if(obj instanceof Number && StringUtils.isNotBlank(format)) {
 				NumberFormat numberFormat = new DecimalFormat(format);
 				return numberFormat.format(obj);
 			}
