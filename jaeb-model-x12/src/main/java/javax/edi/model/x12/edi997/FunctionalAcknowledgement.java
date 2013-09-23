@@ -1,19 +1,17 @@
-package javax.edi.model.x12.edi832;
+package javax.edi.model.x12.edi997;
 
-import javax.edi.bind.annotations.EDIMessage;
-import javax.edi.model.x12.edi832.segment.PriceSalesCatalogBody;
+import javax.edi.model.x12.edi997.segment.FunctionalAcknowledgementBody;
 import javax.edi.model.x12.segment.GroupEnvelopeHeader;
 import javax.edi.model.x12.segment.GroupEnvelopeTrailer;
 import javax.edi.model.x12.segment.InterchangeEnvelopeHeader;
 import javax.edi.model.x12.segment.InterchangeEnvelopeTrailer;
 
-@EDIMessage
-public class PriceSalesCatalog {
+public class FunctionalAcknowledgement {
 
 	private InterchangeEnvelopeHeader envelopeHeader;
 	private GroupEnvelopeHeader groupEnvelopeHeader;
 	
-	private PriceSalesCatalogBody body;
+	private FunctionalAcknowledgementBody body;
 	
 	private GroupEnvelopeTrailer groupEnvelopeTrailer;
 	private InterchangeEnvelopeTrailer envelopeTrailer;
@@ -30,10 +28,10 @@ public class PriceSalesCatalog {
 	public void setGroupEnvelopeHeader(GroupEnvelopeHeader groupEnvelopeHeader) {
 		this.groupEnvelopeHeader = groupEnvelopeHeader;
 	}
-	public PriceSalesCatalogBody getBody() {
+	public FunctionalAcknowledgementBody getBody() {
 		return body;
 	}
-	public void setBody(PriceSalesCatalogBody body) {
+	public void setBody(FunctionalAcknowledgementBody body) {
 		this.body = body;
 	}
 	public GroupEnvelopeTrailer getGroupEnvelopeTrailer() {

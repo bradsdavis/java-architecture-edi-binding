@@ -1,6 +1,7 @@
 package javax.edi.model.x12.edi856;
 
 import javax.edi.bind.annotations.EDIMessage;
+import javax.edi.model.x12.edi856.segment.AdvanceShipmentNoticeBody;
 import javax.edi.model.x12.segment.GroupEnvelopeHeader;
 import javax.edi.model.x12.segment.GroupEnvelopeTrailer;
 import javax.edi.model.x12.segment.InterchangeEnvelopeHeader;

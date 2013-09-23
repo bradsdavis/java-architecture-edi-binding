@@ -1,6 +1,7 @@
 package javax.edi.model.x12.edi855;
 
 import javax.edi.bind.annotations.EDIMessage;
+import javax.edi.model.x12.edi855.segment.POAcknowledgementBody;
 import javax.edi.model.x12.segment.GroupEnvelopeHeader;
 import javax.edi.model.x12.segment.GroupEnvelopeTrailer;
 import javax.edi.model.x12.segment.InterchangeEnvelopeHeader;

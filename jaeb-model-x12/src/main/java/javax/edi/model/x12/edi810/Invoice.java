@@ -4,6 +4,9 @@ import java.util.Collection;
 
 import javax.edi.bind.annotations.EDICollectionType;
 import javax.edi.bind.annotations.EDIMessage;
+import javax.edi.model.x12.edi810.segment.Detail;
+import javax.edi.model.x12.edi810.segment.Header;
+import javax.edi.model.x12.edi810.segment.Trailer;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;

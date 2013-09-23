@@ -1,6 +1,7 @@
 package javax.edi.model.x12.edi846;
 
 import javax.edi.bind.annotations.EDIMessage;
+import javax.edi.model.x12.edi846.segment.InventoryInqueryBody;
 import javax.edi.model.x12.segment.GroupEnvelopeHeader;
 import javax.edi.model.x12.segment.GroupEnvelopeTrailer;
 import javax.edi.model.x12.segment.InterchangeEnvelopeHeader;

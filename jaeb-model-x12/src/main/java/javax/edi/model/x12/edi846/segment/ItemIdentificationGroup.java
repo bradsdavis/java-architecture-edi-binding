@@ -1,7 +1,11 @@
 package javax.edi.model.x12.edi846.segment;
 
+import javax.edi.bind.annotations.EDISegmentGroup;
+import javax.edi.model.x12.segment.DestinationQuantity;
 import javax.edi.model.x12.segment.ItemIdentification;
+import javax.edi.model.x12.segment.Quantity;
 
+@EDISegmentGroup
 public class ItemIdentificationGroup {
 
 	private ItemIdentification itemIdentifications;
