@@ -12,8 +12,133 @@ public class ProductItemDescription {
 	@NotNull
 	@Size(min=1, max=1)
 	private String itemDescriptionType;
-
+	
+	@EDIElement(fieldName="PID02", dataElement="750")
+	@Size(min=2, max=3)
+	private String productCharacteristicCode;
+	
+	@EDIElement(fieldName="PID03", dataElement="559")
+	@Size(min=2, max=2)
+	private String agencyQualifierCode;
+	
+	
+	@EDIElement(fieldName="PID04", dataElement="751")
+	@Size(min=1, max=12)
+	private String productDescriptionCode;
+	
+	
 	@EDIElement(fieldName="PID05", dataElement="352")
 	@Size(min=1, max=80)
 	private String description;
+	
+	
+	@EDIElement(fieldName="PID06", dataElement="752")
+	@Size(min=2, max=2)
+	private String surfacelayerpositionCode;
+	
+	
+	@EDIElement(fieldName="PID07", dataElement="822")
+	@Size(min=1, max=15)
+	private String sourceSubQualifier;
+	
+	
+	@EDIElement(fieldName="PID08", dataElement="1073")
+	@Size(min=1, max=1)
+	private String yesNoConditionorResponseCode;
+	
+	
+	@EDIElement(fieldName="PID09", dataElement="819")
+	@Size(min=2, max=3)
+	private String languageCode;
+
+
+	public String getItemDescriptionType() {
+		return itemDescriptionType;
+	}
+
+
+	public void setItemDescriptionType(String itemDescriptionType) {
+		this.itemDescriptionType = itemDescriptionType;
+	}
+
+
+	public String getProductCharacteristicCode() {
+		return productCharacteristicCode;
+	}
+
+
+	public void setProductCharacteristicCode(String productCharacteristicCode) {
+		this.productCharacteristicCode = productCharacteristicCode;
+	}
+
+
+	public String getAgencyQualifierCode() {
+		return agencyQualifierCode;
+	}
+
+
+	public void setAgencyQualifierCode(String agencyQualifierCode) {
+		this.agencyQualifierCode = agencyQualifierCode;
+	}
+
+
+	public String getProductDescriptionCode() {
+		return productDescriptionCode;
+	}
+
+
+	public void setProductDescriptionCode(String productDescriptionCode) {
+		this.productDescriptionCode = productDescriptionCode;
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+	public String getSurfacelayerpositionCode() {
+		return surfacelayerpositionCode;
+	}
+
+
+	public void setSurfacelayerpositionCode(String surfacelayerpositionCode) {
+		this.surfacelayerpositionCode = surfacelayerpositionCode;
+	}
+
+
+	public String getSourceSubQualifier() {
+		return sourceSubQualifier;
+	}
+
+
+	public void setSourceSubQualifier(String sourceSubQualifier) {
+		this.sourceSubQualifier = sourceSubQualifier;
+	}
+
+
+	public String getYesNoConditionorResponseCode() {
+		return yesNoConditionorResponseCode;
+	}
+
+
+	public void setYesNoConditionorResponseCode(String yesNoConditionorResponseCode) {
+		this.yesNoConditionorResponseCode = yesNoConditionorResponseCode;
+	}
+
+
+	public String getLanguageCode() {
+		return languageCode;
+	}
+
+
+	public void setLanguageCode(String languageCode) {
+		this.languageCode = languageCode;
+	}
+
 }

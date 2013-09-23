@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import javax.edi.bind.annotations.EDISegmentGroup;
 import javax.edi.model.x12.segment.AdditionalNameInformation;
+import javax.edi.model.x12.segment.AddressInformation;
 import javax.edi.model.x12.segment.GeographicLocation;
 import javax.edi.model.x12.segment.Name;
 import javax.edi.model.x12.segment.PersonContact;
