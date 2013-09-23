@@ -2,6 +2,7 @@ package javax.edi.model.x12.edi850.segment;
 
 import java.util.Collection;
 
+import javax.edi.bind.annotations.EDICollectionType;
 import javax.edi.bind.annotations.EDISegmentGroup;
 import javax.edi.model.x12.segment.ReferenceIdentification;
 import javax.edi.model.x12.segment.ReferenceNumber;
@@ -19,15 +20,19 @@ public class Header {
 	@NotNull
 	private PurchaseOrderBeginningSegment beginningSegment;
 	
+	@EDICollectionType(ReferenceNumber.class)
 	@Size(max=12)
 	private Collection<ReferenceNumber> referenceNumbers;
 	
+	@EDICollectionType(RoutingCarrierDetails.class)
 	@Size(max=12)
 	private Collection<RoutingCarrierDetails> specifyingDeliveryCarrier;
 	
+	@EDICollectionType(ReferenceIdentification.class)
 	@Size(max=1000)
 	private Collection<ReferenceIdentification> handlingLabelDealerInformation;
 
+	@EDICollectionType(ShipmentInformationGroup.class)
 	@Size(max=200)
 	private Collection<ShipmentInformationGroup> shipmentInformationGroup;
 	

@@ -2,6 +2,7 @@ package javax.edi.model.x12.edi850.segment;
 
 import java.util.Collection;
 
+import javax.edi.bind.annotations.EDICollectionType;
 import javax.edi.bind.annotations.EDISegmentGroup;
 import javax.edi.model.x12.segment.AdditionalNameInformation;
 import javax.edi.model.x12.segment.AddressInformation;
@@ -18,6 +19,7 @@ public class ShipmentInformationGroup {
 	private AddressInformation addressInformation;
 	private GeographicLocation geographicLocation;
 	
+	@EDICollectionType(PersonContact.class)
 	@Size(max=3)
 	private Collection<PersonContact> administrativeContact;
 

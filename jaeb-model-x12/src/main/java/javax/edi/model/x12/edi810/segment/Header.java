@@ -3,6 +3,7 @@ package javax.edi.model.x12.edi810.segment;
 
 import java.util.Collection;
 
+import javax.edi.bind.annotations.EDICollectionType;
 import javax.edi.bind.annotations.EDISegmentGroup;
 import javax.edi.model.x12.segment.Currency;
 import javax.edi.model.x12.segment.FOBRelatedInstruction;
@@ -10,10 +11,8 @@ import javax.edi.model.x12.segment.GeographicLocation;
 import javax.edi.model.x12.segment.Name;
 import javax.edi.model.x12.segment.NoteSpecialInstructions;
 import javax.edi.model.x12.segment.ReferenceNumber;
-import javax.edi.model.x12.segment.TermsofSale;
+import javax.edi.model.x12.segment.TermsOfSale;
 import javax.edi.model.x12.segment.TransactionSetHeader;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -29,18 +28,21 @@ public class Header {
 	//optional
 	private Currency currency;
 
+	@EDICollectionType(NoteSpecialInstructions.class)
 	@Size(min=0, max=100)
 	private Collection<NoteSpecialInstructions> noteSpecialInstructions;
 	
 	private ReferenceNumber referenceNumbers;
 	
+	@EDICollectionType(Name.class)
 	@Size(min=0, max=200)
 	private Collection<Name> names;
 	
 	private GeographicLocation destinationCountryCode;
 	
+	@EDICollectionType(TermsOfSale.class)
 	@Size(max=5)
-	private Collection<TermsofSale> termsofSale;
+	private Collection<TermsOfSale> termsofSale;
 	private FOBRelatedInstruction fobRelatedInstructions;
 	public TransactionSetHeader getTransactionSetHeader() {
 		return transactionSetHeader;
@@ -87,10 +89,10 @@ public class Header {
 			GeographicLocation destinationCountryCode) {
 		this.destinationCountryCode = destinationCountryCode;
 	}
-	public Collection<TermsofSale> getTermsofSale() {
+	public Collection<TermsOfSale> getTermsofSale() {
 		return termsofSale;
 	}
-	public void setTermsofSale(Collection<TermsofSale> termsofSale) {
+	public void setTermsofSale(Collection<TermsOfSale> termsofSale) {
 		this.termsofSale = termsofSale;
 	}
 	public FOBRelatedInstruction getFobRelatedInstructions() {

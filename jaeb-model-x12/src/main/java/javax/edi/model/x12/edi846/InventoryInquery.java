@@ -1,19 +1,35 @@
 package javax.edi.model.x12.edi846;
 
+import java.util.Collection;
+
+import javax.edi.bind.annotations.EDICollectionType;
 import javax.edi.bind.annotations.EDIMessage;
 import javax.edi.model.x12.edi846.segment.InventoryInqueryBody;
 import javax.edi.model.x12.segment.GroupEnvelopeHeader;
 import javax.edi.model.x12.segment.GroupEnvelopeTrailer;
 import javax.edi.model.x12.segment.InterchangeEnvelopeHeader;
 import javax.edi.model.x12.segment.InterchangeEnvelopeTrailer;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @EDIMessage
 public class InventoryInquery {
 
+	@NotNull
 	private InterchangeEnvelopeHeader envelopeHeader;
+	
+	@NotNull
 	private GroupEnvelopeHeader groupEnvelopeHeader;
-	private InventoryInqueryBody body;
+	
+	@NotNull
+	@Size(min=1)
+	@EDICollectionType(InventoryInqueryBody.class)
+	private Collection<InventoryInqueryBody> body;
+	
+	@NotNull
 	private GroupEnvelopeTrailer groupEnvelopeTrailer;
+	
+	@NotNull
 	private InterchangeEnvelopeTrailer envelopeTrailer;
 	
 	public InterchangeEnvelopeHeader getEnvelopeHeader() {
@@ -28,12 +44,7 @@ public class InventoryInquery {
 	public void setGroupEnvelopeHeader(GroupEnvelopeHeader groupEnvelopeHeader) {
 		this.groupEnvelopeHeader = groupEnvelopeHeader;
 	}
-	public InventoryInqueryBody getBody() {
-		return body;
-	}
-	public void setBody(InventoryInqueryBody body) {
-		this.body = body;
-	}
+	
 	public GroupEnvelopeTrailer getGroupEnvelopeTrailer() {
 		return groupEnvelopeTrailer;
 	}
@@ -46,6 +57,13 @@ public class InventoryInquery {
 	public void setEnvelopeTrailer(InterchangeEnvelopeTrailer envelopeTrailer) {
 		this.envelopeTrailer = envelopeTrailer;
 	}
+	public Collection<InventoryInqueryBody> getBody() {
+		return body;
+	}
+	public void setBody(Collection<InventoryInqueryBody> body) {
+		this.body = body;
+	}
+
 	
 	
 }

@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 
 
 @EDISegment(tag="ITD")
-public class TermsofSale {
+public class TermsOfSale {
 
 	
 	@EDIElement(fieldName="ITD01", dataElement="336")

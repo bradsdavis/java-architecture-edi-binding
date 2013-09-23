@@ -4,49 +4,67 @@ import java.util.Collection;
 
 import javax.edi.bind.annotations.EDICollectionType;
 import javax.edi.bind.annotations.EDIMessage;
-import javax.edi.model.x12.edi810.segment.Detail;
-import javax.edi.model.x12.edi810.segment.Header;
-import javax.edi.model.x12.edi810.segment.Trailer;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.edi.model.x12.edi810.segment.InvoiceBody;
+import javax.edi.model.x12.segment.GroupEnvelopeHeader;
+import javax.edi.model.x12.segment.GroupEnvelopeTrailer;
+import javax.edi.model.x12.segment.InterchangeEnvelopeHeader;
+import javax.edi.model.x12.segment.InterchangeEnvelopeTrailer;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 @EDIMessage
 public class Invoice {
-
-	@NotNull
-	private Header header;
 	
-	@EDICollectionType(Detail.class)
-	@Min(1) @Max(200000)
-	private Collection<Detail> detail;
 	
 	@NotNull
-	private Trailer trailer;
-
-	public Header getHeader() {
-		return header;
+	private InterchangeEnvelopeHeader envelopeHeader;
+	@NotNull
+	private GroupEnvelopeHeader groupEnvelopeHeader;
+	
+	@NotNull
+	@Size(min=1)
+	@EDICollectionType(InvoiceBody.class)
+	private Collection<InvoiceBody> body;
+	
+	@NotNull
+	private GroupEnvelopeTrailer groupEnvelopeTrailer;
+	@NotNull
+	private InterchangeEnvelopeTrailer envelopeTrailer;
+	
+	
+	
+	public InterchangeEnvelopeHeader getEnvelopeHeader() {
+		return envelopeHeader;
 	}
-
-	public void setHeader(Header header) {
-		this.header = header;
+	public void setEnvelopeHeader(InterchangeEnvelopeHeader envelopeHeader) {
+		this.envelopeHeader = envelopeHeader;
 	}
-
-	public Collection<Detail> getDetail() {
-		return detail;
+	public GroupEnvelopeHeader getGroupEnvelopeHeader() {
+		return groupEnvelopeHeader;
 	}
-
-	public void setDetail(Collection<Detail> detail) {
-		this.detail = detail;
+	public void setGroupEnvelopeHeader(GroupEnvelopeHeader groupEnvelopeHeader) {
+		this.groupEnvelopeHeader = groupEnvelopeHeader;
 	}
-
-	public Trailer getTrailer() {
-		return trailer;
+	public Collection<InvoiceBody> getBody() {
+		return body;
 	}
-
-	public void setTrailer(Trailer trailer) {
-		this.trailer = trailer;
+	public void setBody(Collection<InvoiceBody> body) {
+		this.body = body;
 	}
+	public GroupEnvelopeTrailer getGroupEnvelopeTrailer() {
+		return groupEnvelopeTrailer;
+	}
+	public void setGroupEnvelopeTrailer(GroupEnvelopeTrailer groupEnvelopeTrailer) {
+		this.groupEnvelopeTrailer = groupEnvelopeTrailer;
+	}
+	public InterchangeEnvelopeTrailer getEnvelopeTrailer() {
+		return envelopeTrailer;
+	}
+	public void setEnvelopeTrailer(InterchangeEnvelopeTrailer envelopeTrailer) {
+		this.envelopeTrailer = envelopeTrailer;
+	}
+	
+
 	
 }
