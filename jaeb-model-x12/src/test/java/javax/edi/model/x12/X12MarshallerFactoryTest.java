@@ -1,4 +1,4 @@
-package javax.edi.model.x12.edi810;
+package javax.edi.model.x12;
 
 import java.io.InputStreamReader;
 import java.io.StringWriter;
@@ -7,6 +7,7 @@ import javax.edi.bind.EDIMarshaller;
 import javax.edi.bind.EDIUnmarshaller;
 import javax.edi.bind.util.ReflectiveToStringStyle;
 import javax.edi.model.x12.X12MarshallerFactory;
+import javax.edi.model.x12.edi810.Invoice;
 import javax.edi.model.x12.edi832.PriceSalesCatalog;
 import javax.edi.model.x12.edi846.InventoryInquery;
 import javax.edi.model.x12.edi855.POAcknowledgement;
@@ -40,7 +41,6 @@ public class X12MarshallerFactoryTest {
 		LOG.debug(ReflectionToStringBuilder.toString(edi , new ReflectiveToStringStyle()));
 	}
 	
-	@Ignore
 	@Test
 	public void testReadEDI832() throws Exception {
 		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("x8324010.txt"));
@@ -69,6 +69,7 @@ public class X12MarshallerFactoryTest {
 		LOG.debug("Marshalled: "+sw.toString());
 	}
 	
+	@Ignore
 	@Test
 	public void testReadEDI855() throws Exception {
 		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("x8554010.txt"));

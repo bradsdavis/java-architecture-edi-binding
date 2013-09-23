@@ -1,18 +1,14 @@
 package javax.edi.model.x12;
 
-import static org.junit.Assert.*;
-
 import java.io.IOException;
 import java.io.PushbackReader;
 import java.io.Reader;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.edi.bind.EDIUnmarshaller;
 import javax.edi.bind.util.SegmentIterator;
 import javax.edi.model.x12.edi810.Invoice;
 
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

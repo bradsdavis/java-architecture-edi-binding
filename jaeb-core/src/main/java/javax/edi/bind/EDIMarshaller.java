@@ -47,7 +47,8 @@ public class EDIMarshaller {
         	Object fieldObj = PropertyUtils.getProperty(obj, field.getName());
         	
         	if(fieldObj==null) {
-        		LOG.warn("This shouldn't happen.");
+        		LOG.debug("Ignoring null object: "+field);
+        		continue;
         	}
         	
         	if(Collection.class.isAssignableFrom(fieldObj.getClass())) {
