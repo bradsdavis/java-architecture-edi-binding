@@ -1,5 +1,7 @@
 package javax.edi.model.x12.segment;
 
+import java.math.BigInteger;
+
 import javax.edi.bind.annotations.EDIElement;
 import javax.edi.bind.annotations.EDISegment;
 import javax.validation.constraints.Size;
@@ -27,6 +29,29 @@ public class ItemPhysicalDetail {
 	@Size(min=2, max=2)
 	private String basisforMeasurement;
 
+	@EDIElement(fieldName="PO408", dataElement="355")
+	private BigInteger volumePerPack;
+
+	@EDIElement(fieldName="PO409", dataElement="355")
+	@Size(min=1, max=2)
+	private String volumeUnitOfMeasurement;
+
+	@EDIElement(fieldName="PO410", dataElement="355")
+	private BigInteger length;
+
+	@EDIElement(fieldName="PO411", dataElement="355")
+	private BigInteger width;
+
+	@EDIElement(fieldName="PO412", dataElement="355")
+	@Size(min=2, max=2)
+	private BigInteger height;
+
+
+	@EDIElement(fieldName="PO413", dataElement="355")
+	@Size(min=2, max=2)
+	private String unitOfMeasurement;
+
+	
 	@EDIElement(fieldName="PO414", dataElement="810")
 	@Size(min=1, max=6)
 	private String innerPack;
@@ -77,6 +102,54 @@ public class ItemPhysicalDetail {
 
 	public void setInnerPack(String innerPack) {
 		this.innerPack = innerPack;
+	}
+
+	public BigInteger getVolumePerPack() {
+		return volumePerPack;
+	}
+
+	public void setVolumePerPack(BigInteger volumePerPack) {
+		this.volumePerPack = volumePerPack;
+	}
+
+	public String getVolumeUnitOfMeasurement() {
+		return volumeUnitOfMeasurement;
+	}
+
+	public void setVolumeUnitOfMeasurement(String volumeUnitOfMeasurement) {
+		this.volumeUnitOfMeasurement = volumeUnitOfMeasurement;
+	}
+
+	public BigInteger getLength() {
+		return length;
+	}
+
+	public void setLength(BigInteger length) {
+		this.length = length;
+	}
+
+	public BigInteger getWidth() {
+		return width;
+	}
+
+	public void setWidth(BigInteger width) {
+		this.width = width;
+	}
+
+	public BigInteger getHeight() {
+		return height;
+	}
+
+	public void setHeight(BigInteger height) {
+		this.height = height;
+	}
+
+	public String getUnitOfMeasurement() {
+		return unitOfMeasurement;
+	}
+
+	public void setUnitOfMeasurement(String unitOfMeasurement) {
+		this.unitOfMeasurement = unitOfMeasurement;
 	}
 	
 	

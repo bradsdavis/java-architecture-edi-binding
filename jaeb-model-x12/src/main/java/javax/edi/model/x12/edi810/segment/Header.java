@@ -42,7 +42,7 @@ public class Header {
 	
 	@EDICollectionType(TermsOfSale.class)
 	@Size(max=5)
-	private Collection<TermsOfSale> termsofSale;
+	private Collection<TermsOfSale> termsOfSale;
 	
 	private FOBRelatedInstruction fobRelatedInstructions;
 	
@@ -91,11 +91,11 @@ public class Header {
 			GeographicLocation destinationCountryCode) {
 		this.destinationCountryCode = destinationCountryCode;
 	}
-	public Collection<TermsOfSale> getTermsofSale() {
-		return termsofSale;
+	public Collection<TermsOfSale> getTermsOfSale() {
+		return termsOfSale;
 	}
-	public void setTermsofSale(Collection<TermsOfSale> termsofSale) {
-		this.termsofSale = termsofSale;
+	public void setTermsOfSale(Collection<TermsOfSale> termsOfSale) {
+		this.termsOfSale = termsOfSale;
 	}
 	public FOBRelatedInstruction getFobRelatedInstructions() {
 		return fobRelatedInstructions;
@@ -103,5 +103,16 @@ public class Header {
 	public void setFobRelatedInstructions(
 			FOBRelatedInstruction fobRelatedInstructions) {
 		this.fobRelatedInstructions = fobRelatedInstructions;
+	}
+	@Override
+	public String toString() {
+		return "Header [transactionSetHeader=" + transactionSetHeader
+				+ ", beginningSegmentforInvoice=" + beginningSegmentforInvoice
+				+ ", currency=" + currency + ", noteSpecialInstructions="
+				+ noteSpecialInstructions + ", referenceNumbers="
+				+ referenceNumbers + ", names=" + names
+				+ ", destinationCountryCode=" + destinationCountryCode
+				+ ", termsofSale=" + termsOfSale + ", fobRelatedInstructions="
+				+ fobRelatedInstructions + "]";
 	}
 }

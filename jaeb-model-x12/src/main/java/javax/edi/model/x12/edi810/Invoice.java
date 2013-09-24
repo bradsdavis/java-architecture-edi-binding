@@ -18,6 +18,7 @@ public class Invoice {
 	
 	@NotNull
 	private InterchangeEnvelopeHeader envelopeHeader;
+	
 	@NotNull
 	private GroupEnvelopeHeader groupEnvelopeHeader;
 	
@@ -63,7 +64,12 @@ public class Invoice {
 	public void setEnvelopeTrailer(InterchangeEnvelopeTrailer envelopeTrailer) {
 		this.envelopeTrailer = envelopeTrailer;
 	}
-	
-
+	@Override
+	public String toString() {
+		return "Invoice [envelopeHeader=" + envelopeHeader
+				+ ", groupEnvelopeHeader=" + groupEnvelopeHeader + ", body="
+				+ body + ", groupEnvelopeTrailer=" + groupEnvelopeTrailer
+				+ ", envelopeTrailer=" + envelopeTrailer + "]";
+	}
 	
 }

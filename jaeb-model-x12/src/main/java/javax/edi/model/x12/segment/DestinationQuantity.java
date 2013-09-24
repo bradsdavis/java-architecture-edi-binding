@@ -275,4 +275,20 @@ public class DestinationQuantity {
 		this.quantity10 = quantity10;
 	}
 
+	@Override
+	public String toString() {
+		return "DestinationQuantity [unitofMeasureCode=" + unitofMeasureCode
+				+ ", idCodeQualifier=" + idCodeQualifier + ", idCode1="
+				+ idCode1 + ", quantity1=" + quantity1 + ", idCode2=" + idCode2
+				+ ", quantity2=" + quantity2 + ", idCode3=" + idCode3
+				+ ", quantity3=" + quantity3 + ", idCode4=" + idCode4
+				+ ", quantity4=" + quantity4 + ", idCode5=" + idCode5
+				+ ", quantity5=" + quantity5 + ", idCode6=" + idCode6
+				+ ", quantity6=" + quantity6 + ", idCode7=" + idCode7
+				+ ", quantity7=" + quantity7 + ", idCode8=" + idCode8
+				+ ", quantity8=" + quantity8 + ", idCode9=" + idCode9
+				+ ", quantity9=" + quantity9 + ", idCode10=" + idCode10
+				+ ", quantity10=" + quantity10 + "]";
+	}
+
 }

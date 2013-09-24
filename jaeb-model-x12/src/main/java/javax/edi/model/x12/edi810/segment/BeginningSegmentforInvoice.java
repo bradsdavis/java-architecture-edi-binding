@@ -73,4 +73,13 @@ public class BeginningSegmentforInvoice {
 	public void setTransactionTypeCode(String transactionTypeCode) {
 		this.transactionTypeCode = transactionTypeCode;
 	}
+
+	@Override
+	public String toString() {
+		return "BeginningSegmentforInvoice [invoiceDate=" + invoiceDate
+				+ ", invoiceNumber=" + invoiceNumber + ", purchaseOrderDate="
+				+ purchaseOrderDate + ", purchaseOrderNumber="
+				+ purchaseOrderNumber + ", transactionTypeCode="
+				+ transactionTypeCode + "]";
+	}
 }

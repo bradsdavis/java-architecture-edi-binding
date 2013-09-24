@@ -39,6 +39,14 @@ public class FunctionalGroupResponseHeader {
 	public void setGroupControlNumber(String groupControlNumber) {
 		this.groupControlNumber = groupControlNumber;
 	}
+
+
+	@Override
+	public String toString() {
+		return "FunctionalGroupResponseHeader [functionalIdentifierCode="
+				+ functionalIdentifierCode + ", groupControlNumber="
+				+ groupControlNumber + "]";
+	}
 	
 	
 }

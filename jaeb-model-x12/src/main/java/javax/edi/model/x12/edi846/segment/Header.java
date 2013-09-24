@@ -16,7 +16,7 @@ public class Header {
 	private TransactionSetHeader transactionSetHeader;
 	
 	@NotNull
-	private InventoryInquiryBeginningSegment beginningSegment;
+	private InventoryInquiryBeginningSegment inventoryInquiryBeginningSegment;
 	
 	
 	@EDICollectionType(Name.class)
@@ -31,13 +31,13 @@ public class Header {
 		this.transactionSetHeader = transactionSetHeader;
 	}
 
-	public InventoryInquiryBeginningSegment getBeginningSegment() {
-		return beginningSegment;
+	public InventoryInquiryBeginningSegment getInventoryInquiryBeginningSegment() {
+		return inventoryInquiryBeginningSegment;
 	}
-
-	public void setBeginningSegment(
-			InventoryInquiryBeginningSegment beginningSegment) {
-		this.beginningSegment = beginningSegment;
+	
+	public void setInventoryInquiryBeginningSegment(
+			InventoryInquiryBeginningSegment inventoryInquiryBeginningSegment) {
+		this.inventoryInquiryBeginningSegment = inventoryInquiryBeginningSegment;
 	}
 
 	public Collection<Name> getName() {

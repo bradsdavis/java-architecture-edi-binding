@@ -11,10 +11,13 @@ import javax.validation.constraints.Size;
 @EDISegment(tag="CTP")
 public class PricingInformation {
 	
+	@EDIElement(fieldName="CTP01", dataElement="687") 
+	@Size(min=2, max=2)
+	private String classOfTradeCode;
+	
 	@EDIElement(fieldName="CTP02", dataElement="236")
 	@Size(min=3, max=3)
 	private String priceIDCode;
-	
 	
 	@EDIElement(fieldName="CTP03", dataElement="212")
 	@EDIElementFormat("####.00")
@@ -27,6 +30,16 @@ public class PricingInformation {
 	@Size(min=2, max=2)
 	private String unitOfMeasureCode;
 
+	
+	
+	public String getClassOfTradeCode() {
+		return classOfTradeCode;
+	}
+	
+	public void setClassOfTradeCode(String classOfTradeCode) {
+		this.classOfTradeCode = classOfTradeCode;
+	}
+	
 	public String getPriceIDCode() {
 		return priceIDCode;
 	}

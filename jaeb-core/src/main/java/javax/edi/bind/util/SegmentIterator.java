@@ -30,10 +30,8 @@ public class SegmentIterator implements Iterator<String> {
 				}
 				
 			} catch (IOException e) {
-				throw new IllegalStateException(e);
-			}
-			finally {
 				IOUtils.closeQuietly(segmentReader);
+				throw new IllegalStateException(e);
 			}
 		}
 		

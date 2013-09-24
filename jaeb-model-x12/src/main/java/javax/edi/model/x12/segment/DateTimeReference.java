@@ -35,4 +35,10 @@ public class DateTimeReference {
 	public void setDateTimeQualifier(String dateTimeQualifier) {
 		this.dateTimeQualifier = dateTimeQualifier;
 	}
+
+	@Override
+	public String toString() {
+		return "DateTimeReference [dateTimeQualifier=" + dateTimeQualifier
+				+ ", date=" + date + "]";
+	}
 }

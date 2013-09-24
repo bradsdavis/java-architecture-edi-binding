@@ -21,7 +21,7 @@ import org.apache.commons.convert.Converters;
 import org.apache.commons.convert.DateTimeConverters.DateToString;
 import org.apache.commons.convert.DateTimeConverters.StringToDate;
 import org.apache.commons.convert.NumberConverters.AbstractNumberConverter;
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -73,15 +73,17 @@ public class FieldAwareConverter {
 		
 		Converter converter = Converters.getConverter(obj.getClass(), String.class);
 		
-		if(converter instanceof AbstractNumberConverter) {
-			if(obj instanceof Number) {
-				NumberFormat numberFormat = new DecimalFormat(formats.get(0));
-				return numberFormat.format(obj);
+		if (formats.size() > 0) {
+			if(converter instanceof AbstractNumberConverter) {
+				if(obj instanceof Number) {
+					NumberFormat numberFormat = new DecimalFormat(formats.get(0));
+					return numberFormat.format(obj);
+				}
+				return (String)((AbstractNumberConverter) converter).convert(obj, locale,  timezone, formats.get(0));
 			}
-			return (String)((AbstractNumberConverter) converter).convert(obj, locale,  timezone, formats.get(0));
-		}
-		if(converter instanceof DateToString) {
-			return ((DateToString) converter).convert((Date)obj, locale, timezone, formats.get(0));
+			if(converter instanceof DateToString) {
+				return ((DateToString) converter).convert((Date)obj, locale, timezone, formats.get(0));
+			}
 		}
 		
 		return (String)converter.convert(obj);
@@ -131,35 +133,27 @@ public class FieldAwareConverter {
 		
 		Converter converter = Converters.getConverter(String.class, targetType);
 		
-		for (int i = 0; i < formats.size(); i++) {
-			try {
-				if(converter instanceof AbstractNumberConverter) {
-					if(Number.class.isAssignableFrom(field.getType())) {
-							NumberFormat numberFormat = new DecimalFormat(formats.get(i));
-							Number number;
-							try {
-								number = numberFormat.parse(val);
-								
-								LOG.debug("Number type: "+ReflectionToStringBuilder.toString(number));
-								
-							} catch (ParseException e) {
-								throw new ConversionException("Exception converting ["+val+"] with format: "+formats.get(i));
-							}
+		if (formats.size() > 0) {
+			// Only supports one format pattern for now
+			String format = formats.get(0);
+			if(converter instanceof AbstractNumberConverter) {
+				if(Number.class.isAssignableFrom(field.getType())) {
+					Number number;
+					if(StringUtils.isNotBlank(format)) {
+						NumberFormat numberFormat = new DecimalFormat(format);
+						try {
+							number = numberFormat.parse(val);
 							Converter numberConverter = Converters.getConverter(number.getClass(), targetType);
 							return (T)numberConverter.convert(number);
+						} catch (ParseException e) {
+							throw new ConversionException("Exception converting ["+val+"] with format: "+format+" on class: "+targetType);
+						}
 					}
-					return (T)((AbstractNumberConverter) converter).convert(val, locale,  timezone, formats.get(i));
-				}
-				if(converter instanceof StringToDate) {
-					return (T)((StringToDate) converter).convert(val, locale, timezone, formats.get(i));
-				}
-			} catch (ConversionException e) {
-				// Only rethrow the ConversionException if all formats have been attempted
-				if (i < formats.size()-1) {
-					continue;
-				}
 				
-				throw e;
+				}
+			}
+			if(converter instanceof StringToDate) {
+				return (T)((StringToDate) converter).convert(val, locale, timezone, formats.get(0));
 			}
 		}
 		return (T)converter.convert(val);

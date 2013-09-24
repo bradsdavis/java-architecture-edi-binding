@@ -2,6 +2,7 @@
 package javax.edi.model.x12.segment;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.edi.bind.annotations.EDIElement;
 import javax.edi.bind.annotations.EDISegment;
@@ -32,12 +33,22 @@ public class TermsOfSale {
 	@EDIElementFormat("yyyyMMdd")
 	private Date termsDiscountDueDate;
 	
+	@EDIElement(fieldName="IDT05", dataElement="351")
+	private Integer termsDiscountDaysDue;
 	
 	@EDIElement(fieldName="ITD06", dataElement="446")
 	@EDIElementFormat("yyyyMMdd")
 	private Date termsNetDueDate;
 
 
+	public Integer getTermsDiscountDaysDue() {
+		return termsDiscountDaysDue;
+	}
+	
+	public void setTermsDiscountDaysDue(Integer termsDiscountDaysDue) {
+		this.termsDiscountDaysDue = termsDiscountDaysDue;
+	}
+	
 	public String getTermsTypeCode() {
 		return termsTypeCode;
 	}

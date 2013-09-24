@@ -120,4 +120,17 @@ public class GroupEnvelopeHeader {
 		this.versionReleaseIndustryIdentifierCode = versionReleaseIndustryIdentifierCode;
 	}
 
+	@Override
+	public String toString() {
+		return "GroupEnvelopeHeader [functionalIDCode=" + functionalIDCode
+				+ ", applicationSendersCode=" + applicationSendersCode
+				+ ", applicationReceiversCode=" + applicationReceiversCode
+				+ ", date=" + date + ", time=" + time + ", groupControlNumber="
+				+ groupControlNumber + ", responsibleAgencyCode="
+				+ responsibleAgencyCode
+				+ ", versionReleaseIndustryIdentifierCode="
+				+ versionReleaseIndustryIdentifierCode + "]";
+	}
+
+	
 }

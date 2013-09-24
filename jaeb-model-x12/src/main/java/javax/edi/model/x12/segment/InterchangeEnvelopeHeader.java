@@ -221,4 +221,27 @@ public class InterchangeEnvelopeHeader {
 		this.subelementSeparator = subelementSeparator;
 	}
 	
+
+	@Override
+	public String toString() {
+		return "InterchangeEnvelopeHeader [authorizationInformationQualifier="
+				+ authorizationInformationQualifier
+				+ ", authorizationInformation=" + authorizationInformation
+				+ ", securityInformationQualifier="
+				+ securityInformationQualifier + ", securityInformation="
+				+ securityInformation + ", senderInterchangeIDQualifier="
+				+ senderInterchangeIDQualifier + ", interchangeSenderID="
+				+ interchangeSenderID + ", receiverInterchangeIDQualifier="
+				+ receiverInterchangeIDQualifier + ", interchangeReceiverID="
+				+ interchangeReceiverID + ", interchangeDate="
+				+ interchangeDate + ", interchangeTime=" + interchangeTime
+				+ ", interchangeControlID=" + interchangeControlID
+				+ ", interchangeVersionNumber=" + interchangeVersionNumber
+				+ ", interchangeControlNumber=" + interchangeControlNumber
+				+ ", iSAAcknowledgmentRequested=" + iSAAcknowledgmentRequested
+				+ ", testIndicator=" + testIndicator + ", subelementSeparator="
+				+ subelementSeparator + "]";
+	}
+
+	
 }

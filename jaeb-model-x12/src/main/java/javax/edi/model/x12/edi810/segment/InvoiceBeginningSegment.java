@@ -32,11 +32,6 @@ public class InvoiceBeginningSegment {
 	
 	
 	
-	
-	
-	
-	
-	
 	@EDIElement(fieldName="BIG07")
 	@Size(min=2, max=2)
 	private String transactionTypeCode;
@@ -79,5 +74,14 @@ public class InvoiceBeginningSegment {
 
 	public void setTransactionTypeCode(String transactionTypeCode) {
 		this.transactionTypeCode = transactionTypeCode;
+	}
+
+	@Override
+	public String toString() {
+		return "InvoiceBeginningSegment [invoiceDate=" + invoiceDate
+				+ ", invoiceNumber=" + invoiceNumber + ", purchaseOrderDate="
+				+ purchaseOrderDate + ", purchaseOrderNumber="
+				+ purchaseOrderNumber + ", transactionTypeCode="
+				+ transactionTypeCode + "]";
 	}
 }
