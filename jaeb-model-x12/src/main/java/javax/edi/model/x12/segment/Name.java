@@ -11,7 +11,7 @@ public class Name {
 
 	@EDIElement(fieldName="N101", dataElement="98")
 	@NotNull
-	@Size(min=2, max=2)
+	@Size(min=2, max=3)
 	private String entityIdentifierCode;
 
 	@EDIElement(fieldName="N102", dataElement="93")
@@ -25,6 +25,14 @@ public class Name {
 	@EDIElement(fieldName="N104", dataElement="67")
 	@Size(min=2, max=17)
 	private String identificationCode;
+	
+	@EDIElement(fieldName="N105",dataElement="706")
+	@Size(min = 2, max = 2)
+	private String entityRelationshipCode; 
+	
+	@EDIElement(fieldName="N106",dataElement="98")
+	@Size(min = 2, max = 3)
+	private String entityIdentificationCode;
 
 	public String getEntityIdentifierCode() {
 		return entityIdentifierCode;
@@ -56,6 +64,22 @@ public class Name {
 
 	public void setIdentificationCode(String identificationCode) {
 		this.identificationCode = identificationCode;
+	}
+
+	public String getEntityRelationshipCode() {
+		return entityRelationshipCode;
+	}
+
+	public void setEntityRelationshipCode(String entityRelationshipCode) {
+		this.entityRelationshipCode = entityRelationshipCode;
+	}
+
+	public String getEntityIdentificationCode() {
+		return entityIdentificationCode;
+	}
+
+	public void setEntityIdentificationCode(String entityIdentificationCode) {
+		this.entityIdentificationCode = entityIdentificationCode;
 	}
 
 }

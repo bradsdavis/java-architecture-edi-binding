@@ -13,7 +13,6 @@ public class TransactionSetResponseHeader {
 	@Size(min=3, max=3)
 	private String transactionSetIdentifierCode;
 	
-	
 	@EDIElement(fieldName="AK202", dataElement="329")
 	@NotNull
 	@Size(min=4, max=9)

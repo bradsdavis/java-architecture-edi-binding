@@ -1,20 +1,21 @@
 package javax.edi.model.x12.segment;
 
-import javax.edi.bind.annotations.EDIElement;
-import javax.edi.bind.annotations.EDISegment;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@EDISegment(tag="N3")
+import javax.edi.bind.annotations.EDIElement;
+import javax.edi.bind.annotations.EDISegment;
+
+@EDISegment(tag = "N3")
 public class AddressInformation {
-
-	@EDIElement(fieldName="N301", dataElement="166")
+	
+	@EDIElement(fieldName="N301",dataElement="166")
 	@NotNull
-	@Size(min=1, max=35)
+	@Size(min = 1, max = 35)
 	private String addressLine1;
-
-	@EDIElement(fieldName="N302", dataElement="166")
-	@Size(min=1, max=35)
+	
+	@EDIElement(fieldName="N302",dataElement="166")
+	@Size(min = 1, max = 35)
 	private String addressLine2;
 
 	public String getAddressLine1() {
@@ -38,6 +39,4 @@ public class AddressInformation {
 		return "AddressInformation [addressLine1=" + addressLine1
 				+ ", addressLine2=" + addressLine2 + "]";
 	}
-
-	
 }
