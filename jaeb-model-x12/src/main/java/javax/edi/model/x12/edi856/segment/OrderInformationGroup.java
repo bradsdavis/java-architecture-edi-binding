@@ -1,7 +1,5 @@
 package javax.edi.model.x12.edi856.segment;
 
-import java.util.Collection;
-
 import javax.edi.bind.annotations.EDISegmentGroup;
 import javax.edi.model.x12.segment.HierarchicalLevel;
 import javax.edi.model.x12.segment.PurchaseOrderReference;
@@ -14,7 +12,6 @@ public class OrderInformationGroup {
 	private HierarchicalLevel purchaseOrderReferenceHeader;
 	private PurchaseOrderReference purchaseOrderReference;
 	
-	private Collection<PackageCartonGroup> packageCartonGroup;
 
 	public HierarchicalLevel getPurchaseOrderReferenceHeader() {
 		return purchaseOrderReferenceHeader;
@@ -33,15 +30,5 @@ public class OrderInformationGroup {
 			PurchaseOrderReference purchaseOrderReference) {
 		this.purchaseOrderReference = purchaseOrderReference;
 	}
-
-	public Collection<PackageCartonGroup> getPackageCartonGroup() {
-		return packageCartonGroup;
-	}
-
-	public void setPackageCartonGroup(
-			Collection<PackageCartonGroup> packageCartonGroup) {
-		this.packageCartonGroup = packageCartonGroup;
-	}
-	
 	
 }

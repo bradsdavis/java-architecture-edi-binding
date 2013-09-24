@@ -4,6 +4,8 @@ import java.util.Collection;
 
 import javax.edi.bind.annotations.EDICollectionType;
 import javax.edi.bind.annotations.EDISegmentGroup;
+import javax.edi.model.x12.segment.AdditionalNameInformation;
+import javax.edi.model.x12.segment.AddressInformation;
 import javax.edi.model.x12.segment.DateTimeReference;
 import javax.edi.model.x12.segment.GeographicLocation;
 import javax.edi.model.x12.segment.HierarchicalLevel;
@@ -24,13 +26,33 @@ public class ShipmentLevelGroup {
 	
 	private Name shipFromNameInformation;
 	private GeographicLocation shipmentFromLocation;
+	
 	private Name shipToNameInformation;
-	private GeographicLocation shipToLocation;
+	private AdditionalNameInformation shipToAdditionalName;
+	private AddressInformation shipToAddress;
 	private GeographicLocation shipToCityStateZip;
 	
 	@EDICollectionType(OrderInformationGroup.class)
 	private Collection<OrderInformationGroup> orderInformationGroup;
 	
+	
+	public Collection<OrderInformationGroup> getOrderInformationGroup() {
+		return orderInformationGroup;
+	}
+
+	public void setOrderInformationGroup(
+			Collection<OrderInformationGroup> orderInformationGroup) {
+		this.orderInformationGroup = orderInformationGroup;
+	}
+
+	public AdditionalNameInformation getShipToAdditionalName() {
+		return shipToAdditionalName;
+	}
+	
+	public void setShipToAdditionalName(
+			AdditionalNameInformation shipToAdditionalName) {
+		this.shipToAdditionalName = shipToAdditionalName;
+	}
 	
 	
 	public HierarchicalLevel getShipmentInformationLevel() {
@@ -89,12 +111,15 @@ public class ShipmentLevelGroup {
 	public void setShipToNameInformation(Name shipToNameInformation) {
 		this.shipToNameInformation = shipToNameInformation;
 	}
-	public GeographicLocation getShipToLocation() {
-		return shipToLocation;
+
+	public AddressInformation getShipToAddress() {
+		return shipToAddress;
 	}
-	public void setShipToLocation(GeographicLocation shipToLocation) {
-		this.shipToLocation = shipToLocation;
+	
+	public void setShipToAddress(AddressInformation shipToAddress) {
+		this.shipToAddress = shipToAddress;
 	}
+	
 	public GeographicLocation getShipToCityStateZip() {
 		return shipToCityStateZip;
 	}

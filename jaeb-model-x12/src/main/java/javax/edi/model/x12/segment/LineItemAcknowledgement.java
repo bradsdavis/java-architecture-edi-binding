@@ -4,10 +4,12 @@ import java.math.BigInteger;
 import java.util.Date;
 
 import javax.edi.bind.annotations.EDIElement;
+import javax.edi.bind.annotations.EDISegment;
 import javax.edi.bind.annotations.elements.EDIElementFormat;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@EDISegment(tag="ACK")
 public class LineItemAcknowledgement {
 
 	@EDIElement(fieldName="ACK01", dataElement="668")

@@ -13,9 +13,14 @@ import javax.edi.bind.annotations.EDISegmentGroup;
 import javax.edi.bind.util.FieldAwareConverter;
 
 import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class EDIMarshaller {
+
+	private static final Logger LOG = LoggerFactory.getLogger(EDIMarshaller.class);
 
 	private EDIMarshaller() {
 		// seal
@@ -40,6 +45,11 @@ public class EDIMarshaller {
         	//first, get the object from the message.
         	Field field = clazz.getDeclaredFields()[i];
         	Object fieldObj = PropertyUtils.getProperty(obj, field.getName());
+        	
+        	if(fieldObj==null) {
+        		LOG.debug("Ignoring null object: "+field);
+        		continue;
+        	}
         	
         	if(Collection.class.isAssignableFrom(fieldObj.getClass())) {
         		Collection collectionObjs = (Collection)fieldObj;
@@ -88,14 +98,14 @@ public class EDIMarshaller {
         	throw new EDIMessageException("Expected EDI Segment Group.");
         }
         
-        if(segmentGroup.header() != null && segmentGroup.header() != "") {
+        if(StringUtils.isNotBlank(segmentGroup.header())) {
         	//print the header / footer.
         	writer.append(segmentGroup.header()).append(message.segmentDelimiter());
         }
 
 		writeSegmentGroup(message, obj, writer);
         
-        if(segmentGroup.footer() != null && segmentGroup.footer() != "") {
+        if(StringUtils.isNotBlank(segmentGroup.footer())) {
         	//print the header / footer.
         	writer.append(segmentGroup.footer()+message.segmentDelimiter());
         }
@@ -108,7 +118,7 @@ public class EDIMarshaller {
 
 		EDISegmentGroup segmentGroup = clazz.getAnnotation(EDISegmentGroup.class);
 		
-		if(obj == null) {
+		if(obj == null || collectionObjs.size() == 0) {
     		return;
     	}
 		
@@ -116,7 +126,7 @@ public class EDIMarshaller {
         	throw new EDIMessageException("Expected EDI Segment Group.");
         }
         
-        if(segmentGroup.header() != null && segmentGroup.header() != "") {
+        if(StringUtils.isNotBlank(segmentGroup.header())) {
         	//print the header / footer.
         	writer.append(segmentGroup.header());
         	writer.append(message.segmentDelimiter());
@@ -127,7 +137,7 @@ public class EDIMarshaller {
 			writeSegmentGroup(message, collectionObj, writer);
 		}
         
-        if(segmentGroup.footer() != null && segmentGroup.footer() != "") {
+		if(StringUtils.isNotBlank(segmentGroup.footer())) {
         	//print the header / footer.
         	writer.append(segmentGroup.footer());
         	writer.append(message.segmentDelimiter());

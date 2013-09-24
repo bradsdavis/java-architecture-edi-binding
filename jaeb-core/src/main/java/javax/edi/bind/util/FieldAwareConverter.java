@@ -34,6 +34,7 @@ public class FieldAwareConverter {
 		}
 
 		List<String> formats = new ArrayList<String>();
+		String format = null;
 		Locale locale = null;
 		TimeZone timezone = null;
 		
@@ -48,7 +49,7 @@ public class FieldAwareConverter {
 		}
 		if(field.isAnnotationPresent(EDIElementFormat.class)) {
 			EDIElementFormat formatAnnotation = field.getAnnotation(EDIElementFormat.class);
-			String format = formatAnnotation.value();
+			format = formatAnnotation.value();
 			if (format != null) {
 				formats.add(format);
 			}
@@ -73,19 +74,15 @@ public class FieldAwareConverter {
 		
 		Converter converter = Converters.getConverter(obj.getClass(), String.class);
 		
-		if (formats.size() > 0) {
-			if(converter instanceof AbstractNumberConverter) {
-				if(obj instanceof Number) {
-					NumberFormat numberFormat = new DecimalFormat(formats.get(0));
-					return numberFormat.format(obj);
-				}
-				return (String)((AbstractNumberConverter) converter).convert(obj, locale,  timezone, formats.get(0));
-			}
-			if(converter instanceof DateToString) {
-				return ((DateToString) converter).convert((Date)obj, locale, timezone, formats.get(0));
+		if(converter instanceof AbstractNumberConverter) {
+			if(obj instanceof Number && StringUtils.isNotBlank(format)) {
+				NumberFormat numberFormat = new DecimalFormat(format);
+				return numberFormat.format(obj);
 			}
 		}
-		
+		if(converter instanceof DateToString) {
+			return ((DateToString) converter).convert((Date)obj, locale, timezone, format);
+		}
 		return (String)converter.convert(obj);
 	}
 	

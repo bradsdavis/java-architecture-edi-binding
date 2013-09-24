@@ -45,7 +45,7 @@ public class PersonContact {
 	@Size(min=1,max=20)
 	@EDIElement(fieldName="PER09",dataElement="443")
 	private String contactInquiryReference;
-	
+
 	public String getContactFunctionCode() {
 		return contactFunctionCode;
 	}
