@@ -29,11 +29,9 @@ public class RoutingCarrierDetails {
 	@Size(min=1, max=35)
 	private String routing;
 	
-	
-	@EDIElement(fieldName="TD506", dataElement="368")
-	@Size(min=2, max=2)
-	private String shipmentOrderStatusCode;
-
+	@Size(min = 2, max = 2)
+	@EDIElement(fieldName="TD506",dataElement="368",conditional=true)
+	private String shipmentOrderStatusCode; 
 
 	public String getRoutingSequenceCode() {
 		return routingSequenceCode;
@@ -93,9 +91,4 @@ public class RoutingCarrierDetails {
 	public void setShipmentOrderStatusCode(String shipmentOrderStatusCode) {
 		this.shipmentOrderStatusCode = shipmentOrderStatusCode;
 	}
-	
-	
-	
-	
-
 }

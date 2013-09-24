@@ -8,19 +8,19 @@ import javax.validation.constraints.Size;
 @EDISegment(tag="REF")
 public class ReferenceNumber {
 
-
-	@EDIElement(fieldName="REF01", dataElement="128")
+	@EDIElement(fieldName="REF01",dataElement="128")
 	@NotNull
-	@Size(min=2, max=3)
+	@Size(min = 2, max = 2)
 	private String referenceIdentificationQualifier;
 	
-	@EDIElement(fieldName="REF02", dataElement="127")
-	@Size(min=1, max=35)
+	@EDIElement(fieldName="REF02",dataElement="127",conditional=true)
+	@Size(min = 1, max = 35)
 	private String referenceIdentification;
 	
-	@EDIElement(fieldName="REF03", dataElement="352")
-	@Size(min=1, max=2)
-	private String referenceDescription;
+	
+	@EDIElement(fieldName="REF03",dataElement="352",conditional=true)
+	@Size(min = 1, max = 2)
+	private String referenceDescription; 
 
 	public String getReferenceIdentificationQualifier() {
 		return referenceIdentificationQualifier;

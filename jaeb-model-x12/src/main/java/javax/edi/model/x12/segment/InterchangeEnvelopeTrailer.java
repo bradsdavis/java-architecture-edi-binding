@@ -11,13 +11,13 @@ public class InterchangeEnvelopeTrailer {
 	@EDIElement(fieldName="IEA01", dataElement="I16")
 	@NotNull
 	@Size(min=1, max=5)
-	private String numberOfIncludedGroups;
+	private String numberOfIncludedGroups; // Total number of group envelopes in this interchange (transmission)
 
 
 	@EDIElement(fieldName="IEA02", dataElement="I12")
 	@NotNull
 	@Size(min=9, max=9)
-	private String interchangeControlNumber;
+	private String interchangeControlNumber; // A number which matches the control number on the ISA segment of this interchange
 
 
 	public String getNumberOfIncludedGroups() {

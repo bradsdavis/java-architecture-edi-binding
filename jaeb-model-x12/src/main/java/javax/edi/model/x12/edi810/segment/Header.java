@@ -16,7 +16,7 @@ import javax.edi.model.x12.segment.TransactionSetHeader;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@EDISegmentGroup()
+@EDISegmentGroup
 public class Header {
 
 	@NotNull
@@ -45,10 +45,6 @@ public class Header {
 	private Collection<TermsOfSale> termsOfSale;
 	
 	private FOBRelatedInstruction fobRelatedInstructions;
-	
-	
-	
-	
 	
 	public TransactionSetHeader getTransactionSetHeader() {
 		return transactionSetHeader;

@@ -23,6 +23,4 @@ public class AdditionalNameInformation {
 	public String toString() {
 		return "AdditionalNameInformation [name=" + name + "]";
 	}
-
-	
 }
