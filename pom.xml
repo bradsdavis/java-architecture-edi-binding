@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>javax.edi</groupId>
 	<artifactId>jaeb</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>Java EDI Converter</name>
 
 	<dependencies>
@@ -53,7 +53,26 @@
 		</dependency>
 	</dependencies>
 	
+	<distributionManagement>
+	    <repository>
+	      <id>nexus</id>
+	      <name>Nexus Server</name>
+	      <url>http://10.0.1.200:8080/nexus/content/repositories/releases/</url>
+	    </repository>
+	  </distributionManagement>
+	  
 	<repositories>
+		<repository>
+	      <id>nexus</id>
+	      <name>Nexus Server</name>
+	      <url>http://10.0.1.200:8080/nexus/content/repositories/releases/</url>
+	    	<releases>
+	    		<enabled>true</enabled>
+	    	</releases>
+	    	<snapshots>
+	    		<enabled>false</enabled>
+	    	</snapshots>
+	    </repository>
 		<repository>
 			<releases>
 				<enabled>false</enabled>
