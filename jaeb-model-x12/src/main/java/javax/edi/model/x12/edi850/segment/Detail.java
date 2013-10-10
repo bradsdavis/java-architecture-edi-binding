@@ -5,22 +5,21 @@ import java.util.Collection;
 import javax.edi.bind.annotations.EDICollectionType;
 import javax.edi.bind.annotations.EDISegmentGroup;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @EDISegmentGroup
 public class Detail {
 
-	@EDICollectionType(PurchaseOrderBaselineItemDataGroup.class)
 	@NotNull
-	private Collection<PurchaseOrderBaselineItemDataGroup> purchaseOrderBaselineItemDataGroup;
+	@Size(max=100000)
+	@EDICollectionType(PurchaseOrderItemGroup.class)
+	private Collection<PurchaseOrderItemGroup> purchaseOrderItems;
 
-	public Collection<PurchaseOrderBaselineItemDataGroup> getPurchaseOrderBaselineItemDataGroup() {
-		return purchaseOrderBaselineItemDataGroup;
+	public Collection<PurchaseOrderItemGroup> getPurchaseOrderItems() {
+		return purchaseOrderItems;
 	}
 
-	public void setPurchaseOrderBaselineItemDataGroup(
-			Collection<PurchaseOrderBaselineItemDataGroup> purchaseOrderBaselineItemDataGroup) {
-		this.purchaseOrderBaselineItemDataGroup = purchaseOrderBaselineItemDataGroup;
+	public void setPurchaseOrderItems(Collection<PurchaseOrderItemGroup> purchaseOrderItems) {
+		this.purchaseOrderItems = purchaseOrderItems;
 	}
-	
-	
 }

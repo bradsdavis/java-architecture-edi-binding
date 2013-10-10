@@ -26,15 +26,15 @@ public class Header {
 	
 	@EDICollectionType(RoutingCarrierDetails.class)
 	@Size(max=12)
-	private Collection<RoutingCarrierDetails> specifyingDeliveryCarrier;
-	
-	@EDICollectionType(ReferenceIdentification.class)
-	@Size(max=1000)
-	private Collection<ReferenceIdentification> handlingLabelDealerInformation;
+	private Collection<RoutingCarrierDetails> routingCarrierDetails;
 
-	@EDICollectionType(ShipmentInformationGroup.class)
+	@Size(max=1000)
+	@EDICollectionType(ReferenceIdentification.class)
+	private Collection<ReferenceIdentification> referenceIdentifications;
+
 	@Size(max=200)
-	private Collection<ShipmentInformationGroup> shipmentInformationGroup;
+	@EDICollectionType(ShippingBillingGroup.class)
+	private Collection<ShippingBillingGroup> shippingBillingGroups;
 	
 	public TransactionSetHeader getTransactionSetHeader() {
 		return transactionSetHeader;
@@ -60,23 +60,30 @@ public class Header {
 		this.referenceNumbers = referenceNumbers;
 	}
 
-	public Collection<RoutingCarrierDetails> getSpecifyingDeliveryCarrier() {
-		return specifyingDeliveryCarrier;
+	public Collection<RoutingCarrierDetails> getRoutingCarrierDetails() {
+		return routingCarrierDetails;
 	}
 
-	public void setSpecifyingDeliveryCarrier(
-			Collection<RoutingCarrierDetails> specifyingDeliveryCarrier) {
-		this.specifyingDeliveryCarrier = specifyingDeliveryCarrier;
+	public void setRoutingCarrierDetails(
+			Collection<RoutingCarrierDetails> routingCarrierDetails) {
+		this.routingCarrierDetails = routingCarrierDetails;
 	}
 
-	public Collection<ReferenceIdentification> getHandlingLabelDealerInformation() {
-		return handlingLabelDealerInformation;
+	public Collection<ReferenceIdentification> getReferenceIdentifications() {
+		return referenceIdentifications;
 	}
 
-	public void setHandlingLabelDealerInformation(
-			Collection<ReferenceIdentification> handlingLabelDealerInformation) {
-		this.handlingLabelDealerInformation = handlingLabelDealerInformation;
+	public void setReferenceIdentifications(
+			Collection<ReferenceIdentification> referenceIdentifications) {
+		this.referenceIdentifications = referenceIdentifications;
 	}
 
-	
+	public Collection<ShippingBillingGroup> getShippingBillingGroups() {
+		return shippingBillingGroups;
+	}
+
+	public void setShippingBillingGroups(
+			Collection<ShippingBillingGroup> shippingBillingGroups) {
+		this.shippingBillingGroups = shippingBillingGroups;
+	}
 }

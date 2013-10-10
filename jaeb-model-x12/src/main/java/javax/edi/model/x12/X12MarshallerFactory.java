@@ -26,7 +26,6 @@ public class X12MarshallerFactory {
 		//seal
 	}
 	
-	
 	public static Class EDIMarshaller(Reader reader) throws IOException {
 		//read the header; for x12, segment delimiter should be at character 106. 
 		int position = 0;
@@ -65,6 +64,4 @@ public class X12MarshallerFactory {
 		
 		
 	}
-	
-	
 }

@@ -11,10 +11,10 @@ public class GroupEnvelopeTrailer {
 	@EDIElement(fieldName="GE01", dataElement="97")
 	@NotNull
 	@Size(min=1, max=6)
-	private String numberOfTransactionSets;
+	private String numberOfTransactionSets; // Total number of transaction sets in this group envelope
 	
 	
-	@EDIElement(fieldName="GE02", dataElement="28")
+	@EDIElement(fieldName="GE02", dataElement="28") // A number which matches the control number on the GS segment for this group envelope
 	@NotNull
 	@Size(min=1, max=9)
 	private String groupControlNumber;

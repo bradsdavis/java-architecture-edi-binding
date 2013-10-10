@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.edi.bind.annotations.EDIElement;
 import javax.edi.bind.annotations.EDISegment;
 import javax.edi.bind.annotations.elements.EDIElementFormat;
+import javax.edi.bind.annotations.elements.EDIElementFormats;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -34,6 +35,9 @@ public class GroupEnvelopeHeader {
 	@EDIElement(fieldName="GS05", dataElement="337")
 	@NotNull
 	@Size(min=4, max=6)
+	@EDIElementFormats({
+		@EDIElementFormat("HHMMSS"),
+		@EDIElementFormat("HHMM")})
 	private String time;
 
 	@EDIElement(fieldName="GS06", dataElement="28")

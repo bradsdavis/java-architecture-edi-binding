@@ -2,24 +2,24 @@ package javax.edi.model.x12.edi850.segment;
 
 import javax.edi.bind.annotations.EDISegmentGroup;
 import javax.edi.model.x12.segment.TransactionSetTrailer;
-import javax.edi.model.x12.segment.TransactionTotal;
+import javax.edi.model.x12.segment.TransactionSetTotals;
 import javax.validation.constraints.NotNull;
 
 @EDISegmentGroup
 public class Trailer {
 
 	@NotNull
-	private TransactionTotal transactionTotals;
+	private TransactionSetTotals transactionSetTotals;
 	
 	@NotNull
 	private TransactionSetTrailer transactionSetTrailer;
 
-	public TransactionTotal getTransactionTotals() {
-		return transactionTotals;
+	public TransactionSetTotals getTransactionSetTotals() {
+		return transactionSetTotals;
 	}
 
-	public void setTransactionTotals(TransactionTotal transactionTotals) {
-		this.transactionTotals = transactionTotals;
+	public void setTransactionSetTotals(TransactionSetTotals transactionSetTotals) {
+		this.transactionSetTotals = transactionSetTotals;
 	}
 
 	public TransactionSetTrailer getTransactionSetTrailer() {
