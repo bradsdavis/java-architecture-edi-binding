@@ -13,6 +13,8 @@ import javax.edi.model.x12.segment.Name;
 import javax.edi.model.x12.segment.QuantityWeightCarrierDetails;
 import javax.edi.model.x12.segment.ReferenceNumber;
 import javax.edi.model.x12.segment.RoutingCarrierDetails;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @EDISegmentGroup
 public class ShipmentLevelGroup {
@@ -20,8 +22,12 @@ public class ShipmentLevelGroup {
 	private HierarchicalLevel shipmentInformationLevel;
 	private QuantityWeightCarrierDetails quantityWeightCarrierDetails;
 	private RoutingCarrierDetails routingCarrierDetails;
-	private ReferenceNumber referenceNumber1;
-	private ReferenceNumber referenceNumber2;
+	
+	@NotNull
+	@Size(min=1)
+	@EDICollectionType(ReferenceNumber.class)
+	private Collection<ReferenceNumber> referenceNumbers;
+	
 	private DateTimeReference shipmentDateTime;
 	
 	private Name shipFromNameInformation;
@@ -75,17 +81,11 @@ public class ShipmentLevelGroup {
 	public void setRoutingCarrierDetails(RoutingCarrierDetails routingCarrierDetails) {
 		this.routingCarrierDetails = routingCarrierDetails;
 	}
-	public ReferenceNumber getReferenceNumber1() {
-		return referenceNumber1;
+	public Collection<ReferenceNumber> getReferenceNumbers() {
+		return referenceNumbers;
 	}
-	public void setReferenceNumber1(ReferenceNumber referenceNumber1) {
-		this.referenceNumber1 = referenceNumber1;
-	}
-	public ReferenceNumber getReferenceNumber2() {
-		return referenceNumber2;
-	}
-	public void setReferenceNumber2(ReferenceNumber referenceNumber2) {
-		this.referenceNumber2 = referenceNumber2;
+	public void setReferenceNumbers(Collection<ReferenceNumber> referenceNumbers) {
+		this.referenceNumbers = referenceNumbers;
 	}
 	public DateTimeReference getShipmentDateTime() {
 		return shipmentDateTime;

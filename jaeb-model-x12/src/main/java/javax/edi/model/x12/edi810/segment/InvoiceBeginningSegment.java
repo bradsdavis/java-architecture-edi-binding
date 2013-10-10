@@ -1,5 +1,6 @@
 package javax.edi.model.x12.edi810.segment;
 
+import java.math.BigInteger;
 import java.util.Date;
 
 import javax.edi.bind.annotations.EDIElement;
@@ -29,8 +30,15 @@ public class InvoiceBeginningSegment {
 	@Size(min=1, max=22)
 	private String purchaseOrderNumber;
 	
+
+	@EDIElement(fieldName="BIG05")
+	@Size(min=1, max=30)
+	private String releaseNumber;
 	
-	
+
+	@EDIElement(fieldName="BIG06")
+	@Size(min=2, max=2)
+	private BigInteger changeOrderSequenceNumber;
 	
 	@EDIElement(fieldName="BIG07")
 	@Size(min=2, max=2)
@@ -74,6 +82,24 @@ public class InvoiceBeginningSegment {
 
 	public void setTransactionTypeCode(String transactionTypeCode) {
 		this.transactionTypeCode = transactionTypeCode;
+	}
+	
+	
+
+	public String getReleaseNumber() {
+		return releaseNumber;
+	}
+
+	public void setReleaseNumber(String releaseNumber) {
+		this.releaseNumber = releaseNumber;
+	}
+
+	public BigInteger getChangeOrderSequenceNumber() {
+		return changeOrderSequenceNumber;
+	}
+
+	public void setChangeOrderSequenceNumber(BigInteger changeOrderSequenceNumber) {
+		this.changeOrderSequenceNumber = changeOrderSequenceNumber;
 	}
 
 	@Override

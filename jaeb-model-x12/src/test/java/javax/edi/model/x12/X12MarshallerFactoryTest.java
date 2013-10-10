@@ -101,5 +101,5 @@ public class X12MarshallerFactoryTest {
 		EDIMarshaller.marshal(edi, sw);
 		
 		LOG.debug("Marshalled: "+sw.toString());
-	}
+ 	}
 }

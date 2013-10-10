@@ -1,9 +1,11 @@
 package javax.edi.model.x12.segment;
 
 import javax.edi.bind.annotations.EDIElement;
+import javax.edi.bind.annotations.EDISegment;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@EDISegment(tag="SN1")
 public class ShipmentItemDetail {
 
 	@Size(min=1, max=20)
