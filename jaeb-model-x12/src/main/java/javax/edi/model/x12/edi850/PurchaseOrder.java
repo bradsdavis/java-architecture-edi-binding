@@ -1,5 +1,8 @@
 package javax.edi.model.x12.edi850;
 
+import java.util.Collection;
+
+import javax.edi.bind.annotations.EDICollectionType;
 import javax.edi.bind.annotations.EDIMessage;
 import javax.edi.model.x12.edi850.segment.PurchaseOrderBody;
 import javax.edi.model.x12.segment.GroupEnvelopeHeader;
@@ -7,6 +10,7 @@ import javax.edi.model.x12.segment.GroupEnvelopeTrailer;
 import javax.edi.model.x12.segment.InterchangeEnvelopeHeader;
 import javax.edi.model.x12.segment.InterchangeEnvelopeTrailer;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @EDIMessage
 public class PurchaseOrder {
@@ -17,13 +21,15 @@ public class PurchaseOrder {
 	private GroupEnvelopeHeader groupEnvelopeHeader;
 	
 	@NotNull
+	@Size(min=1)
+	@EDICollectionType(PurchaseOrderBody.class)
+	private Collection<PurchaseOrderBody> purchaseOrderBody;
+	
+	@NotNull
 	private GroupEnvelopeTrailer groupEnvelopeTrailer;
 	@NotNull
 	private InterchangeEnvelopeTrailer envelopeTrailer;
 	
-	@NotNull
-	private PurchaseOrderBody body;
-
 	public InterchangeEnvelopeHeader getEnvelopeHeader() {
 		return envelopeHeader;
 	}
@@ -56,11 +62,11 @@ public class PurchaseOrder {
 		this.envelopeTrailer = envelopeTrailer;
 	}
 
-	public PurchaseOrderBody getBody() {
-		return body;
+	public Collection<PurchaseOrderBody> getPurchaseOrderBody() {
+		return purchaseOrderBody;
 	}
 
-	public void setBody(PurchaseOrderBody body) {
-		this.body = body;
+	public void setPurchaseOrderBody(Collection<PurchaseOrderBody> purchaseOrderBody) {
+		this.purchaseOrderBody = purchaseOrderBody;
 	}
 }

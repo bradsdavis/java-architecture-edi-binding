@@ -5,7 +5,10 @@ import javax.edi.bind.annotations.EDISegment;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
+/**
+ * Transaction Segment Code: N1
+ * Usage: Identify a party by type of organization, name and code.
+ */
 @EDISegment(tag="N1")
 public class Name {
 

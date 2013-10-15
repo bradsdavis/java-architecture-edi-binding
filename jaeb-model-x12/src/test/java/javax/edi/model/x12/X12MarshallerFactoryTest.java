@@ -10,6 +10,7 @@ import javax.edi.model.x12.X12MarshallerFactory;
 import javax.edi.model.x12.edi810.Invoice;
 import javax.edi.model.x12.edi832.PriceSalesCatalog;
 import javax.edi.model.x12.edi846.InventoryInquery;
+import javax.edi.model.x12.edi850.PurchaseOrder;
 import javax.edi.model.x12.edi855.POAcknowledgement;
 import javax.edi.model.x12.edi856.AdvanceShipmentNotice;
 
@@ -64,6 +65,19 @@ public class X12MarshallerFactoryTest {
 	public void testReadEDI846() throws Exception {
 		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("x8464010.txt"));
 		InventoryInquery edi= EDIUnmarshaller.unmarshal(InventoryInquery.class, isr);
+		
+		LOG.debug(ReflectionToStringBuilder.toString(edi, new ReflectiveToStringStyle()));
+
+		StringWriter sw = new StringWriter();
+		EDIMarshaller.marshal(edi, sw);
+		
+		LOG.debug("Marshalled: "+sw.toString());
+	}
+	
+	@Test
+	public void testReadEDI850() throws Exception {
+		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("x8504010_inbound_usps.txt"));
+		PurchaseOrder edi= EDIUnmarshaller.unmarshal(PurchaseOrder.class, isr);
 		
 		LOG.debug(ReflectionToStringBuilder.toString(edi, new ReflectiveToStringStyle()));
 
