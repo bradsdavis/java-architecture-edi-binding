@@ -6,14 +6,16 @@ import java.io.StringWriter;
 import javax.edi.bind.EDIMarshaller;
 import javax.edi.bind.EDIUnmarshaller;
 import javax.edi.bind.util.ReflectiveToStringStyle;
-import javax.edi.model.x12.X12MarshallerFactory;
 import javax.edi.model.x12.edi810.Invoice;
 import javax.edi.model.x12.edi832.PriceSalesCatalog;
 import javax.edi.model.x12.edi846.InventoryInquery;
 import javax.edi.model.x12.edi855.POAcknowledgement;
 import javax.edi.model.x12.edi856.AdvanceShipmentNotice;
 
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -36,12 +38,14 @@ public class X12MarshallerFactoryTest {
 		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("x8104010.txt"));
 		Invoice edi= EDIUnmarshaller.unmarshal(Invoice.class, isr);
 		
-		LOG.debug(ReflectionToStringBuilder.toString(edi , new ReflectiveToStringStyle()));
+		//LOG.debug(ReflectionToStringBuilder.toString(edi , new ReflectiveToStringStyle()));
 		
 		StringWriter sw = new StringWriter();
 		EDIMarshaller.marshal(edi, sw);
 		
 		LOG.debug("Marshalled: "+sw.toString());
+		Assert.assertEquals("000000004", edi.getEnvelopeTrailer().getInterchangeControlNumber());
+		
 	}
 
 	@Ignore
@@ -50,16 +54,17 @@ public class X12MarshallerFactoryTest {
 		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("x8324010.txt"));
 		PriceSalesCatalog edi= EDIUnmarshaller.unmarshal(PriceSalesCatalog.class, isr);
 		
-		LOG.debug(ReflectionToStringBuilder.toString(edi , new ReflectiveToStringStyle()));
+		//LOG.debug(ReflectionToStringBuilder.toString(edi , new ReflectiveToStringStyle()));
 		
 		
 		StringWriter sw = new StringWriter();
 		EDIMarshaller.marshal(edi, sw);
 		
 		LOG.debug("Marshalled: "+sw.toString());
+		Assert.assertEquals("000000018", edi.getEnvelopeTrailer().getInterchangeControlNumber());
 	}
 	
-	
+	@Ignore
 	@Test
 	public void testReadEDI846() throws Exception {
 		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("x8464010.txt"));
@@ -88,8 +93,6 @@ public class X12MarshallerFactoryTest {
 	}
 	
 
-
-	@Ignore
 	@Test
 	public void testReadEDI856() throws Exception {
 		InputStreamReader isr = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("x8564010.txt"));
@@ -102,4 +105,6 @@ public class X12MarshallerFactoryTest {
 		
 		LOG.debug("Marshalled: "+sw.toString());
  	}
+	
+	
 }

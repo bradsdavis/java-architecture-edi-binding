@@ -8,13 +8,15 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.StringTokenizer;
+import java.util.Stack;
 
 import javax.edi.bind.annotations.EDICollectionType;
 import javax.edi.bind.annotations.EDIComponent;
 import javax.edi.bind.annotations.EDIMessage;
 import javax.edi.bind.annotations.EDISegment;
 import javax.edi.bind.annotations.EDISegmentGroup;
+import javax.edi.bind.hierarchy.HierarchyReference;
+import javax.edi.bind.hierarchy.HierarchyUtil;
 import javax.edi.bind.util.BufferedSegmentIterator;
 import javax.edi.bind.util.CollectionFactory;
 import javax.edi.bind.util.FieldAwareConverter;
@@ -42,9 +44,7 @@ public class EDIUnmarshaller {
 	}
 
 	protected static <T> T parseEDIMessage(Class<T> clz, Reader reader)
-			throws EDIMessageException, InstantiationException,
-			IllegalAccessException, InvocationTargetException,
-			ClassNotFoundException, ConversionException {
+			throws EDIMessageException, InstantiationException, IllegalAccessException, InvocationTargetException, ClassNotFoundException, ConversionException {
 		if (!clz.isAnnotationPresent(EDIMessage.class)) {
 			throw new EDIMessageException("Not EDI Message Class.");
 		}
@@ -56,9 +56,10 @@ public class EDIUnmarshaller {
 		Iterator<Field> fieldIterator = Arrays.asList(fields).iterator();
 
 		T obj = clz.newInstance();
-
+		
+		Stack<HierarchyReference> stack = new Stack<HierarchyReference>();
 		while (fieldIterator.hasNext() && bufferedIterator.hasNext()) {
-			parseEDISegmentOrSegmentGroup(ediMessage, obj, fieldIterator, bufferedIterator);
+			parseEDISegmentOrSegmentGroup(ediMessage, obj, fieldIterator, bufferedIterator, stack);
 		}
 		
 		if(bufferedIterator.hasNext()) {
@@ -90,8 +91,9 @@ public class EDIUnmarshaller {
 	 * @throws ClassNotFoundException
 	 * @throws ConversionException
 	 */
-	protected static <T> void parseEDISegmentOrSegmentGroup(EDIMessage ediMessage, T object, Iterator<Field> fieldIterator, BufferedSegmentIterator segmentIterator)
+	protected static <T> void parseEDISegmentOrSegmentGroup(EDIMessage ediMessage, T object, Iterator<Field> fieldIterator, BufferedSegmentIterator segmentIterator, Stack<HierarchyReference> hierarchy)
 			throws EDIMessageException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException, ConversionException {
+		
 		if (!fieldIterator.hasNext()) {
 			throw new EDIMessageException("No more fields to read.");
 		}
@@ -106,28 +108,39 @@ public class EDIUnmarshaller {
 		// match up the field with the line...
 		FieldMatch fm = advanceToMatch(ediMessage, fieldIterator, line);
 
+		//TODO: check whether the field is heirarchical.
+		
+		
 		if (fm != null) {
 			//then commit off the line.
 			segmentIterator.next();
 			
 			Class<?> fieldType = getEDISegmentOrGroupType(fm.getField());
 			if (fieldType.isAnnotationPresent(EDISegment.class)) {
-				processSegment(ediMessage, object, segmentIterator, fm);
+				processSegment(ediMessage, object, segmentIterator, fm, hierarchy);
 			} else if (fieldType.isAnnotationPresent(EDISegmentGroup.class)) {
-				processSegmentGroup(ediMessage, object, segmentIterator, fm);
+				//ok, this is a segment group...
+				
+				
+				processSegmentGroup(ediMessage, object, segmentIterator, fm, hierarchy);
 			}
 		}
 	}
 
-	protected static <T> void processSegmentGroup(EDIMessage ediMessage, T object, BufferedSegmentIterator segmentIterator,
-			FieldMatch fm) throws InstantiationException,
+	protected static <T> void processSegmentGroup(EDIMessage ediMessage, T object, BufferedSegmentIterator segmentIterator, FieldMatch fm, Stack<HierarchyReference> hierarchy) throws InstantiationException,
 			IllegalAccessException, InvocationTargetException,
 			ClassNotFoundException, ConversionException, EDIMessageException {
 
 		LOG.debug("Object: " + ReflectionToStringBuilder.toString(object));
 		LOG.debug("Field: " + fm.getField().getName());
 
+		
 		Class<?> segmentGroupClass = getEDISegmentOrGroupType(fm.getField());
+		if(HierarchyUtil.segmentGroupHasHierarchyReference(segmentGroupClass)) {
+			LOG.info("Segment group has hierachy: "+segmentGroupClass.getCanonicalName());
+		}
+		
+		
 		if (!segmentGroupClass.isAnnotationPresent(EDISegmentGroup.class)) {
 			throw new EDIMessageException("Segment Group should have annotation.");
 		}
@@ -147,8 +160,8 @@ public class EDIUnmarshaller {
 
 		if (Collection.class.isAssignableFrom(fm.getField().getType())) {
 			Collection obj = CollectionFactory.newInstance(fm.getField().getType());
-			BeanUtils.setProperty(object, fm.getField().getName(), obj);
 
+			BeanUtils.setProperty(object, fm.getField().getName(), obj);
 			String segmentTag = getSegmentTag(fm.getField(), true);
 
 			while (true) {
@@ -159,7 +172,7 @@ public class EDIUnmarshaller {
 
 				Object collectionObj = segmentGroupClass.newInstance();
 				while (fieldIterator.hasNext() && (segmentIterator.hasNext())) {
-					parseEDISegmentOrSegmentGroup(ediMessage, collectionObj, fieldIterator, segmentIterator);
+					parseEDISegmentOrSegmentGroup(ediMessage, collectionObj, fieldIterator, segmentIterator, hierarchy);
 				}
 
 				obj.add(collectionObj);
@@ -187,7 +200,7 @@ public class EDIUnmarshaller {
 
 			Object obj = segmentGroupClass.newInstance();
 			while (fieldIterator.hasNext() && segmentIterator.hasNext()) {
-				parseEDISegmentOrSegmentGroup(ediMessage, obj, fieldIterator, segmentIterator);
+				parseEDISegmentOrSegmentGroup(ediMessage, obj, fieldIterator, segmentIterator, hierarchy);
 			}
 
 			BeanUtils.setProperty(object, fm.getField().getName(), obj);
@@ -204,12 +217,12 @@ public class EDIUnmarshaller {
 		}
 	}
 
-	protected static <T> void processSegment(EDIMessage ediMessage, T object, BufferedSegmentIterator segmentIterator, FieldMatch fm) throws InstantiationException,
+	protected static <T> void processSegment(EDIMessage ediMessage, T object, BufferedSegmentIterator segmentIterator, FieldMatch fm, Stack<HierarchyReference> hierarchy) throws InstantiationException,
 			IllegalAccessException, InvocationTargetException, ClassNotFoundException, ConversionException {
 	
 		if (Collection.class.isAssignableFrom(fm.getField().getType())) {
-			Collection obj = CollectionFactory.newInstance(fm.getField()
-					.getType());
+			Collection obj = CollectionFactory.newInstance(fm.getField().getType());
+			
 			BeanUtils.setProperty(object, fm.getField().getName(), obj);
 
 			// look ahead to see if we need to break.
@@ -233,8 +246,24 @@ public class EDIUnmarshaller {
 			}
 		} else {
 			Object obj = fm.getField().getType().newInstance();
+			
 			BeanUtils.setProperty(object, fm.getField().getName(), obj);
 			parseEDISegmentFields(ediMessage, obj, fm.getLine());
+			
+
+			if(HierarchyUtil.isHierarchyReference(fm.getField().getType())) {
+				HierarchyReference ref = HierarchyUtil.generateHierarchyReference(obj);
+				System.out.println("Hierarchy.");
+				
+				
+				hierarchy.add(ref);
+				
+				//ok, setting hiearchy to a segment group...
+			}
+			
+			
+			
+			
 		}
 		
 	}
@@ -397,8 +426,6 @@ public class EDIUnmarshaller {
 				try {
 					Object fieldObj = FieldAwareConverter.convertFromString(field.getType(), field, val);
 					LOG.debug("  "+field.getName()+" -> "+val);
-					
-					
 					BeanUtils.setProperty(segment, field.getName(), fieldObj);
 				}
 				catch(Exception e) {
@@ -449,6 +476,13 @@ public class EDIUnmarshaller {
 		public String getLine() {
 			return line;
 		}
+
+		@Override
+		public String toString() {
+			return "FieldMatch [field=" + field + ", line=" + line + "]";
+		}
+		
+		
 	}
 
 }

@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
 public class FieldAwareConverter {
 	private static final Logger LOG = LoggerFactory.getLogger(FieldAwareConverter.class);
 	
-	public static <T> String convertToString(Field field, T obj) throws ConversionException, ClassNotFoundException {
+	public static <T> String convertToString(Field field, T obj) throws ConversionException {
 		if (obj == null) {
 			return null;
 		}
@@ -71,19 +71,25 @@ public class FieldAwareConverter {
 			timezone = TimeZone.getDefault();
 		}
 		
-		
-		Converter converter = Converters.getConverter(obj.getClass(), String.class);
-		
-		if(converter instanceof AbstractNumberConverter) {
-			if(obj instanceof Number && StringUtils.isNotBlank(format)) {
-				NumberFormat numberFormat = new DecimalFormat(format);
-				return numberFormat.format(obj);
+		try {
+			Converter converter = Converters.getConverter(obj.getClass(), String.class);
+			
+			
+			if(converter instanceof AbstractNumberConverter) {
+				if(obj instanceof Number && StringUtils.isNotBlank(format)) {
+					NumberFormat numberFormat = new DecimalFormat(format);
+					return numberFormat.format(obj);
+				}
 			}
+			if(converter instanceof DateToString) {
+				return ((DateToString) converter).convert((Date)obj, locale, timezone, format);
+			}
+			return (String)converter.convert(obj);			
+		} 
+		catch(ClassNotFoundException e) {
+			throw new ConversionException("Exception converting object.", e);
 		}
-		if(converter instanceof DateToString) {
-			return ((DateToString) converter).convert((Date)obj, locale, timezone, format);
-		}
-		return (String)converter.convert(obj);
+
 	}
 	
 	
