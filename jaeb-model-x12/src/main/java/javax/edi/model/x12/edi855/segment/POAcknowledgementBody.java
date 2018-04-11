@@ -7,7 +7,7 @@ public class POAcknowledgementBody {
 
 	private Header header;
 	private Detail detail;
-	private Trailer footer;
+	private Trailer trailer;
 	
 	public Header getHeader() {
 		return header;
@@ -21,10 +21,10 @@ public class POAcknowledgementBody {
 	public void setDetail(Detail detail) {
 		this.detail = detail;
 	}
-	public Trailer getFooter() {
-		return footer;
+	public Trailer getTrailer() {
+		return trailer;
 	}
-	public void setFooter(Trailer footer) {
-		this.footer = footer;
+	public void setTrailer(Trailer trailer) {
+		this.trailer = trailer;
 	}
 }

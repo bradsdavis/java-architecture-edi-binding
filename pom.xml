@@ -53,18 +53,37 @@
 		</dependency>
 	</dependencies>
 	
+	<distributionManagement>
+	    <repository>
+	      <id>nexus</id>
+	      <name>Nexus Server</name>
+	      <url>http://10.0.1.200:8080/nexus/content/repositories/snapshots/</url>
+	    </repository>
+	  </distributionManagement>
+	  
 	<repositories>
 		<repository>
+	      <id>nexus</id>
+	      <name>Nexus Server</name>
+	      <url>http://10.0.1.200:8080/nexus/content/groups/public/</url>
+	    	<releases>
+	    		<enabled>true</enabled>
+	    	</releases>
+	    	<snapshots>
+	    		<enabled>true</enabled>
+	    	</snapshots>
+	    </repository>
+		<repository>
+			<id>apacheSnapshots</id>
+			<name>Apache Snapshots</name>
+			<url>http://repository.apache.org/snapshots/</url>
+			<layout>default</layout>
 			<releases>
 				<enabled>false</enabled>
 			</releases>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
-			<id>apacheSnapshots</id>
-			<name>Apache Snapshots</name>
-			<url>http://repository.apache.org/snapshots/</url>
-			<layout>default</layout>
 		</repository>
 	</repositories>
 	<packaging>pom</packaging>
